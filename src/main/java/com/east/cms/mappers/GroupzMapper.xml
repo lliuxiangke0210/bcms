@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.GroupzDao" >
+  <resultMap id="BaseResultMap" type="com.east.cms.model.Groupz" >
+    <id column="groupz_id" property="groupzId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    groupz_id, name, descr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from groupz
+    where groupz_id = #{groupzId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from groupz
+    where groupz_id = #{groupzId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.east.cms.model.Groupz" >
+    insert into groupz (groupz_id, name, descr
+      )
+    values (#{groupzId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{descr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.east.cms.model.Groupz" >
+    insert into groupz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupzId != null" >
+        groupz_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupzId != null" >
+        #{groupzId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Groupz" >
+    update groupz
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where groupz_id = #{groupzId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Groupz" >
+    update groupz
+    set name = #{name,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR}
+    where groupz_id = #{groupzId,jdbcType=INTEGER}
+  </update>
+</mapper>

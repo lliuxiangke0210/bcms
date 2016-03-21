@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.UserGroupDao" >
+  <resultMap id="BaseResultMap" type="com.east.cms.model.UserGroup" >
+    <id column="user_group_id" property="userGroupId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="groupz_id" property="groupzId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_group_id, user_id, groupz_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_group
+    where user_group_id = #{userGroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_group
+    where user_group_id = #{userGroupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.east.cms.model.UserGroup" >
+    insert into user_group (user_group_id, user_id, groupz_id
+      )
+    values (#{userGroupId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{groupzId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.east.cms.model.UserGroup" >
+    insert into user_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userGroupId != null" >
+        user_group_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="groupzId != null" >
+        groupz_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userGroupId != null" >
+        #{userGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="groupzId != null" >
+        #{groupzId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.UserGroup" >
+    update user_group
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="groupzId != null" >
+        groupz_id = #{groupzId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_group_id = #{userGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.UserGroup" >
+    update user_group
+    set user_id = #{userId,jdbcType=INTEGER},
+      groupz_id = #{groupzId,jdbcType=INTEGER}
+    where user_group_id = #{userGroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

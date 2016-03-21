@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.TopicDao" >
+  <resultMap id="BaseResultMap" type="com.east.cms.model.Topic" >
+    <id column="topic_id" property="topicId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="recommend" property="recommend" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="channel_pic_id" property="channelPicId" jdbcType="INTEGER" />
+    <result column="publish_date" property="publishDate" jdbcType="DATE" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    topic_id, title, keyword, status, recommend, content, summary, channel_pic_id, publish_date, 
+    create_date, author, cname, channel_id, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic
+    where topic_id = #{topicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic
+    where topic_id = #{topicId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.east.cms.model.Topic" >
+    insert into topic (topic_id, title, keyword, 
+      status, recommend, content, 
+      summary, channel_pic_id, publish_date, 
+      create_date, author, cname, 
+      channel_id, user_id)
+    values (#{topicId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{channelPicId,jdbcType=INTEGER}, #{publishDate,jdbcType=DATE}, 
+      #{createDate,jdbcType=DATE}, #{author,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
+      #{channelId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.east.cms.model.Topic" >
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="channelPicId != null" >
+        channel_pic_id,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPicId != null" >
+        #{channelPicId,jdbcType=INTEGER},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Topic" >
+    update topic
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPicId != null" >
+        channel_pic_id = #{channelPicId,jdbcType=INTEGER},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where topic_id = #{topicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Topic" >
+    update topic
+    set title = #{title,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      channel_pic_id = #{channelPicId,jdbcType=INTEGER},
+      publish_date = #{publishDate,jdbcType=DATE},
+      create_date = #{createDate,jdbcType=DATE},
+      author = #{author,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=INTEGER}
+  </update>
+</mapper>

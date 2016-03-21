@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.KeywordDao" >
+  <resultMap id="BaseResultMap" type="com.east.cms.model.Keyword" >
+    <id column="keyword_id" property="keywordId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="name_full_py" property="nameFullPy" jdbcType="VARCHAR" />
+    <result column="name_short_py" property="nameShortPy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    keyword_id, name, times, name_full_py, name_short_py
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from keyword
+    where keyword_id = #{keywordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from keyword
+    where keyword_id = #{keywordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.east.cms.model.Keyword" >
+    insert into keyword (keyword_id, name, times, 
+      name_full_py, name_short_py)
+    values (#{keywordId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
+      #{nameFullPy,jdbcType=VARCHAR}, #{nameShortPy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.east.cms.model.Keyword" >
+    insert into keyword
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keywordId != null" >
+        keyword_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="nameFullPy != null" >
+        name_full_py,
+      </if>
+      <if test="nameShortPy != null" >
+        name_short_py,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keywordId != null" >
+        #{keywordId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="nameFullPy != null" >
+        #{nameFullPy,jdbcType=VARCHAR},
+      </if>
+      <if test="nameShortPy != null" >
+        #{nameShortPy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Keyword" >
+    update keyword
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="nameFullPy != null" >
+        name_full_py = #{nameFullPy,jdbcType=VARCHAR},
+      </if>
+      <if test="nameShortPy != null" >
+        name_short_py = #{nameShortPy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where keyword_id = #{keywordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Keyword" >
+    update keyword
+    set name = #{name,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      name_full_py = #{nameFullPy,jdbcType=VARCHAR},
+      name_short_py = #{nameShortPy,jdbcType=VARCHAR}
+    where keyword_id = #{keywordId,jdbcType=INTEGER}
+  </update>
+</mapper>
