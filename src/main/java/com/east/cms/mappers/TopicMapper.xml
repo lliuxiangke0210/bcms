@@ -15,7 +15,8 @@
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="cname" property="cname" jdbcType="VARCHAR" />
     <result column="channel_id" property="channelId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+     <association column="channel_id" property="channel" select="com.east.cms.dao.ChannelDao.selectByPrimaryKey" ></association>
+     <association column="user_id" property="user" select="com.east.cms.dao.UserDao.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Base_Column_List" >
     topic_id, title, keyword, status, recommend, content, summary, channel_pic_id, publish_date, 

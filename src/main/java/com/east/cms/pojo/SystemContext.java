@@ -1,4 +1,4 @@
-package com.east.cms.model;
+package com.east.cms.pojo;
 
 /**
  * 用来传递列表对象的ThreadLocal数据

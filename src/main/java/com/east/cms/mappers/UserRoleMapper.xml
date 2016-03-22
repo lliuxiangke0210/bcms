@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.east.cms.model.UserRole" >
     <id column="user_role_id" property="userRoleId" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
-    <association column="role_id" property="role" select="com.east.dao.RoleDao.selectByPrimaryKey"  ></association>
-    <association column="user_id" property="user" select="com.east.dao.UserDao.selectByPrimaryKey" ></association>
+    <association column="role_id" property="role" select="com.east.cms.dao.RoleDao.selectByPrimaryKey"  ></association>
+    <association column="user_id" property="user" select="com.east.cms.dao.UserDao.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Base_Column_List" >
     user_role_id, user_id, role_id

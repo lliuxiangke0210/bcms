@@ -1,103 +1,104 @@
 package com.east.cms.model;
 
 public class Attachment {
-    private Integer attachmentId;
+	private Integer attachmentId;
 
-    private String newName;
+	private String newName;
 
-    private String oldName;
+	private String oldName;
 
-    private String type;
+	private String type;
 
-    private String suffix;
+	private String suffix;
 
-    private Integer size;
+	private Integer size;
 
-    private Integer isIndexPic;
+	private Integer isIndexPic;
 
-    private Integer isImg;
+	private Integer isImg;
 
-    private Integer topicId;
+	private Topic topic;
 
-    private Integer isAttach;
+	private Integer isAttach;
 
-    public Integer getAttachmentId() {
-        return attachmentId;
-    }
+	public Integer getAttachmentId() {
+		return attachmentId;
+	}
 
-    public void setAttachmentId(Integer attachmentId) {
-        this.attachmentId = attachmentId;
-    }
+	public void setAttachmentId(Integer attachmentId) {
+		this.attachmentId = attachmentId;
+	}
 
-    public String getNewName() {
-        return newName;
-    }
+	public String getNewName() {
+		return newName;
+	}
 
-    public void setNewName(String newName) {
-        this.newName = newName;
-    }
+	public void setNewName(String newName) {
+		this.newName = newName;
+	}
 
-    public String getOldName() {
-        return oldName;
-    }
+	public String getOldName() {
+		return oldName;
+	}
 
-    public void setOldName(String oldName) {
-        this.oldName = oldName;
-    }
+	public void setOldName(String oldName) {
+		this.oldName = oldName;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public String getSuffix() {
-        return suffix;
-    }
+	public String getSuffix() {
+		return suffix;
+	}
 
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
 
-    public Integer getSize() {
-        return size;
-    }
+	public Integer getSize() {
+		return size;
+	}
 
-    public void setSize(Integer size) {
-        this.size = size;
-    }
+	public void setSize(Integer size) {
+		this.size = size;
+	}
 
-    public Integer getIsIndexPic() {
-        return isIndexPic;
-    }
+	public Integer getIsIndexPic() {
+		return isIndexPic;
+	}
 
-    public void setIsIndexPic(Integer isIndexPic) {
-        this.isIndexPic = isIndexPic;
-    }
+	public void setIsIndexPic(Integer isIndexPic) {
+		this.isIndexPic = isIndexPic;
+	}
 
-    public Integer getIsImg() {
-        return isImg;
-    }
+	public Integer getIsImg() {
+		return isImg;
+	}
 
-    public void setIsImg(Integer isImg) {
-        this.isImg = isImg;
-    }
+	public void setIsImg(Integer isImg) {
+		this.isImg = isImg;
+	}
 
-    public Integer getTopicId() {
-        return topicId;
-    }
+	public Topic getTopic() {
+		return topic;
+	}
 
-    public void setTopicId(Integer topicId) {
-        this.topicId = topicId;
-    }
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 
-    public Integer getIsAttach() {
-        return isAttach;
-    }
+	public Integer getIsAttach() {
+		return isAttach;
+	}
 
-    public void setIsAttach(Integer isAttach) {
-        this.isAttach = isAttach;
-    }
+	public void setIsAttach(Integer isAttach) {
+		this.isAttach = isAttach;
+	}
+
 }

@@ -3,8 +3,8 @@
 <mapper namespace="com.east.cms.dao.UserGroupDao" >
   <resultMap id="BaseResultMap" type="com.east.cms.model.UserGroup" >
     <id column="user_group_id" property="userGroupId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="groupz_id" property="groupzId" jdbcType="INTEGER" />
+    <association column="user_id" property="user" select="com.east.cms.dao.UserDao.selectByPrimaryKey" ></association>
+    <association column="groupz_id" property="groupz" select="com.east.cms.dao.GroupzDao.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Base_Column_List" >
     user_group_id, user_id, groupz_id

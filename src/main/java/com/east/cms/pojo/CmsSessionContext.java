@@ -1,4 +1,4 @@
-package com.east.cms.model;
+package com.east.cms.pojo;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.east.cms.dao.UserDao;
+import com.east.cms.dao.test.UserDaoTest;
 import com.east.com.service.UserServcie;
 
 @Controller
@@ -17,12 +18,15 @@ public class UserController {
 	private UserDao userDao;
 	@Autowired
 	private UserServcie userServcie;
+	@Autowired
+	private UserDaoTest userDaoTest;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView delete(ModelAndView model) {
 		System.out.println("hello");
-		userServcie.delete(2);
-		model.setViewName("redirect:/admin/user/users");
+		// userDaoTest.loadByUsername();
+		userDaoTest.findUser();
+		model.setViewName("/index");
 		return model;
 	}
 }

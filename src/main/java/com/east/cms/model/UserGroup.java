@@ -1,33 +1,34 @@
 package com.east.cms.model;
 
 public class UserGroup {
-    private Integer userGroupId;
+	private Integer userGroupId;
 
-    private Integer userId;
+	private User user;
 
-    private Integer groupzId;
+	private Groupz groupz;
 
-    public Integer getUserGroupId() {
-        return userGroupId;
-    }
+	public Integer getUserGroupId() {
+		return userGroupId;
+	}
 
-    public void setUserGroupId(Integer userGroupId) {
-        this.userGroupId = userGroupId;
-    }
+	public void setUserGroupId(Integer userGroupId) {
+		this.userGroupId = userGroupId;
+	}
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public Integer getGroupzId() {
-        return groupzId;
-    }
+	public Groupz getGroupz() {
+		return groupz;
+	}
 
-    public void setGroupzId(Integer groupzId) {
-        this.groupzId = groupzId;
-    }
+	public void setGroupz(Groupz groupz) {
+		this.groupz = groupz;
+	}
+
 }

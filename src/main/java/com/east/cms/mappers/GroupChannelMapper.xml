@@ -3,8 +3,8 @@
 <mapper namespace="com.east.cms.dao.GroupChannelDao" >
   <resultMap id="BaseResultMap" type="com.east.cms.model.GroupChannel" >
     <id column="group_channel_id" property="groupChannelId" jdbcType="INTEGER" />
-    <result column="groupz_id" property="groupzId" jdbcType="INTEGER" />
-    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <association column="groupz_id" property="groupz" select="com.east.cms.dao.GroupzDao.selectByPrimaryKey" ></association>
+    <association column="channel_id" property="channel" select="com.east.cms.dao.ChannelDao.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List" >
     group_channel_id, groupz_id, channel_id

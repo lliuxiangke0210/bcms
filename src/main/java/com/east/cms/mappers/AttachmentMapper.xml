@@ -10,8 +10,8 @@
     <result column="size" property="size" jdbcType="INTEGER" />
     <result column="is_index_pic" property="isIndexPic" jdbcType="INTEGER" />
     <result column="is_img" property="isImg" jdbcType="INTEGER" />
-    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
     <result column="is_attach" property="isAttach" jdbcType="INTEGER" />
+    <association column="topic_id" property="topic" select="com.east.cms.dao.TopicDao.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Base_Column_List" >
     attachment_id, new_name, old_name, type, suffix, size, is_index_pic, is_img, topic_id, 
