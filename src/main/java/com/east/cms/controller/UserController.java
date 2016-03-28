@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.east.cms.dao.UserDao;
+import com.east.cms.dao.test.RoleDaoTest;
 import com.east.cms.dao.test.UserDaoTest;
 import com.east.com.service.UserServcie;
 
@@ -20,12 +21,15 @@ public class UserController {
 	private UserServcie userServcie;
 	@Autowired
 	private UserDaoTest userDaoTest;
+	@Autowired
+	private RoleDaoTest roleDaoTest;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView delete(ModelAndView model) {
 		System.out.println("hello");
 		// userDaoTest.loadByUsername();
-		userDaoTest.findUser();
+		// roleDaoTest.listRole();
+		userDaoTest.listUserRoles();
 		model.setViewName("/index");
 		return model;
 	}

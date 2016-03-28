@@ -1,85 +1,107 @@
 package com.east.cms.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
-    private Integer userId;
+	private Integer userId;
 
-    private String username;
+	private String username;
 
-    private String password;
+	private String password;
 
-    private String nickname;
+	private String nickname;
 
-    private String email;
+	private String email;
 
-    private String phone;
+	private String phone;
 
-    private Integer status;
+	private Integer status;
 
-    private Date createDate;
+	private Date createDate;
 
-    public Integer getUserId() {
-        return userId;
-    }
+	private List<Groupz> groups;
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	private List<Role> roles;
 
-    public String getUsername() {
-        return username;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getNickname() {
-        return nickname;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getNickname() {
+		return nickname;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public List<Groupz> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(List<Groupz> groups) {
+		this.groups = groups;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 }

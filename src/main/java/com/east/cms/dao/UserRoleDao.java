@@ -83,4 +83,6 @@ public interface UserRoleDao {
 	 */
 	public void deleteUserRole(int uid, int rid);
 
+	public void deleteRoleUsers(int rid);
+
 }

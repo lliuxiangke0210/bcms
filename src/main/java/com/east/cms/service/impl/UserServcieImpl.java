@@ -66,9 +66,9 @@ public class UserServcieImpl implements UserServcie {
 	}
 
 	@Override
-	public List<Role> listUserRoles(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Role> listUserRoles(Integer id) { // 写时检查
+		List<Role> roles = userDao.listUserRoles(id);
+		return roles;
 	}
 
 	@Override

@@ -20,14 +20,6 @@ public interface UserGroupDao {
 	int updateByPrimaryKey(UserGroup record);
 
 	/**
-	 * 获取用户的所有组信息
-	 * 
-	 * @param userId
-	 * @return
-	 */
-	public List<Groupz> listUserGroups(int userId);
-
-	/**
 	 * 获取用户的所有组的id
 	 * 
 	 * @param userId
@@ -74,5 +66,15 @@ public interface UserGroupDao {
 	 * @param gid
 	 */
 	public void deleteUserGroup(int uid, int gid);
+
+	public void deleteGroupUsers(int gid);
+
+	/**
+	 * 获取用户的所有组信息
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Groupz> listUserGroups(int userId);
 
 }

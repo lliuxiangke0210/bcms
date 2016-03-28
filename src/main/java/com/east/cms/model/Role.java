@@ -1,33 +1,46 @@
 package com.east.cms.model;
 
+import java.util.List;
+
 public class Role {
-    private Integer roleId;
+	private Integer roleId;
 
-    private String name;
+	private String name;
 
-    private Integer roleType;
+	private Integer roleType;
 
-    public Integer getRoleId() {
-        return roleId;
-    }
+	private List<User> users;
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
+	public Integer getRoleId() {
+		return roleId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Integer getRoleType() {
-        return roleType;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setRoleType(Integer roleType) {
-        this.roleType = roleType;
-    }
+	public Integer getRoleType() {
+		return roleType;
+	}
+
+	public void setRoleType(Integer roleType) {
+		this.roleType = roleType;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 }
