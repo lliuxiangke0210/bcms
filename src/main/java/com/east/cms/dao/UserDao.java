@@ -2,6 +2,8 @@ package com.east.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.east.cms.model.Groupz;
 import com.east.cms.model.Role;
 import com.east.cms.model.User;
@@ -36,7 +38,7 @@ public interface UserDao {
 	 * @param userId
 	 * @return
 	 */
-	public List<Integer> listUserRoleIds(int userId);
+	public List<Integer> listUserRoleIds(int userId);// oo
 
 	/**
 	 * 获取用户的所有组信息
@@ -44,7 +46,7 @@ public interface UserDao {
 	 * @param userId
 	 * @return
 	 */
-	public List<Groupz> listUserGroups(int userId);
+	public List<Groupz> listUserGroups(int userId);// oo
 
 	/**
 	 * 获取用户的所有组的id
@@ -52,7 +54,7 @@ public interface UserDao {
 	 * @param userId
 	 * @return
 	 */
-	public List<Integer> listUserGroupIds(int userId);
+	public List<Integer> listUserGroupIds(int userId);// oo
 
 	/**
 	 * 根据用户和角色获取用户角色的关联对象
@@ -61,7 +63,7 @@ public interface UserDao {
 	 * @param roleId
 	 * @return
 	 */
-	public UserRole loadUserRole(int userId, int roleId);
+	public UserRole loadUserRole(@Param("userId") int userId, @Param("roleId") int roleId);// oo
 
 	/**
 	 * 根据用户和组获取用户组关联对象
@@ -70,7 +72,7 @@ public interface UserDao {
 	 * @param groupId
 	 * @return
 	 */
-	public UserGroup loadUserGroup(int userId, int groupId);
+	public UserGroup loadUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);// oo
 
 	/**
 	 * 根据用户名获取用户对象

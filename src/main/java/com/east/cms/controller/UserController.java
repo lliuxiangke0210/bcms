@@ -29,7 +29,12 @@ public class UserController {
 		System.out.println("hello");
 		// userDaoTest.loadByUsername();
 		// roleDaoTest.listRole();
-		userDaoTest.listUserRoles();
+		// userDaoTest.listUserRoles();
+		// userDaoTest.listUserRoleIds();
+		// userDaoTest.listUserGroups();
+		// userDaoTest.listUserGroupIds();
+		// userDaoTest.loadUserRole();
+		userDaoTest.loadUserGroup();
 		model.setViewName("/index");
 		return model;
 	}

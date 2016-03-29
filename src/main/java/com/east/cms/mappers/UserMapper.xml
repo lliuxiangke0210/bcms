@@ -53,6 +53,8 @@
 
 
 
+
+
 	<select id="selectByPrimaryKey" resultMap="userMap"
 		parameterType="java.lang.Integer">
 		select
@@ -183,13 +185,72 @@
 	<select id="findUser" resultMap="userMap">
 		select * from user
 	</select>
-    <!-- oo -->
+	<!-- oo -->
 	<select id="listUserRoles" parameterType="java.lang.Integer"
 		resultMap="roleMap">
 		select r.role_id , r.name, r.role_type
-		from user_role ur left join role r on (ur.role_id=r.role_id) where
+		from user_role ur left
+		join role r on (ur.role_id=r.role_id) where
 		ur.user_id=#{userId}
 	</select>
+
+
+	<resultMap id="roleIds" type="java.lang.Integer">
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- oo -->
+	<select id="listUserRoleIds" parameterType="java.lang.Integer"
+		resultMap="roleIds">
+		select role_id from user_role where user_id=#{userId}
+	</select>
+
+	<!-- oo -->
+	<select id="listUserGroups" parameterType="java.lang.Integer"
+		resultMap="groupMap">
+		select g.groupz_id , g.name, g.descr
+		from user_group ug left
+		join groupz g on (ug.groupz_id=g.groupz_id) where
+		ug.user_id=#{userId}
+	</select>
+	<resultMap id="groupIds" type="java.lang.Integer">
+		<result column="groupz_id" property="groupzId" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- oo -->
+	<select id="listUserGroupIds" parameterType="java.lang.Integer"
+		resultMap="groupIds">
+		select groupz_id from user_group where user_id=#{userId}
+	</select>
+
+	
+	<select id="loadUserRole" resultMap="UserRoleMap">
+		select
+		user_role_id,u.user_id,username,password,nickname,email,phone,status,create_date,
+		r.role_id, name, role_type from user_role ur left join user u
+		on(ur.user_id=u.user_id) left join role r on(ur.role_id=r.role_id)
+		where ur.user_id=#{userId} and ur.role_id=#{roleId}
+	</select>
+	<resultMap id="UserRoleMap" type="com.east.cms.model.UserRole">
+		<id column="user_role_id" property="userRoleId" jdbcType="INTEGER" />
+		<association column="role_id" property="role" resultMap="roleMap" />
+		<association column="user_id" property="user" resultMap="userMap" />
+	</resultMap>
+	
+	
+	<select id="loadUserGroup" resultMap="UserGroupMap">
+		select
+		user_group_id,
+		u.user_id,username,password,nickname,email,phone,status,create_date,
+		g.groupz_id, name, descr from user_group ug left join user u
+		on(ug.user_id=u.user_id) left join groupz g on(ug.groupz_id=g.groupz_id)
+		where ug.user_id=#{userId} and ug.groupz_id=#{groupId}
+	</select>
+	<resultMap id="UserGroupMap" type="com.east.cms.model.UserGroup">
+		<id column="user_group_id" property="userGroupId" jdbcType="INTEGER" />
+		<association column="groupz_id" property="groupz" resultMap="groupMap" />
+		<association column="user_id" property="user" resultMap="userMap" />
+	</resultMap>
+
+
 
 
 
