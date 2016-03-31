@@ -132,7 +132,7 @@ public class TopicDto {
 		Topic t = new Topic();
 		t.setChannelPicId(this.getChannelPicId());
 		t.setContent(this.getContent());
-		t.setTopicId(this.getId());
+		t.setId(this.getId());
 		t.setKeyword(this.getKeyword());
 		try {
 			Date d = sdf.parse(this.getPublishDate());
@@ -155,7 +155,7 @@ public class TopicDto {
 	public TopicDto(Topic topic) {
 		this.setChannelPicId(topic.getChannelPicId());
 		this.setContent(topic.getContent());
-		this.setId(topic.getTopicId());
+		this.setId(topic.getId());
 		this.setKeyword(topic.getKeyword());
 		this.setPublishDate(sdf.format(topic.getPublishDate()));
 		this.setRecommend(topic.getRecommend());
@@ -167,7 +167,7 @@ public class TopicDto {
 	public TopicDto(Topic topic, Integer cid) {
 		this.setChannelPicId(topic.getChannelPicId());
 		this.setContent(topic.getContent());
-		this.setId(topic.getTopicId());
+		this.setId(topic.getId());
 		this.setCid(cid);
 		this.setKeyword(topic.getKeyword());
 		this.setPublishDate(sdf.format(topic.getPublishDate()));

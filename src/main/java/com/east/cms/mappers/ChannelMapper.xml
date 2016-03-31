@@ -1,177 +1,178 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.east.cms.dao.ChannelDao" >
-  <resultMap id="BaseResultMap" type="com.east.cms.model.Channel" >
-    <id column="channel_id" property="channelId" jdbcType="INTEGER" />
-    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
-    <result column="is_custom_link" property="isCustomLink" jdbcType="INTEGER" />
-    <result column="custom_link_url" property="customLinkUrl" jdbcType="VARCHAR" />
-    <result column="channel_type" property="channelType" jdbcType="VARCHAR" />
-    <result column="is_index" property="isIndex" jdbcType="INTEGER" />
-    <result column="is_top_nav" property="isTopNav" jdbcType="INTEGER" />
-    <result column="is_recommend" property="isRecommend" jdbcType="INTEGER" />
-    <result column="channel_status" property="channelStatus" jdbcType="INTEGER" />
-    <result column="orders" property="orders" jdbcType="INTEGER" />
-    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-    <result column="nav_order" property="navOrder" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.east.cms.dao.ChannelMapper">
+  <resultMap id="BaseResultMap" type="com.east.cms.model.Channel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="channelName" jdbcType="VARCHAR" property="channelName" />
+    <result column="isCustomLink" jdbcType="INTEGER" property="isCustomLink" />
+    <result column="customLinkUrl" jdbcType="VARCHAR" property="customLinkUrl" />
+    <result column="channelType" jdbcType="VARCHAR" property="channelType" />
+    <result column="isIndex" jdbcType="INTEGER" property="isIndex" />
+    <result column="isTopNav" jdbcType="INTEGER" property="isTopNav" />
+    <result column="isRecommend" jdbcType="INTEGER" property="isRecommend" />
+    <result column="channelStatus" jdbcType="INTEGER" property="channelStatus" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="navOrder" jdbcType="INTEGER" property="navOrder" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    channel_id, channel_name, is_custom_link, custom_link_url, channel_type, is_index, 
-    is_top_nav, is_recommend, channel_status, orders, parent_id, nav_order
+  <sql id="Base_Column_List">
+    id, channelName, isCustomLink, customLinkUrl, channelType, isIndex, isTopNav, isRecommend, 
+    channelStatus, orders, parentId, navOrder
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from channel
-    where channel_id = #{channelId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from channel
-    where channel_id = #{channelId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.east.cms.model.Channel" >
-    insert into channel (channel_id, channel_name, is_custom_link, 
-      custom_link_url, channel_type, is_index, 
-      is_top_nav, is_recommend, channel_status, 
-      orders, parent_id, nav_order
+  <insert id="insert" parameterType="com.east.cms.model.Channel">
+    insert into channel (id, channelName, isCustomLink, 
+      customLinkUrl, channelType, isIndex, 
+      isTopNav, isRecommend, channelStatus, 
+      orders, parentId, navOrder
       )
-    values (#{channelId,jdbcType=INTEGER}, #{channelName,jdbcType=VARCHAR}, #{isCustomLink,jdbcType=INTEGER}, 
-      #{customLinkUrl,jdbcType=VARCHAR}, #{channelType,jdbcType=VARCHAR}, #{isIndex,jdbcType=INTEGER}, 
-      #{isTopNav,jdbcType=INTEGER}, #{isRecommend,jdbcType=INTEGER}, #{channelStatus,jdbcType=INTEGER}, 
-      #{orders,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{navOrder,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{channelname,jdbcType=VARCHAR}, #{iscustomlink,jdbcType=INTEGER}, 
+      #{customlinkurl,jdbcType=VARCHAR}, #{channeltype,jdbcType=VARCHAR}, #{isindex,jdbcType=INTEGER}, 
+      #{istopnav,jdbcType=INTEGER}, #{isrecommend,jdbcType=INTEGER}, #{channelstatus,jdbcType=INTEGER}, 
+      #{orders,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{navorder,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.east.cms.model.Channel" >
+  <insert id="insertSelective" parameterType="com.east.cms.model.Channel">
     insert into channel
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="channelId != null" >
-        channel_id,
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
       </if>
-      <if test="channelName != null" >
-        channel_name,
+      <if test="channelname != null">
+        channelName,
       </if>
-      <if test="isCustomLink != null" >
-        is_custom_link,
+      <if test="iscustomlink != null">
+        isCustomLink,
       </if>
-      <if test="customLinkUrl != null" >
-        custom_link_url,
+      <if test="customlinkurl != null">
+        customLinkUrl,
       </if>
-      <if test="channelType != null" >
-        channel_type,
+      <if test="channeltype != null">
+        channelType,
       </if>
-      <if test="isIndex != null" >
-        is_index,
+      <if test="isindex != null">
+        isIndex,
       </if>
-      <if test="isTopNav != null" >
-        is_top_nav,
+      <if test="istopnav != null">
+        isTopNav,
       </if>
-      <if test="isRecommend != null" >
-        is_recommend,
+      <if test="isrecommend != null">
+        isRecommend,
       </if>
-      <if test="channelStatus != null" >
-        channel_status,
+      <if test="channelstatus != null">
+        channelStatus,
       </if>
-      <if test="orders != null" >
+      <if test="orders != null">
         orders,
       </if>
-      <if test="parentId != null" >
-        parent_id,
+      <if test="parentid != null">
+        parentId,
       </if>
-      <if test="navOrder != null" >
-        nav_order,
+      <if test="navorder != null">
+        navOrder,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="channelId != null" >
-        #{channelId,jdbcType=INTEGER},
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="channelName != null" >
-        #{channelName,jdbcType=VARCHAR},
+      <if test="channelname != null">
+        #{channelname,jdbcType=VARCHAR},
       </if>
-      <if test="isCustomLink != null" >
-        #{isCustomLink,jdbcType=INTEGER},
+      <if test="iscustomlink != null">
+        #{iscustomlink,jdbcType=INTEGER},
       </if>
-      <if test="customLinkUrl != null" >
-        #{customLinkUrl,jdbcType=VARCHAR},
+      <if test="customlinkurl != null">
+        #{customlinkurl,jdbcType=VARCHAR},
       </if>
-      <if test="channelType != null" >
-        #{channelType,jdbcType=VARCHAR},
+      <if test="channeltype != null">
+        #{channeltype,jdbcType=VARCHAR},
       </if>
-      <if test="isIndex != null" >
-        #{isIndex,jdbcType=INTEGER},
+      <if test="isindex != null">
+        #{isindex,jdbcType=INTEGER},
       </if>
-      <if test="isTopNav != null" >
-        #{isTopNav,jdbcType=INTEGER},
+      <if test="istopnav != null">
+        #{istopnav,jdbcType=INTEGER},
       </if>
-      <if test="isRecommend != null" >
-        #{isRecommend,jdbcType=INTEGER},
+      <if test="isrecommend != null">
+        #{isrecommend,jdbcType=INTEGER},
       </if>
-      <if test="channelStatus != null" >
-        #{channelStatus,jdbcType=INTEGER},
+      <if test="channelstatus != null">
+        #{channelstatus,jdbcType=INTEGER},
       </if>
-      <if test="orders != null" >
+      <if test="orders != null">
         #{orders,jdbcType=INTEGER},
       </if>
-      <if test="parentId != null" >
-        #{parentId,jdbcType=INTEGER},
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
       </if>
-      <if test="navOrder != null" >
-        #{navOrder,jdbcType=INTEGER},
+      <if test="navorder != null">
+        #{navorder,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Channel" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Channel">
     update channel
-    <set >
-      <if test="channelName != null" >
-        channel_name = #{channelName,jdbcType=VARCHAR},
+    <set>
+      <if test="channelname != null">
+        channelName = #{channelname,jdbcType=VARCHAR},
       </if>
-      <if test="isCustomLink != null" >
-        is_custom_link = #{isCustomLink,jdbcType=INTEGER},
+      <if test="iscustomlink != null">
+        isCustomLink = #{iscustomlink,jdbcType=INTEGER},
       </if>
-      <if test="customLinkUrl != null" >
-        custom_link_url = #{customLinkUrl,jdbcType=VARCHAR},
+      <if test="customlinkurl != null">
+        customLinkUrl = #{customlinkurl,jdbcType=VARCHAR},
       </if>
-      <if test="channelType != null" >
-        channel_type = #{channelType,jdbcType=VARCHAR},
+      <if test="channeltype != null">
+        channelType = #{channeltype,jdbcType=VARCHAR},
       </if>
-      <if test="isIndex != null" >
-        is_index = #{isIndex,jdbcType=INTEGER},
+      <if test="isindex != null">
+        isIndex = #{isindex,jdbcType=INTEGER},
       </if>
-      <if test="isTopNav != null" >
-        is_top_nav = #{isTopNav,jdbcType=INTEGER},
+      <if test="istopnav != null">
+        isTopNav = #{istopnav,jdbcType=INTEGER},
       </if>
-      <if test="isRecommend != null" >
-        is_recommend = #{isRecommend,jdbcType=INTEGER},
+      <if test="isrecommend != null">
+        isRecommend = #{isrecommend,jdbcType=INTEGER},
       </if>
-      <if test="channelStatus != null" >
-        channel_status = #{channelStatus,jdbcType=INTEGER},
+      <if test="channelstatus != null">
+        channelStatus = #{channelstatus,jdbcType=INTEGER},
       </if>
-      <if test="orders != null" >
+      <if test="orders != null">
         orders = #{orders,jdbcType=INTEGER},
       </if>
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=INTEGER},
       </if>
-      <if test="navOrder != null" >
-        nav_order = #{navOrder,jdbcType=INTEGER},
+      <if test="navorder != null">
+        navOrder = #{navorder,jdbcType=INTEGER},
       </if>
     </set>
-    where channel_id = #{channelId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Channel" >
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Channel">
     update channel
-    set channel_name = #{channelName,jdbcType=VARCHAR},
-      is_custom_link = #{isCustomLink,jdbcType=INTEGER},
-      custom_link_url = #{customLinkUrl,jdbcType=VARCHAR},
-      channel_type = #{channelType,jdbcType=VARCHAR},
-      is_index = #{isIndex,jdbcType=INTEGER},
-      is_top_nav = #{isTopNav,jdbcType=INTEGER},
-      is_recommend = #{isRecommend,jdbcType=INTEGER},
-      channel_status = #{channelStatus,jdbcType=INTEGER},
+    set channelName = #{channelname,jdbcType=VARCHAR},
+      isCustomLink = #{iscustomlink,jdbcType=INTEGER},
+      customLinkUrl = #{customlinkurl,jdbcType=VARCHAR},
+      channelType = #{channeltype,jdbcType=VARCHAR},
+      isIndex = #{isindex,jdbcType=INTEGER},
+      isTopNav = #{istopnav,jdbcType=INTEGER},
+      isRecommend = #{isrecommend,jdbcType=INTEGER},
+      channelStatus = #{channelstatus,jdbcType=INTEGER},
       orders = #{orders,jdbcType=INTEGER},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      nav_order = #{navOrder,jdbcType=INTEGER}
-    where channel_id = #{channelId,jdbcType=INTEGER}
+      parentId = #{parentid,jdbcType=INTEGER},
+      navOrder = #{navorder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
+ 
 </mapper>

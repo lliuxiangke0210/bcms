@@ -1,43 +1,44 @@
 package com.east.cms.model;
 
 public class Department {
-    private Integer deptId;
+	private Integer id;
 
-    private String deptName;
+	private String depatName;
 
-    private String deptNo;
+	private String deptNo;
 
-    private String location;
+	private String location;
 
-    public Integer getDeptId() {
-        return deptId;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getDeptName() {
-        return deptName;
-    }
+	public String getDepatName() {
+		return depatName;
+	}
 
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
-    }
+	public void setDepatName(String depatName) {
+		this.depatName = depatName;
+	}
 
-    public String getDeptNo() {
-        return deptNo;
-    }
+	public String getDeptNo() {
+		return deptNo;
+	}
 
-    public void setDeptNo(String deptNo) {
-        this.deptNo = deptNo;
-    }
+	public void setDeptNo(String deptNo) {
+		this.deptNo = deptNo;
+	}
 
-    public String getLocation() {
-        return location;
-    }
+	public String getLocation() {
+		return location;
+	}
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 }

@@ -2,14 +2,14 @@ package com.east.cms.dao;
 
 import com.east.cms.model.Keyword;
 
-public interface KeywordDao {
-    int deleteByPrimaryKey(Integer keywordId);
+public interface KeywordMapper {
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Keyword record);
 
     int insertSelective(Keyword record);
 
-    Keyword selectByPrimaryKey(Integer keywordId);
+    Keyword selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Keyword record);
 

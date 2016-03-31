@@ -1,7 +1,7 @@
 package com.east.cms.model;
 
 public class Attachment {
-	private Integer attachmentId;
+	private Integer id;
 
 	private String newName;
 
@@ -17,16 +17,16 @@ public class Attachment {
 
 	private Integer isImg;
 
-	private Topic topic;
+	private Integer topicId;
 
 	private Integer isAttach;
 
-	public Integer getAttachmentId() {
-		return attachmentId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setAttachmentId(Integer attachmentId) {
-		this.attachmentId = attachmentId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNewName() {
@@ -85,12 +85,12 @@ public class Attachment {
 		this.isImg = isImg;
 	}
 
-	public Topic getTopic() {
-		return topic;
+	public Integer getTopicId() {
+		return topicId;
 	}
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
+	public void setTopicId(Integer topicId) {
+		this.topicId = topicId;
 	}
 
 	public Integer getIsAttach() {

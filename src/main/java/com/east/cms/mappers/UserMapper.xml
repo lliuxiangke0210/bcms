@@ -1,89 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.east.cms.dao.UserDao">
-
-	<resultMap id="userMap" type="com.east.cms.model.User">
-		<id column="user_id" property="userId" jdbcType="INTEGER" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
-		<result column="password" property="password" jdbcType="VARCHAR" />
-		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="phone" property="phone" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="INTEGER" />
-		<result column="create_date" property="createDate" jdbcType="DATE" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.east.cms.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.east.cms.model.User">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="createDate" jdbcType="DATE" property="createDate" />
 	</resultMap>
-	<sql id="User_Column_List">
-		user_id, username, password, nickname, email, phone,
-		status, create_date
+	<sql id="Base_Column_List">
+		id, username, password, nickname, email, phone, status,
+		createDate
 	</sql>
-	<resultMap id="roleMap" type="com.east.cms.model.Role">
-		<id column="role_id" property="roleId" jdbcType="INTEGER" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="role_type" property="roleType" jdbcType="INTEGER" />
-	</resultMap>
-	<sql id="Role_Column_List">
-		role_id, name, role_type
-	</sql>
-
-	<resultMap id="groupMap" type="com.east.cms.model.Groupz">
-		<id column="groupz_id" property="groupzId" jdbcType="INTEGER" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="descr" property="descr" jdbcType="VARCHAR" />
-	</resultMap>
-	<sql id="Group_Column_List">
-		groupz_id, name, descr
-	</sql>
-
-	<resultMap type="User" id="userRoleMap" extends="userMap">
-		<collection property="roles" ofType="com.east.cms.model.Role"
-			resultMap="roleMap" />
-	</resultMap>
-
-	<resultMap type="User" id="userGroupMap" extends="userMap">
-		<collection property="groups" ofType="com.east.cms.model.Groupz"
-			resultMap="groupMap" />
-	</resultMap>
-
-	<resultMap type="User" id="userGroupRoleMap" extends="userMap">
-		<collection property="groups" ofType="com.east.cms.model.Groupz"
-			resultMap="groupMap" />
-		<collection property="roles" ofType="com.east.cms.model.Role"
-			resultMap="roleMap" />
-	</resultMap>
-
-
-
-
-
-	<select id="selectByPrimaryKey" resultMap="userMap"
-		parameterType="java.lang.Integer">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
-		<include refid="User_Column_List" />
+		<include refid="Base_Column_List" />
 		from user
-		where user_id = #{userId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
 	</select>
-
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from user
-		where user_id = #{userId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.east.cms.model.User">
-		insert into user (user_id,
+		insert into user (id,
 		username, password,
 		nickname, email, phone,
-		status, create_date)
+		status, createDate)
 		values
-		(#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		(#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{nickname,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-		#{status,jdbcType=INTEGER}, #{createDate,jdbcType=DATE})
+		#{status,jdbcType=INTEGER}, #{createdate,jdbcType=DATE})
 	</insert>
 	<insert id="insertSelective" parameterType="com.east.cms.model.User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="userId != null">
-				user_id,
+			<if test="id != null">
+				id,
 			</if>
 			<if test="username != null">
 				username,
@@ -103,13 +62,13 @@
 			<if test="status != null">
 				status,
 			</if>
-			<if test="createDate != null">
-				create_date,
+			<if test="createdate != null">
+				createDate,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="userId != null">
-				#{userId,jdbcType=INTEGER},
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
 			</if>
 			<if test="username != null">
 				#{username,jdbcType=VARCHAR},
@@ -129,8 +88,8 @@
 			<if test="status != null">
 				#{status,jdbcType=INTEGER},
 			</if>
-			<if test="createDate != null">
-				#{createDate,jdbcType=DATE},
+			<if test="createdate != null">
+				#{createdate,jdbcType=DATE},
 			</if>
 		</trim>
 	</insert>
@@ -155,11 +114,11 @@
 			<if test="status != null">
 				status = #{status,jdbcType=INTEGER},
 			</if>
-			<if test="createDate != null">
-				create_date = #{createDate,jdbcType=DATE},
+			<if test="createdate != null">
+				createDate = #{createdate,jdbcType=DATE},
 			</if>
 		</set>
-		where user_id = #{userId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.east.cms.model.User">
 		update user
@@ -171,88 +130,139 @@
 		email = #{email,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
 		status = #{status,jdbcType=INTEGER},
-		create_date =
-		#{createDate,jdbcType=DATE}
-		where user_id = #{userId,jdbcType=INTEGER}
+		createDate =
+		#{createdate,jdbcType=DATE}
+		where id = #{id,jdbcType=INTEGER}
 	</update>
-
-
-	<!-- oo -->
-	<select id="loadByUsername" parameterType="String" resultMap="userMap">
-		select * from user where username =#{username,jdbcType=VARCHAR}
-	</select>
-	<!-- oo -->
-	<select id="findUser" resultMap="userMap">
-		select * from user
-	</select>
+	<!-- **************************************************** -->
 	<!-- oo -->
 	<select id="listUserRoles" parameterType="java.lang.Integer"
-		resultMap="roleMap">
-		select r.role_id , r.name, r.role_type
-		from user_role ur left
-		join role r on (ur.role_id=r.role_id) where
-		ur.user_id=#{userId}
+		resultType="com.east.cms.model.Role">
+		select r.* from user_role ur left join role r on
+		(ur.roleId=r.id) where ur.userId=#{userId}
 	</select>
 
-
-	<resultMap id="roleIds" type="java.lang.Integer">
-		<result column="role_id" property="roleId" jdbcType="INTEGER" />
-	</resultMap>
 	<!-- oo -->
 	<select id="listUserRoleIds" parameterType="java.lang.Integer"
-		resultMap="roleIds">
-		select role_id from user_role where user_id=#{userId}
+		resultType="java.lang.Integer">
+		select roleId from user_role where userId=#{userId}
 	</select>
 
-	<!-- oo -->
+
+     <!-- oo -->
 	<select id="listUserGroups" parameterType="java.lang.Integer"
-		resultMap="groupMap">
-		select g.groupz_id , g.name, g.descr
-		from user_group ug left
-		join groupz g on (ug.groupz_id=g.groupz_id) where
-		ug.user_id=#{userId}
+		resultType="com.east.cms.model.Groupz">
+		select g.* from user_group ug left join groupz g on
+		(ug.groupId=g.id) where ug.userId=#{userId}
 	</select>
-	<resultMap id="groupIds" type="java.lang.Integer">
-		<result column="groupz_id" property="groupzId" jdbcType="INTEGER" />
-	</resultMap>
+
+
 	<!-- oo -->
 	<select id="listUserGroupIds" parameterType="java.lang.Integer"
-		resultMap="groupIds">
-		select groupz_id from user_group where user_id=#{userId}
+		resultType="java.lang.Integer">
+		select groupId from user_group where userId=#{userId}
 	</select>
 
-	
-	<select id="loadUserRole" resultMap="UserRoleMap">
-		select
-		user_role_id,u.user_id,username,password,nickname,email,phone,status,create_date,
-		r.role_id, name, role_type from user_role ur left join user u
-		on(ur.user_id=u.user_id) left join role r on(ur.role_id=r.role_id)
-		where ur.user_id=#{userId} and ur.role_id=#{roleId}
+
+
+
+
+	<select id="loadUserRole" resultType="com.east.cms.model.UserRole">
+		select ur.id,
+		ur.userId ,
+		ur.roleId ,
+		u.username ,
+		u.password ,
+		u.nickname ,
+		u.email ,
+		u.phone ,
+		u.status ,
+		r.name ,
+		r.roleType
+		from user_role ur left join role r on
+		(ur.roleId=r.id) left join user u
+		on(ur.userId=u.id) where
+		ur.userId=#{userId} and ur.roleId=#{roleId}
 	</select>
-	<resultMap id="UserRoleMap" type="com.east.cms.model.UserRole">
-		<id column="user_role_id" property="userRoleId" jdbcType="INTEGER" />
-		<association column="role_id" property="role" resultMap="roleMap" />
-		<association column="user_id" property="user" resultMap="userMap" />
-	</resultMap>
-	
-	
-	<select id="loadUserGroup" resultMap="UserGroupMap">
-		select
-		user_group_id,
-		u.user_id,username,password,nickname,email,phone,status,create_date,
-		g.groupz_id, name, descr from user_group ug left join user u
-		on(ug.user_id=u.user_id) left join groupz g on(ug.groupz_id=g.groupz_id)
-		where ug.user_id=#{userId} and ug.groupz_id=#{groupId}
+
+
+	<select id="loadUserGroup" resultType="com.east.cms.model.UserGroup">
+		select ug.id,
+		ug.userId ,
+		ug.groupId ,
+		u.username ,
+		u.password ,
+		u.nickname ,
+		u.email ,
+		u.phone ,
+		u.status ,
+		g.name ,
+		g.descr
+		from user_group ug left join groupz g on
+		(ug.groupId=g.id) left join user u
+		on(ug.userId=u.id) where
+		ug.userId=#{userId} and ug.groupId=#{groupId}
 	</select>
-	<resultMap id="UserGroupMap" type="com.east.cms.model.UserGroup">
-		<id column="user_group_id" property="userGroupId" jdbcType="INTEGER" />
-		<association column="groupz_id" property="groupz" resultMap="groupMap" />
-		<association column="user_id" property="user" resultMap="userMap" />
-	</resultMap>
+	<select id="loadByUsername" parameterType="java.lang.String"
+		resultType="com.east.cms.model.User">
+		select * from user where username=#{username}
+	</select>
+	<select id="listRoleUsers" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.User">
+		select u.* from user_role ur left join user u
+		on(ur.userId=u.id) where ur.roleId=#{roleId}
+	</select>
 
 
+	<select id="listRoleUsers" parameterType="java.lang.String"
+		resultType="com.east.cms.model.User">
+		select u.* from user_role ur join user u on(ur.userId=u.id)
+		join role r on(ur.roleId=r.id) where r.roleType=#{roleType}
+	</select>
 
 
+	<select id="listGroupUsers" parameterType="java.lang.String"
+		resultType="com.east.cms.model.User">
+		select u.* from user_group ug join user u
+		on(ug.userId=u.id) join groupz g on(ug.groupId=g.id) where g.id=#{gid}
+	</select>
+
+	addUserRole
+
+	<insert id="addUserRole">
+		insert into user_role
+		(userId,roleId)
+		values
+		(#{user.id,jdbcType=INTEGER},#{role.id,jdbcType=INTEGER} )
+	</insert>
+
+	<insert id="addUserGroup">
+		insert into user_group
+		(userId,groupId)
+		values
+		(#{user.id,jdbcType=INTEGER},#{group.id,jdbcType=INTEGER} )
+	</insert>
+
+
+	<delete id="deleteUserRoles" parameterType="java.lang.Integer">
+		delete from user_role where userId=#{userId}
+	</delete>
+
+
+	<delete id="deleteUserGroups" parameterType="java.lang.Integer">
+		delete from user_group where userId=#{userId}
+	</delete>
+
+	<select id="findUser" resultType="com.east.cms.model.User">
+		select * from user
+	</select>
+	<delete id="deleteUserRole">
+		delete from user_role where userId=#{userId} and roleId=#{roleId}
+	</delete>
+	
+	<delete id="deleteUserGroup">
+		delete from user_group where userId=#{userId} and groupId=#{groupId}
+	</delete>
 
 
 

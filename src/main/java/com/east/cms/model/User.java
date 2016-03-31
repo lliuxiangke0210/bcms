@@ -1,10 +1,9 @@
 package com.east.cms.model;
 
 import java.util.Date;
-import java.util.List;
 
 public class User {
-	private Integer userId;
+	private Integer id;
 
 	private String username;
 
@@ -20,16 +19,12 @@ public class User {
 
 	private Date createDate;
 
-	private List<Groupz> groups;
-
-	private List<Role> roles;
-
-	public Integer getUserId() {
-		return userId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -86,22 +81,6 @@ public class User {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public List<Groupz> getGroups() {
-		return groups;
-	}
-
-	public void setGroups(List<Groupz> groups) {
-		this.groups = groups;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
 	}
 
 }

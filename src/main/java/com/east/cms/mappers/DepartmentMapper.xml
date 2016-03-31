@@ -1,82 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.east.cms.dao.DepartmentDao" >
-  <resultMap id="BaseResultMap" type="com.east.cms.model.Department" >
-    <id column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
-    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
-    <result column="DEPT_NO" property="deptNo" jdbcType="VARCHAR" />
-    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.east.cms.dao.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.east.cms.model.Department">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="depatName" jdbcType="VARCHAR" property="depatName" />
+    <result column="deptNo" jdbcType="VARCHAR" property="deptNo" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    DEPT_ID, DEPT_NAME, DEPT_NO, LOCATION
+  <sql id="Base_Column_List">
+    id, depatName, deptNo, location
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from department
-    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from department
-    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.east.cms.model.Department" >
-    insert into department (DEPT_ID, DEPT_NAME, DEPT_NO, 
-      LOCATION)
-    values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, 
+  <insert id="insert" parameterType="com.east.cms.model.Department">
+    insert into department (id, depatName, deptNo, 
+      location)
+    values (#{id,jdbcType=INTEGER}, #{depatname,jdbcType=VARCHAR}, #{deptno,jdbcType=VARCHAR}, 
       #{location,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.east.cms.model.Department" >
+  <insert id="insertSelective" parameterType="com.east.cms.model.Department">
     insert into department
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="deptId != null" >
-        DEPT_ID,
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
       </if>
-      <if test="deptName != null" >
-        DEPT_NAME,
+      <if test="depatname != null">
+        depatName,
       </if>
-      <if test="deptNo != null" >
-        DEPT_NO,
+      <if test="deptno != null">
+        deptNo,
       </if>
-      <if test="location != null" >
-        LOCATION,
+      <if test="location != null">
+        location,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="deptId != null" >
-        #{deptId,jdbcType=INTEGER},
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="deptName != null" >
-        #{deptName,jdbcType=VARCHAR},
+      <if test="depatname != null">
+        #{depatname,jdbcType=VARCHAR},
       </if>
-      <if test="deptNo != null" >
-        #{deptNo,jdbcType=VARCHAR},
+      <if test="deptno != null">
+        #{deptno,jdbcType=VARCHAR},
       </if>
-      <if test="location != null" >
+      <if test="location != null">
         #{location,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Department" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Department">
     update department
-    <set >
-      <if test="deptName != null" >
-        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+    <set>
+      <if test="depatname != null">
+        depatName = #{depatname,jdbcType=VARCHAR},
       </if>
-      <if test="deptNo != null" >
-        DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      <if test="deptno != null">
+        deptNo = #{deptno,jdbcType=VARCHAR},
       </if>
-      <if test="location != null" >
-        LOCATION = #{location,jdbcType=VARCHAR},
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
       </if>
     </set>
-    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Department" >
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Department">
     update department
-    set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
-      DEPT_NO = #{deptNo,jdbcType=VARCHAR},
-      LOCATION = #{location,jdbcType=VARCHAR}
-    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+    set depatName = #{depatname,jdbcType=VARCHAR},
+      deptNo = #{deptno,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

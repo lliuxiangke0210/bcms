@@ -2,14 +2,14 @@ package com.east.cms.dao;
 
 import com.east.cms.model.Channel;
 
-public interface ChannelDao {
-    int deleteByPrimaryKey(Integer channelId);
+public interface ChannelMapper {
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Channel record);
 
     int insertSelective(Channel record);
 
-    Channel selectByPrimaryKey(Integer channelId);
+    Channel selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Channel record);
 

@@ -11,18 +11,19 @@ import com.east.cms.model.UserGroup;
 import com.east.cms.model.UserRole;
 import com.github.pagehelper.PageInfo;
 
-public interface UserDao {
-	int deleteByPrimaryKey(Integer userId);
+public interface UserMapper {
+	int deleteByPrimaryKey(Integer id);
 
 	int insert(User record);
 
 	int insertSelective(User record);
 
-	User selectByPrimaryKey(Integer userId);
+	User selectByPrimaryKey(Integer id);
 
 	int updateByPrimaryKeySelective(User record);
 
 	int updateByPrimaryKey(User record);
+	// ----------------------------------------------------
 
 	/**
 	 * 获取用户的所有角色信息
@@ -30,7 +31,7 @@ public interface UserDao {
 	 * @param userId
 	 * @return
 	 */
-	public List<Role> listUserRoles(int userId);// oo
+	public List<Role> listUserRoles(int userId); // oo
 
 	/**
 	 * 获取用户的所有角色的id
@@ -46,7 +47,7 @@ public interface UserDao {
 	 * @param userId
 	 * @return
 	 */
-	public List<Groupz> listUserGroups(int userId);// oo
+	public List<Groupz> listUserGroups(int userId); // oo
 
 	/**
 	 * 获取用户的所有组的id
@@ -112,7 +113,7 @@ public interface UserDao {
 	 * @param user
 	 * @param role
 	 */
-	public void addUserRole(User user, Role role);
+	public void addUserRole(@Param("user") User user, @Param("role") Role role);
 
 	/**
 	 * 添加用户组对象
@@ -120,21 +121,21 @@ public interface UserDao {
 	 * @param user
 	 * @param group
 	 */
-	public void addUserGroup(User user, Groupz group);
+	public void addUserGroup(@Param("user") User user, @Param("group") Groupz group);
 
 	/**
 	 * 删除用户的角色信息
 	 * 
 	 * @param uid
 	 */
-	public void deleteUserRoles(int uid);
+	public void deleteUserRoles(int userId);
 
 	/**
 	 * 删除用户的组信息
 	 * 
 	 * @param gid
 	 */
-	public void deleteUserGroups(int gid);
+	public void deleteUserGroups(int userId);
 
 	public PageInfo<User> findUser();
 
@@ -144,7 +145,7 @@ public interface UserDao {
 	 * @param uid
 	 * @param rid
 	 */
-	public void deleteUserRole(int uid, int rid);
+	public void deleteUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
 
 	/**
 	 * 删除用户组对象
@@ -152,6 +153,6 @@ public interface UserDao {
 	 * @param uid
 	 * @param gid
 	 */
-	public void deleteUserGroup(int uid, int gid);
+	public void deleteUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);
 
 }

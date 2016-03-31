@@ -1,22 +1,18 @@
 package com.east.cms.model;
 
-import java.util.List;
-
 public class Role {
-	private Integer roleId;
+	private Integer id;
 
 	private String name;
 
-	private Integer roleType;
+	private String roleType;
 
-	private List<User> users;
-
-	public Integer getRoleId() {
-		return roleId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -27,20 +23,12 @@ public class Role {
 		this.name = name;
 	}
 
-	public Integer getRoleType() {
+	public String getRoleType() {
 		return roleType;
 	}
 
-	public void setRoleType(Integer roleType) {
+	public void setRoleType(String roleType) {
 		this.roleType = roleType;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 
 }

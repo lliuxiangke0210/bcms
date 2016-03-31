@@ -113,7 +113,7 @@ public class UserDto {
 
 	public User getUser() {
 		User u = new User();
-		u.setUserId(this.id);
+		u.setId(this.id);
 		u.setEmail(email);
 		u.setNickname(nickname);
 		u.setPassword(password);
@@ -125,7 +125,7 @@ public class UserDto {
 
 	public UserDto(User user) {
 		this.setEmail(user.getEmail());
-		this.setId(user.getUserId());
+		this.setId(user.getId());
 		this.setNickname(user.getNickname());
 		this.setPassword(user.getPassword());
 		this.setPhone(user.getPhone());
@@ -135,7 +135,7 @@ public class UserDto {
 
 	public UserDto(User user, Integer[] roleIds, Integer[] groupIds) {
 		this.setEmail(user.getEmail());
-		this.setId(user.getUserId());
+		this.setId(user.getId());
 		this.setNickname(user.getNickname());
 		this.setPassword(user.getPassword());
 		this.setPhone(user.getPhone());
@@ -147,7 +147,7 @@ public class UserDto {
 
 	public UserDto(User user, List<Integer> roleIds, List<Integer> groupIds) {
 		this.setEmail(user.getEmail());
-		this.setId(user.getUserId());
+		this.setId(user.getId());
 		this.setNickname(user.getNickname());
 		this.setPassword(user.getPassword());
 		this.setPhone(user.getPhone());

@@ -3,7 +3,7 @@ package com.east.cms.model;
 import java.util.Date;
 
 public class Topic {
-	private Integer topicId;
+	private Integer id;
 
 	private String title;
 
@@ -17,8 +17,6 @@ public class Topic {
 
 	private String summary;
 
-	private Integer channelPicId;
-
 	private Date publishDate;
 
 	private Date createDate;
@@ -27,16 +25,18 @@ public class Topic {
 
 	private String cname;
 
-	private Channel channel;
+	private Integer channelPicId;
 
-	private User user;
+	private Integer channelId;
 
-	public Integer getTopicId() {
-		return topicId;
+	private Integer userId;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTopicId(Integer topicId) {
-		this.topicId = topicId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -87,14 +87,6 @@ public class Topic {
 		this.summary = summary;
 	}
 
-	public Integer getChannelPicId() {
-		return channelPicId;
-	}
-
-	public void setChannelPicId(Integer channelPicId) {
-		this.channelPicId = channelPicId;
-	}
-
 	public Date getPublishDate() {
 		return publishDate;
 	}
@@ -127,20 +119,28 @@ public class Topic {
 		this.cname = cname;
 	}
 
-	public Channel getChannel() {
-		return channel;
+	public Integer getChannelPicId() {
+		return channelPicId;
 	}
 
-	public void setChannel(Channel channel) {
-		this.channel = channel;
+	public void setChannelPicId(Integer channelPicId) {
+		this.channelPicId = channelPicId;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getChannelId() {
+		return channelId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }

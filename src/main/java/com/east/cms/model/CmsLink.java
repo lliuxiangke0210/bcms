@@ -1,83 +1,84 @@
 package com.east.cms.model;
 
 public class CmsLink {
-    private Integer cmsLinkId;
+	private Integer id;
 
-    private String title;
+	private String title;
 
-    private String url;
+	private String url;
 
-    private String type;
+	private String type;
 
-    private String newWin;
+	private String newWin;
 
-    private String urlId;
+	private String urlId;
 
-    private String urlClass;
+	private String urlClass;
 
-    private Integer pos;
+	private Integer pos;
 
-    public Integer getCmsLinkId() {
-        return cmsLinkId;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setCmsLinkId(Integer cmsLinkId) {
-        this.cmsLinkId = cmsLinkId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public String getNewWin() {
-        return newWin;
-    }
+	public String getNewWin() {
+		return newWin;
+	}
 
-    public void setNewWin(String newWin) {
-        this.newWin = newWin;
-    }
+	public void setNewWin(String newWin) {
+		this.newWin = newWin;
+	}
 
-    public String getUrlId() {
-        return urlId;
-    }
+	public String getUrlId() {
+		return urlId;
+	}
 
-    public void setUrlId(String urlId) {
-        this.urlId = urlId;
-    }
+	public void setUrlId(String urlId) {
+		this.urlId = urlId;
+	}
 
-    public String getUrlClass() {
-        return urlClass;
-    }
+	public String getUrlClass() {
+		return urlClass;
+	}
 
-    public void setUrlClass(String urlClass) {
-        this.urlClass = urlClass;
-    }
+	public void setUrlClass(String urlClass) {
+		this.urlClass = urlClass;
+	}
 
-    public Integer getPos() {
-        return pos;
-    }
+	public Integer getPos() {
+		return pos;
+	}
 
-    public void setPos(Integer pos) {
-        this.pos = pos;
-    }
+	public void setPos(Integer pos) {
+		this.pos = pos;
+	}
+
 }
