@@ -9,21 +9,8 @@ import com.east.cms.model.Role;
 import com.east.cms.model.User;
 import com.east.cms.model.UserGroup;
 import com.east.cms.model.UserRole;
-import com.github.pagehelper.PageInfo;
 
 public interface UserMapper {
-	int deleteByPrimaryKey(Integer id);
-
-	int insert(User record);
-
-	int insertSelective(User record);
-
-	User selectByPrimaryKey(Integer id);
-
-	int updateByPrimaryKeySelective(User record);
-
-	int updateByPrimaryKey(User record);
-	// ----------------------------------------------------
 
 	/**
 	 * 获取用户的所有角色信息
@@ -81,7 +68,7 @@ public interface UserMapper {
 	 * @param username
 	 * @return
 	 */
-	public User loadByUsername(String username);
+	public User loadByUsername(String username);// oo
 
 	/**
 	 * 根据角色id获取用户列表
@@ -89,7 +76,7 @@ public interface UserMapper {
 	 * @param roleId
 	 * @return
 	 */
-	public List<User> listRoleUsers(int roleId);
+	public List<User> listRoleUsers(int roleId);// oo
 
 	/**
 	 * 根据角色类型获取用户对象
@@ -97,7 +84,7 @@ public interface UserMapper {
 	 * @param roleType
 	 * @return
 	 */
-	public List<User> listRoleUsers(String roleType);
+	public List<User> listRoleUsersByType(String roleType);// oo
 
 	/**
 	 * 获取某个组中的用户对象
@@ -105,7 +92,7 @@ public interface UserMapper {
 	 * @param gid
 	 * @return
 	 */
-	public List<User> listGroupUsers(int gid);
+	public List<User> listGroupUsers(int gid);// oo
 
 	/**
 	 * 添加用户角色对象
@@ -113,7 +100,7 @@ public interface UserMapper {
 	 * @param user
 	 * @param role
 	 */
-	public void addUserRole(@Param("user") User user, @Param("role") Role role);
+	public void addUserRole(@Param("user") User user, @Param("role") Role role);// oo
 
 	/**
 	 * 添加用户组对象
@@ -121,23 +108,23 @@ public interface UserMapper {
 	 * @param user
 	 * @param group
 	 */
-	public void addUserGroup(@Param("user") User user, @Param("group") Groupz group);
+	public void addUserGroup(@Param("user") User user, @Param("group") Groupz group);// oo
 
 	/**
 	 * 删除用户的角色信息
 	 * 
 	 * @param uid
 	 */
-	public void deleteUserRoles(int userId);
+	public void deleteUserRoles(int userId);// oo
 
 	/**
 	 * 删除用户的组信息
 	 * 
 	 * @param gid
 	 */
-	public void deleteUserGroups(int userId);
+	public void deleteUserGroups(int userId);// oo
 
-	public PageInfo<User> findUser();
+	public List<User> findUser();// oo
 
 	/**
 	 * 删除用户角色对象
@@ -145,7 +132,7 @@ public interface UserMapper {
 	 * @param uid
 	 * @param rid
 	 */
-	public void deleteUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
+	public void deleteUserRole(@Param("use rId") int userId, @Param("roleId") int roleId);// oo
 
 	/**
 	 * 删除用户组对象
@@ -153,6 +140,6 @@ public interface UserMapper {
 	 * @param uid
 	 * @param gid
 	 */
-	public void deleteUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);
+	public void deleteUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);// oo
 
 }

@@ -1,146 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.east.cms.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="com.east.cms.model.User">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="username" jdbcType="VARCHAR" property="username" />
-		<result column="password" jdbcType="VARCHAR" property="password" />
-		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
-		<result column="email" jdbcType="VARCHAR" property="email" />
-		<result column="phone" jdbcType="VARCHAR" property="phone" />
-		<result column="status" jdbcType="INTEGER" property="status" />
-		<result column="createDate" jdbcType="DATE" property="createDate" />
-	</resultMap>
+	
 	<sql id="Base_Column_List">
 		id, username, password, nickname, email, phone, status,
 		createDate
 	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where id = #{id,jdbcType=INTEGER}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from user
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<insert id="insert" parameterType="com.east.cms.model.User">
-		insert into user (id,
-		username, password,
-		nickname, email, phone,
-		status, createDate)
-		values
-		(#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{nickname,jdbcType=VARCHAR},
-		#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-		#{status,jdbcType=INTEGER}, #{createdate,jdbcType=DATE})
-	</insert>
-	<insert id="insertSelective" parameterType="com.east.cms.model.User">
-		insert into user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="username != null">
-				username,
-			</if>
-			<if test="password != null">
-				password,
-			</if>
-			<if test="nickname != null">
-				nickname,
-			</if>
-			<if test="email != null">
-				email,
-			</if>
-			<if test="phone != null">
-				phone,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-			<if test="createdate != null">
-				createDate,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
-			<if test="username != null">
-				#{username,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				#{password,jdbcType=VARCHAR},
-			</if>
-			<if test="nickname != null">
-				#{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				#{email,jdbcType=VARCHAR},
-			</if>
-			<if test="phone != null">
-				#{phone,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=INTEGER},
-			</if>
-			<if test="createdate != null">
-				#{createdate,jdbcType=DATE},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.User">
-		update user
-		<set>
-			<if test="username != null">
-				username = #{username,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				password = #{password,jdbcType=VARCHAR},
-			</if>
-			<if test="nickname != null">
-				nickname = #{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				email = #{email,jdbcType=VARCHAR},
-			</if>
-			<if test="phone != null">
-				phone = #{phone,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=INTEGER},
-			</if>
-			<if test="createdate != null">
-				createDate = #{createdate,jdbcType=DATE},
-			</if>
-		</set>
-		where id = #{id,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.east.cms.model.User">
-		update user
-		set
-		username = #{username,jdbcType=VARCHAR},
-		password =
-		#{password,jdbcType=VARCHAR},
-		nickname = #{nickname,jdbcType=VARCHAR},
-		email = #{email,jdbcType=VARCHAR},
-		phone = #{phone,jdbcType=VARCHAR},
-		status = #{status,jdbcType=INTEGER},
-		createDate =
-		#{createdate,jdbcType=DATE}
-		where id = #{id,jdbcType=INTEGER}
-	</update>
-	<!-- **************************************************** -->
-	<!-- oo -->
-	<select id="listUserRoles" parameterType="java.lang.Integer"
-		resultType="com.east.cms.model.Role">
-		select r.* from user_role ur left join role r on
-		(ur.roleId=r.id) where ur.userId=#{userId}
-	</select>
+	
 
 	<!-- oo -->
 	<select id="listUserRoleIds" parameterType="java.lang.Integer"
@@ -162,11 +28,7 @@
 		resultType="java.lang.Integer">
 		select groupId from user_group where userId=#{userId}
 	</select>
-
-
-
-
-
+    <!-- oo -->
 	<select id="loadUserRole" resultType="com.east.cms.model.UserRole">
 		select ur.id,
 		ur.userId ,
@@ -185,7 +47,7 @@
 		ur.userId=#{userId} and ur.roleId=#{roleId}
 	</select>
 
-
+    <!-- oo -->
 	<select id="loadUserGroup" resultType="com.east.cms.model.UserGroup">
 		select ug.id,
 		ug.userId ,
@@ -203,39 +65,37 @@
 		on(ug.userId=u.id) where
 		ug.userId=#{userId} and ug.groupId=#{groupId}
 	</select>
+	<!-- oo -->
 	<select id="loadByUsername" parameterType="java.lang.String"
 		resultType="com.east.cms.model.User">
 		select * from user where username=#{username}
 	</select>
+	<!-- oo -->
 	<select id="listRoleUsers" parameterType="java.lang.Integer"
 		resultType="com.east.cms.model.User">
 		select u.* from user_role ur left join user u
 		on(ur.userId=u.id) where ur.roleId=#{roleId}
 	</select>
-
-
-	<select id="listRoleUsers" parameterType="java.lang.String"
+    <!-- oo -->
+	<select id="listRoleUsersByType" parameterType="java.lang.String"
 		resultType="com.east.cms.model.User">
 		select u.* from user_role ur join user u on(ur.userId=u.id)
 		join role r on(ur.roleId=r.id) where r.roleType=#{roleType}
 	</select>
-
-
-	<select id="listGroupUsers" parameterType="java.lang.String"
+    <!-- oo -->
+	<select id="listGroupUsers" parameterType="java.lang.Integer"
 		resultType="com.east.cms.model.User">
 		select u.* from user_group ug join user u
 		on(ug.userId=u.id) join groupz g on(ug.groupId=g.id) where g.id=#{gid}
 	</select>
-
-	addUserRole
-
+     <!-- oo -->
 	<insert id="addUserRole">
 		insert into user_role
 		(userId,roleId)
 		values
 		(#{user.id,jdbcType=INTEGER},#{role.id,jdbcType=INTEGER} )
 	</insert>
-
+    <!-- oo -->
 	<insert id="addUserGroup">
 		insert into user_group
 		(userId,groupId)
@@ -243,12 +103,12 @@
 		(#{user.id,jdbcType=INTEGER},#{group.id,jdbcType=INTEGER} )
 	</insert>
 
-
+    <!-- oo -->
 	<delete id="deleteUserRoles" parameterType="java.lang.Integer">
 		delete from user_role where userId=#{userId}
 	</delete>
 
-
+    <!-- oo -->
 	<delete id="deleteUserGroups" parameterType="java.lang.Integer">
 		delete from user_group where userId=#{userId}
 	</delete>
@@ -256,17 +116,14 @@
 	<select id="findUser" resultType="com.east.cms.model.User">
 		select * from user
 	</select>
+	 <!-- oo -->
 	<delete id="deleteUserRole">
 		delete from user_role where userId=#{userId} and roleId=#{roleId}
 	</delete>
-	
+	 <!-- oo -->
 	<delete id="deleteUserGroup">
 		delete from user_group where userId=#{userId} and groupId=#{groupId}
 	</delete>
-
-
-
-
 
 
 </mapper>

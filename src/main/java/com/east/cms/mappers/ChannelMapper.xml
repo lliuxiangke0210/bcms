@@ -19,160 +19,101 @@
     id, channelName, isCustomLink, customLinkUrl, channelType, isIndex, isTopNav, isRecommend, 
     channelStatus, orders, parentId, navOrder
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from channel
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from channel
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.east.cms.model.Channel">
-    insert into channel (id, channelName, isCustomLink, 
-      customLinkUrl, channelType, isIndex, 
-      isTopNav, isRecommend, channelStatus, 
-      orders, parentId, navOrder
-      )
-    values (#{id,jdbcType=INTEGER}, #{channelname,jdbcType=VARCHAR}, #{iscustomlink,jdbcType=INTEGER}, 
-      #{customlinkurl,jdbcType=VARCHAR}, #{channeltype,jdbcType=VARCHAR}, #{isindex,jdbcType=INTEGER}, 
-      #{istopnav,jdbcType=INTEGER}, #{isrecommend,jdbcType=INTEGER}, #{channelstatus,jdbcType=INTEGER}, 
-      #{orders,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{navorder,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.east.cms.model.Channel">
-    insert into channel
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="channelname != null">
-        channelName,
-      </if>
-      <if test="iscustomlink != null">
-        isCustomLink,
-      </if>
-      <if test="customlinkurl != null">
-        customLinkUrl,
-      </if>
-      <if test="channeltype != null">
-        channelType,
-      </if>
-      <if test="isindex != null">
-        isIndex,
-      </if>
-      <if test="istopnav != null">
-        isTopNav,
-      </if>
-      <if test="isrecommend != null">
-        isRecommend,
-      </if>
-      <if test="channelstatus != null">
-        channelStatus,
-      </if>
-      <if test="orders != null">
-        orders,
-      </if>
-      <if test="parentid != null">
-        parentId,
-      </if>
-      <if test="navorder != null">
-        navOrder,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="channelname != null">
-        #{channelname,jdbcType=VARCHAR},
-      </if>
-      <if test="iscustomlink != null">
-        #{iscustomlink,jdbcType=INTEGER},
-      </if>
-      <if test="customlinkurl != null">
-        #{customlinkurl,jdbcType=VARCHAR},
-      </if>
-      <if test="channeltype != null">
-        #{channeltype,jdbcType=VARCHAR},
-      </if>
-      <if test="isindex != null">
-        #{isindex,jdbcType=INTEGER},
-      </if>
-      <if test="istopnav != null">
-        #{istopnav,jdbcType=INTEGER},
-      </if>
-      <if test="isrecommend != null">
-        #{isrecommend,jdbcType=INTEGER},
-      </if>
-      <if test="channelstatus != null">
-        #{channelstatus,jdbcType=INTEGER},
-      </if>
-      <if test="orders != null">
-        #{orders,jdbcType=INTEGER},
-      </if>
-      <if test="parentid != null">
-        #{parentid,jdbcType=INTEGER},
-      </if>
-      <if test="navorder != null">
-        #{navorder,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.Channel">
-    update channel
-    <set>
-      <if test="channelname != null">
-        channelName = #{channelname,jdbcType=VARCHAR},
-      </if>
-      <if test="iscustomlink != null">
-        isCustomLink = #{iscustomlink,jdbcType=INTEGER},
-      </if>
-      <if test="customlinkurl != null">
-        customLinkUrl = #{customlinkurl,jdbcType=VARCHAR},
-      </if>
-      <if test="channeltype != null">
-        channelType = #{channeltype,jdbcType=VARCHAR},
-      </if>
-      <if test="isindex != null">
-        isIndex = #{isindex,jdbcType=INTEGER},
-      </if>
-      <if test="istopnav != null">
-        isTopNav = #{istopnav,jdbcType=INTEGER},
-      </if>
-      <if test="isrecommend != null">
-        isRecommend = #{isrecommend,jdbcType=INTEGER},
-      </if>
-      <if test="channelstatus != null">
-        channelStatus = #{channelstatus,jdbcType=INTEGER},
-      </if>
-      <if test="orders != null">
-        orders = #{orders,jdbcType=INTEGER},
-      </if>
-      <if test="parentid != null">
-        parentId = #{parentid,jdbcType=INTEGER},
-      </if>
-      <if test="navorder != null">
-        navOrder = #{navorder,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.Channel">
-    update channel
-    set channelName = #{channelname,jdbcType=VARCHAR},
-      isCustomLink = #{iscustomlink,jdbcType=INTEGER},
-      customLinkUrl = #{customlinkurl,jdbcType=VARCHAR},
-      channelType = #{channeltype,jdbcType=VARCHAR},
-      isIndex = #{isindex,jdbcType=INTEGER},
-      isTopNav = #{istopnav,jdbcType=INTEGER},
-      isRecommend = #{isrecommend,jdbcType=INTEGER},
-      channelStatus = #{channelstatus,jdbcType=INTEGER},
-      orders = #{orders,jdbcType=INTEGER},
-      parentId = #{parentid,jdbcType=INTEGER},
-      navOrder = #{navorder,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
- 
+    <!-- oo -->
+    <select id="listByParent" parameterType="java.lang.Integer" resultType="com.east.cms.model.Channel">
+         select * from channel  where  1=1
+        <choose>
+                 <when test=" parentId != null and parentId != 0 ">
+                 and  parentId = #{parentId}
+                 </when>
+                 <otherwise>
+                 and  parentId is null or parentId=0
+                 </otherwise>
+        </choose>
+         order by orders
+       </select>
+       <!-- oo -->
+        <select id="getMaxOrderByParent" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+         select max(orders)  from channel  where  1=1
+        <choose>
+                 <when test=" parentId != null and parentId != 0 ">
+                 and  parentId = #{parentId}
+                 </when>
+                 <otherwise>
+                 and  parentId is null or parentId=0
+                 </otherwise>
+        </choose>
+       </select>
+       <!-- oo -->
+       <select id="generateTree" resultType="com.east.cms.model.Channel" >
+           select id, channelName,parentId from channel  order by orders     
+       </select>
+       <!-- oo -->
+        <select id="generateTreeByParent" resultType="com.east.cms.model.Channel" >
+           select id, channelName,parentId from channel    
+            <choose>
+                 <when test=" parentId != null and parentId != 0 ">
+                 and  parentId = #{parentId}
+                 </when>
+                 <otherwise>
+                 and  parentId is null or parentId=0
+                 </otherwise>
+           </choose>
+         order by orders
+       </select>
+      <!-- oo -->
+       <update id="updateSort"  parameterType="java.util.Arrays">  
+          <foreach collection="ids" item="item" index="index" open="" close="" separator=";">  
+                update channel   
+                <set>  
+                  orders=${index}+1  
+                </set>  
+                where id = ${item}  
+         </foreach>  
+    </update>  
+      <!-- oo -->
+     <select id="listPublishChannel"  parameterType="java.lang.String" resultType="com.east.cms.model.Channel" >
+      select * from channel  where channelStatus=0 and channelType!=#{channelType};
+     </select>  
+     
+      <!-- oo -->
+     <select id="listAllIndexChannel"  parameterType="java.lang.String" resultType="com.east.cms.model.Channel" >
+     select *   from channel  where channelStatus=0 and isIndex=1
+     <if test="channelType != null" >
+       and channelType=#{channelType}
+     </if>
+     </select> 
+      <!-- oo -->
+     <select id="listTopNavChannel"   resultType="com.east.cms.model.Channel" >
+      select * from channel  where channelStatus=0 and isTopNav=1 order by navOrder  
+     </select>  
+     
+      <!-- oo -->
+     <delete  id="deleteChannelGroups"  parameterType="java.lang.Integer" >
+        delete from group_channel where channelId=#{channelId}
+     </delete>
+     <!-- oo -->
+     <select id="loadFirstChannelByNav"  parameterType="java.lang.Integer"   resultType="com.east.cms.model.Channel" >
+      select * from channel  where parentId=#{parentId}  order by orders  
+     </select>  
+     <!-- oo -->
+     <select id="listUseChannelByParent"  parameterType="java.lang.Integer"  resultType="com.east.cms.model.Channel" >
+    
+         select c.* from channel c left join channel cp on(c.parentId=cp.id) where 1=1
+		  <choose>
+                 <when test=" c.parentId != null and c.parentId != 0 ">
+                  and  cp.id = #{parentId}
+                 </when>
+                 <otherwise>
+                 and  c.parentId is null or c.parentId=0
+                 </otherwise>
+           </choose>
+		  order by c.orders
+     </select>
+     
+     <!-- oo -->
+      <select id="listChannelByType"  parameterType="java.lang.String"  resultType="com.east.cms.model.Channel" >
+        select  *  from channel  where channelStatus=0 and channelType=#{channelType}
+     </select>
+     
 </mapper>

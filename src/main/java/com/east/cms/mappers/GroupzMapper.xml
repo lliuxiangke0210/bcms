@@ -68,5 +68,77 @@
       descr = #{descr,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
- 
+  
+  <!-- *****************************************************  -->
+  
+  <select id="listGroup"  resultType="com.east.cms.model.Groupz"> 
+    select * from groupz
+  </select>
+  
+  <delete id="deleteGroupUsers" parameterType="java.lang.Integer" >
+    delete from user_group where groupId=#{groupId}
+  </delete>
+  
+  <insert id="addGroupChannel">
+   insert into  group_channel (groupId, channelId) values (#{group.id}, #{channel.id})
+  </insert>
+  
+  <insert id="loadGroupChannelById">
+   select gc.id ,
+          gc.groupId,
+          gc.channelId,
+          g.`name`,
+          g.descr,
+          c.channelName,
+          c.isCustomLink,
+          c.customLinkUrl,
+          c.channelType,
+          c.isIndex,
+          c.isTopNav,
+          c.isRecommend,
+          c.channelStatus,
+          c.orders,
+          c.parentId,
+          c.navOrder
+   from group_channel gc 
+   left join groupz g on(gc.groupId=g.id) 
+   left join channel c on (gc.channelId=c.id) 
+   where gc.groupId=#{groupId} and gc.channelId=#{channelId}  
+   </insert>
+  
+  <delete id="clearGroupChannel" parameterType="java.lang.Integer">
+     delete from  group_channel where groupId=#{groupId}
+  </delete>
+  
+  <delete id="deleteGroupChannel" >
+    delete from  group_channel where groupId=#{groupId} and channelId=#{channelId}
+  </delete>
+  
+  <select id="listGroupChannelIds" parameterType="java.lang.Integer" >
+    select channelId from group_channel where groupId=#{groupId}
+  </select>
+  
+  <select id="generateGroupChannelTree" parameterType="java.lang.Integer" 
+   resultType="com.east.cms.model.ChannelTree" >
+     select c.id,
+            c.channelName,
+            c.parentId 
+     from group_channel gc 
+     left join channel c on(gc.channelId=c.id) 
+     where gc.groupId=#{groupId}
+  </select>
+  
+  <select id="generateUserChannelTree" parameterType="java.lang.Integer"  
+  resultType="com.east.cms.model.ChannelTree" >
+  select distinct   c.id ,
+         c.channelName,
+         c.parentId  
+  from group_channel gc 
+  left join channel c on(gc.channelId=c.id) 
+  left join user_group ug on (gc.groupId=ug.groupId) 
+  where ug.userId=#{userId}
+  </select>
+  
+  
 </mapper>
+

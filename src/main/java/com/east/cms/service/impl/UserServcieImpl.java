@@ -25,11 +25,6 @@ public class UserServcieImpl implements UserServcie {
 	}
 
 	@Override
-	public void delete(Integer id) {
-		userDao.deleteByPrimaryKey(id);
-	}
-
-	@Override
 	public void update(User user, Integer[] rids, Integer[] gids) {
 		// TODO Auto-generated method stub
 
@@ -105,6 +100,12 @@ public class UserServcieImpl implements UserServcie {
 	public User login(String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

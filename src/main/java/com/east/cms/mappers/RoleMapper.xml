@@ -69,4 +69,20 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
+  <!-- **************************************************** -->
+    <!-- oo  -->
+    <select id="listRole"  resultType="com.east.cms.model.Role"> 
+		select *  from role
+	</select>
+	<!-- oo  -->
+	<delete id="deleteRoleUsers"  parameterType="java.lang.Integer" >
+	  delete from user_role where roleId=#{roleId}
+	</delete>
+  
+  
+  
+  
+  
+  
+  
 </mapper>

@@ -9,8 +9,8 @@ package com.east.cms.model;
 public class ChannelTree {
 
 	private Integer id;
-	private String name;
-	private Integer pid;
+	private String channelName;
+	private Integer parentId;
 
 	public Integer getId() {
 		return id;
@@ -20,35 +20,20 @@ public class ChannelTree {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getChannelName() {
+		return channelName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
 	}
 
-	public Integer getPid() {
-		return pid;
+	public Integer getParentId() {
+		return parentId;
 	}
 
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
-	public ChannelTree() {
-	}
-
-	public ChannelTree(Integer id, String name, Integer pid) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.pid = pid;
-	}
-
-	@Override
-	public String toString() {
-		return "ChannelTree [id=" + id + ", name=" + name + ", pid=" + pid + "]";
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
 }
