@@ -6,16 +6,16 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.east.cms.model.CmsLink;
-import com.github.pagehelper.PageInfo;
 
 public interface CmsLinkMapper {
+
 	/**
-	 * 根据类型获取超链接，如果type为空就获取所有的超链接，排序方式根据pos
+	 * 根据类型获取超链接，如果type为空就获取所有的超链接，排序方式根据pos PageInfo
 	 * 
 	 * @param type
 	 * @return
 	 */
-	public PageInfo<CmsLink> findByType(@Param("type") String type);
+	public List<CmsLink> findByType(@Param("type") String type);// oo
 
 	/**
 	 * 获取某个类型中的所有链接，不进行分页
@@ -23,21 +23,21 @@ public interface CmsLinkMapper {
 	 * @param type
 	 * @return
 	 */
-	public List<CmsLink> listByType(@Param("type") String type);
+	public List<CmsLink> listByType(@Param("type") String type);// oo
 
 	/**
 	 * 获取超链接的所有类型
 	 * 
 	 * @return
 	 */
-	public List<String> listAllType();
+	public List<String> listAllType();// oo
 
 	/**
 	 * 获取最大和最小的排序号
 	 * 
 	 * @return
 	 */
-	public Map<String, Integer> getMinAndMaxPos();
+	public Map<String, Integer> getMinAndMaxPos();// oo
 
 	/**
 	 * 更新排序
@@ -47,4 +47,12 @@ public interface CmsLinkMapper {
 	 * @param newPos
 	 */
 	public void updatePos(int id, int oldPos, int newPos);
+
+	/**
+	 * 需要更新排序的位置
+	 */
+	public void delete(@Param("id") int id);// oo
+
+	public CmsLink addSelect(@Param("cmsLink") CmsLink cmsLink);// oo
+
 }

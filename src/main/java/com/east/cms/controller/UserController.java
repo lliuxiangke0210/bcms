@@ -8,7 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.east.cms.dao.test.AttachmentDaoTest;
 import com.east.cms.dao.test.ChannelDaoTest;
+import com.east.cms.dao.test.CmsLinkDaoTest;
 import com.east.cms.dao.test.RoleDaoTest;
+import com.east.cms.dao.test.TopicDaoTest;
 import com.east.cms.dao.test.UserDaoTest;
 import com.east.com.service.UserServcie;
 
@@ -27,6 +29,10 @@ public class UserController {
 	private ChannelDaoTest channelDaoTest;
 	@Autowired
 	private AttachmentDaoTest attachmentDaoTest;
+	@Autowired
+	private CmsLinkDaoTest cmsLinkDaoTest;
+	@Autowired
+	private TopicDaoTest topicDaoTest;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView delete(ModelAndView model) {
@@ -53,8 +59,25 @@ public class UserController {
 		// channelDaoTest.listPublishChannel();
 		// channelDaoTest.listAllIndexChannel();
 		// channelDaoTest.listTopNavChannel();
-		attachmentDaoTest.listByTopic();
+		// attachmentDaoTest.listByTopic();
+		// attachmentDaoTest.findNoUseAttachment();
+		// attachmentDaoTest.findNoUseAttachmentNum();
+		// attachmentDaoTest.listIndexPic();
+		// attachmentDaoTest.findChannelPic();
+		// attachmentDaoTest.listAllIndexPic();
+		// attachmentDaoTest.listAttachByTopic();
+		// cmsLinkDaoTest.findByType();
+		// cmsLinkDaoTest.listByType();
+		// cmsLinkDaoTest.listAllType();
+		// cmsLinkDaoTest.getMinAndMaxPos();
+		// cmsLinkDaoTest.addSelect();
+		// topicDaoTest.findAll();
+		// topicDaoTest.searchTopicByKeyword();
+		// topicDaoTest.searchTopic();
+		// topicDaoTest.findRecommendTopic();
+		topicDaoTest.listTopicByChannelAndNumber();
 		model.setViewName("/index");
 		return model;
 	}
+
 }

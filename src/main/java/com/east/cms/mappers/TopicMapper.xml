@@ -6,8 +6,8 @@
     id, title, keyword, status, recommend, content, summary, publishDate, createDate, 
     author, cname, channelPicId, channelId, userId
   </sql>
- 
-  <select id="find" resultType="com.east.cms.model.Topic" >
+    <!-- oo  -->
+    <select id="find" resultType="com.east.cms.model.Topic" >
 	 select
 	<include refid="Topic_Column_List"/>	
 	 from topic  where 1=1
@@ -15,7 +15,22 @@
 	   and status=#{status}
 	</if>
 	<if test="title != null ">
-	   and title like  '%#{title}%'
+	   and title like concat('%',#{title},'%')  
+	</if>	
+	<if test="channelId != null and channelId > 0 " >
+	   and channelId=#{channelId}
+	</if>
+  </select>
+  <!-- oo  -->
+  <select id="findAll" resultType="com.east.cms.model.Topic" >
+	 select
+	<include refid="Topic_Column_List"/>	
+	 from topic  where 1=1
+	<if test=" status != null">
+	   and status=#{status}
+	</if>
+	<if test="title != null ">
+	   and title like concat('%',#{title},'%')  
 	</if>	
 	<if test="userId != null and userId > 0 "  >
 	   and userId=#{userId}
@@ -24,19 +39,19 @@
 	   and channelId=#{channelId}
 	</if>
   </select>
-  
+  <!-- oo  -->
   <select id="searchTopicByKeyword" parameterType="java.lang.String" resultType="com.east.cms.model.Topic" >
    select 
   <include refid="Topic_Column_List"/>	
-   from  topic where status=1 and keyword like '%#{keyword}%'
+   from  topic where status=1 and keyword like concat('%',#{keyword},'%')  
   </select>
-  
+  <!-- oo  -->
   <select id="searchTopic" parameterType="java.lang.String" resultType="com.east.cms.model.Topic" >
   select 
   <include refid="Topic_Column_List"/>		
-  from topic where status=1 and (title like '%#{con}%' or content like '%#{con}%' or summary like  '%#{con}%')		
+  from topic where status=1 and (title like  concat('%',#{con},'%')  or content like   concat('%',#{con},'%') or summary like  concat('%',#{con},'%'))		
   </select>
-
+  <!-- oo  -->
   <select id="findRecommendTopic" parameterType="java.lang.Integer" resultType="com.east.cms.model.Topic">
   select 
   <include refid="Topic_Column_List"/>
@@ -46,18 +61,19 @@
   </if>
   </select>
  
+  <!-- oo  -->
   <select id="listTopicByChannelAndNumber" resultType="com.east.cms.model.Topic" >
   select 
   <include refid="Topic_Column_List"/>
   from topic where status=1 and channelId=#{channelId} order by publishDate desc limit 0 ,#{num}
   </select>
-  
+  <!-- oo  -->
   <select id="listTopicsByChannel"  resultType="com.east.cms.model.Topic" >
    select 
    <include refid="Topic_Column_List"/>
    from topic where channelId=#{channelId} 
   </select>
-  
+  <!-- oo  -->
   <select id="loadLastedTopicByColumn" parameterType="java.lang.Integer" resultType="com.east.cms.model.Topic" >
   select  
   <include refid="Topic_Column_List"/>

@@ -6,30 +6,29 @@ import org.apache.ibatis.annotations.Param;
 
 import com.east.cms.model.Attachment;
 import com.east.cms.model.AttachmentTopic;
-import com.github.pagehelper.PageInfo;
 
 public interface AttachmentMapper {
 
 	/**
-	 * 获取没有被引用的附件
+	 * 获取没有被引用的附件 pageInfo
 	 * 
 	 * @return
 	 */
-	public PageInfo<Attachment> findNoUseAttachment();
+	public List<Attachment> findNoUseAttachment();// oo
 
-	public long findNoUseAttachmentNum();
+	public Integer findNoUseAttachmentNum();// oo
 
 	/**
 	 * 清空没有被引用的附件
 	 */
-	public void clearNoUseAttachment();
+	public void clearNoUseAttachment();// oo
 
 	/**
 	 * 删除某个文章的所有附件
 	 * 
 	 * @param tid
 	 */
-	public void deleteByTopic(@Param("topicId") int topicId);
+	public void deleteByTopic(@Param("topicId") int topicId);// oo
 
 	/**
 	 * 获取某个文章的附件
@@ -45,22 +44,22 @@ public interface AttachmentMapper {
 	 * @param num
 	 * @return
 	 */
-	public List<AttachmentTopic> listIndexPic(@Param("num") int num);
+	public List<AttachmentTopic> listIndexPic(@Param("num") int num);// oo
 
 	/**
-	 * 获取某个栏目中的附件图片信息
+	 * 获取某个栏目中的附件图片信息 PageInfo
 	 * 
 	 * @param cid
 	 * @return
 	 */
-	public PageInfo<AttachmentTopic> findChannelPic(@Param("channelId") int channelId);
+	public List<AttachmentTopic> findChannelPic(@Param("channelId") int channelId);// oo
 
 	/**
-	 * 获取所有的新闻图片信息
+	 * 获取所有的新闻图片信息 PageInfo
 	 * 
 	 * @return
 	 */
-	public PageInfo<AttachmentTopic> listAllIndexPic();
+	public List<AttachmentTopic> listAllIndexPic();// oo
 
 	/**
 	 * 获取某篇文章的属于附件类型的附件对象
@@ -68,6 +67,6 @@ public interface AttachmentMapper {
 	 * @param tid
 	 * @return
 	 */
-	public List<AttachmentTopic> listAttachByTopic(@Param("topicId") int topicId);
+	public List<AttachmentTopic> listAttachByTopic(@Param("topicId") int topicId);// oo
 
 }

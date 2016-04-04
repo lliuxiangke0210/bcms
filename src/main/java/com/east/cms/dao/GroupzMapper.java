@@ -11,19 +11,6 @@ import com.east.cms.model.Groupz;
 import com.github.pagehelper.PageInfo;
 
 public interface GroupzMapper {
-	int deleteByPrimaryKey(Integer id);
-
-	int insert(Groupz record);
-
-	int insertSelective(Groupz record);
-
-	Groupz selectByPrimaryKey(Integer id);
-
-	int updateByPrimaryKeySelective(Groupz record);
-
-	int updateByPrimaryKey(Groupz record);
-
-	// -------------------------------------------
 
 	public List<Groupz> listGroup();
 

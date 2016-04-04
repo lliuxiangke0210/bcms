@@ -6,37 +6,55 @@
     id, title, url, type, newWin, urlId, urlClass, pos
   </sql>
  
-   
+   <!--oo  -->
    <select id="findByType" parameterType="java.lang.String"  resultType="com.east.cms.model.CmsLink" >
 	    select * from cms_link where 1=1
-	        <choose>
-                 <when test=" type != null ">
-                  and  type = #{type}
-                 </when>
-                 <otherwise>
-                 and  type is null 
-                 </otherwise>
-            </choose>	
+          <if test=" type != null ">
+           and  type = #{type}
+          </if>
 		order by pos
    </select>
-   
+    <!--oo  -->
    <select id="listByType" parameterType="java.lang.String" resultType="com.east.cms.model.CmsLink" >
    select * from cms_link where type=#{type} order by pos
    </select>
-   
+   <!--oo  -->
    <select  id="listAllType"  resultType="java.lang.String">
     select  type from cms_link group by type
    </select>
-   
+   <!--oo  -->
    <select id="getMinAndMaxPos" resultType="map">
     select max(pos) as maxPos, min(pos) as minPos from cms_link 
    </select>
    
     <update id="updatePos" >
    
-   </update>
-   
-   
+    </update>
+   <!-- oo  -->
+   <delete id="delete" parameterType="java.lang.Integer" >
+       update cms_link b
+       set b.pos=b.pos-1
+       where b.pos > (SELECT a.pos from (select pos from cms_link  where id=#{id}) a );
+       delete from cms_link where id=#{id};
+   </delete>
+    <!-- oo -->
+   <select id="addSelect" parameterType="com.east.cms.model.CmsLink" resultType="com.east.cms.model.CmsLink" >
+          drop procedure if exists  usp_add;
+          create procedure usp_add()
+          begin
+          declare maxPos int;
+          set maxPos= (select max(pos)  from  cms_link);
+          if  maxPos is null then set maxPos=1;  
+          else set maxPos=maxPos+1;
+          end if;
+          insert into cms_link (title, url, type, newWin, urlId, urlClass, pos)
+          values (#{cmsLink.title},#{cmsLink.url},#{cmsLink.type},#{cmsLink.newWin},
+          #{cmsLink.urlId},#{cmsLink.urlClass},maxPos) ;         
+          select * from cms_link where pos= maxPos ;
+          end ;
+          call usp_add();
+   </select>
+ 
  
  
  

@@ -26,19 +26,19 @@
 	from attachment a left join topic t on(a.topicId=t.id)
   </sql>
   
- 
+ <!-- oo -->
  <select id="findNoUseAttachment"  resultType="com.east.cms.model.Attachment" >
    select * from attachment  where topicId is null
  </select>
- 
+ <!-- oo -->
  <select id="findNoUseAttachmentNum"  resultType="java.lang.Integer">
    select count(*) from attachment  where topicId is null
  </select>
- 
+ <!-- oo -->
   <delete id="clearNoUseAttachment">
     delete from attachment where topicId is null
  </delete>
- 
+ <!-- oo -->
  <delete id="deleteByTopic" parameterType="java.lang.Integer" >
    delete from attachment where topicId = #{topicId}
  </delete>
@@ -48,25 +48,25 @@
    <include refid="Attachment_Topic_List"/>
     where a.topicId=#{topicId} 
  </select>
- 
+  <!-- oo  -->
  <select id="listIndexPic" parameterType="java.lang.Integer" resultType="com.east.cms.model.AttachmentTopic" >
    select 
   <include refid="Attachment_Topic_List"/>
   where a.isIndexPic=#{num} and t.status=1 and a.isImg=1
  </select>
- 
+  <!-- oo  -->
  <select id="findChannelPic" parameterType="java.lang.Integer" resultType="com.east.cms.model.AttachmentTopic" >
   select 
   <include refid="Attachment_Topic_List"/>
   where  t.status=1 and t.channelId=#{channelId} and a.id=t.channelPicId
  </select>
- 
+  <!-- oo  -->
  <select id="listAllIndexPic" resultType="com.east.cms.model.AttachmentTopic" >
  	 select 
      <include refid="Attachment_Topic_List"/>
      where a.isImg=1 and t.status=1
  </select>
-
+ <!-- oo  -->
  <select id="listAttachByTopic"  parameterType="java.lang.Integer"  resultType="com.east.cms.model.AttachmentTopic" >
      select 
      <include refid="Attachment_Topic_List"/>
