@@ -124,6 +124,26 @@
 	<delete id="deleteUserGroup">
 		delete from user_group where userId=#{userId} and groupId=#{groupId}
 	</delete>
-
+    <insert  id="add"  parameterType="com.east.cms.model.User" >
+      insert into user (username, password, nickname, email, phone, status,createDate)
+      values(#{user.username},#{user.password},#{user.nickname},#{user.email},#{user.phone},#{user.status},#{user.createDate})
+    </insert>
+    <delete id="delete" parameterType="java.lang.Integer" >
+      delete from user where id=#{userId}
+    </delete>
+    <update id="update" parameterType="com.east.cms.model.User"  >
+     update user
+     set  username=#{user.username}, 
+          password=#{user.password}, 
+          nickname=#{user.nickname}, 
+          email=#{user.email}, 
+          phone=#{user.phone}, 
+          status=#{user.status},
+		  createDate=#{user.createDate}
+     where id = #{user.id}
+    </update>
+    <select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.User" >
+     select * from user where id=#{userId}
+    </select>
 
 </mapper>

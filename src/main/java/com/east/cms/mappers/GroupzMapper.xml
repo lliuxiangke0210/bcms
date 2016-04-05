@@ -73,5 +73,26 @@
   left join user_group ug on (gc.groupId=ug.groupId) 
   where ug.userId=#{userId}
   </select>
+  
+  <select id="load" parameterType="java.lang.Integer"  resultType="com.east.cms.model.Groupz" >
+     select * from groupz where id=#{groupId}
+  </select>
+  
+  <insert id="add" parameterType="com.east.cms.model.Groupz" >
+   insert into groupz (name, descr) values(#{name},#{descr})
+  </insert>
+  
+  <delete  id="delete" parameterType="java.lang.Integer">
+   delete from groupz where id=#{groupId}
+  </delete>
+  <update id="update" parameterType="com.east.cms.model.Groupz" >
+    update groupz 
+    set name=#{name}, 
+        descr=#{descr}
+     where id=#{id}   
+  </update>
+  
+  
+  
 </mapper>
 

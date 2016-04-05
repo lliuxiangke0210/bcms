@@ -334,6 +334,12 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.8</version>
+		</dependency>
+
 	</dependencies>
 
 

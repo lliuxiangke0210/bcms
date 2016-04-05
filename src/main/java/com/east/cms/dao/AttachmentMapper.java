@@ -69,4 +69,12 @@ public interface AttachmentMapper {
 	 */
 	public List<AttachmentTopic> listAttachByTopic(@Param("topicId") int topicId);// oo
 
+	public void add(@Param("attachment") Attachment attachment);
+
+	public void delete(@Param("attachmentId") int attachmentId);
+
+	public Attachment load(@Param("attachmentId") int attachmentId);
+
+	public void update(@Param("attachment") Attachment attachment);
+
 }

@@ -142,4 +142,12 @@ public interface UserMapper {
 	 */
 	public void deleteUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);// oo
 
+	public User add(@Param("user") User user);
+
+	public void delete(@Param("userId") int userId);
+
+	public void update(@Param("user") User user);
+
+	public User load(@Param("userId") int userId);
+
 }

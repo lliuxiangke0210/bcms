@@ -2,6 +2,8 @@ package com.east.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.east.cms.model.Keyword;
 import com.github.pagehelper.PageInfo;
 
@@ -38,7 +40,8 @@ public interface KeywordMapper {
 	 * @param con
 	 * @return
 	 */
-	public List<Keyword> listKeywordByCon(String con);
+	public List<Keyword> listKeywordByCon(@Param("con") String con);
 
-	public List<String> listKeywordStringByCon(String con);
+	public List<String> listKeywordStringByCon(@Param("con") String con);
+
 }

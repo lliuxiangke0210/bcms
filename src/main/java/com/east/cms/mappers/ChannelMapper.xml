@@ -103,4 +103,9 @@
         select  *  from channel  where channelStatus=0 and channelType=#{channelType}
      </select>
      
+     <select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.Channel"  >
+      select * from channel where id=#{channelId}
+     </select>
+     
+     
 </mapper>

@@ -12,4 +12,12 @@ public interface RoleMapper {
 
 	public void deleteRoleUsers(@Param("roleId") int roleId); // oo
 
+	public Role load(@Param("roleId") int roleId);
+
+	public void add(@Param("role") Role role);
+
+	public void delete(@Param("roleId") int roleId);
+
+	public void update(@Param("role") Role role);
+
 }

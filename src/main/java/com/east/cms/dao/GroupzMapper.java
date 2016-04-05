@@ -8,13 +8,12 @@ import com.east.cms.model.Channel;
 import com.east.cms.model.ChannelTree;
 import com.east.cms.model.GroupChannel;
 import com.east.cms.model.Groupz;
-import com.github.pagehelper.PageInfo;
 
 public interface GroupzMapper {
 
 	public List<Groupz> listGroup();
 
-	public PageInfo<Groupz> findGroup();
+	public List<Groupz> findGroup();
 
 	public void deleteGroupUsers(int groupId);
 
@@ -73,4 +72,13 @@ public interface GroupzMapper {
 	 * @return
 	 */
 	public List<ChannelTree> generateUserChannelTree(int userId);
+
+	public Groupz load(@Param("groupId") int groupId);
+
+	public void add(@Param("group") Groupz group);
+
+	public void delete(@Param("groupId") int groupId);
+
+	public void update(@Param("group") Groupz group);
+
 }

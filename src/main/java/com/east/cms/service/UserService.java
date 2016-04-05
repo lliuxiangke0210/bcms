@@ -1,12 +1,13 @@
-package com.east.com.service;
+package com.east.cms.service;
 
 import java.util.List;
 
 import com.east.cms.model.Groupz;
 import com.east.cms.model.Role;
 import com.east.cms.model.User;
+import com.github.pagehelper.PageInfo;
 
-public interface UserServcie {
+public interface UserService {
 	/**
 	 * 添加用户，需要判断用户名是否存在，如果存在抛出异常
 	 * 
@@ -24,7 +25,7 @@ public interface UserServcie {
 	 * 
 	 * @param id
 	 */
-	public void delete(Integer id);
+	public void delete(int id);
 
 	/**
 	 * 用户的更新，如果rids中的角色在用户中已经存在，就不做操作
@@ -45,19 +46,19 @@ public interface UserServcie {
 	 * @param oldPwd
 	 * @param newPwd
 	 */
-	public void updatePwd(Integer uid, String oldPwd, String newPwd);
+	public void updatePwd(int uid, String oldPwd, String newPwd);
 
 	/**
 	 * 更新用户的状态
 	 * 
 	 * @param id
 	 */
-	public void updateStatus(Integer id);
+	public void updateStatus(int id);
 
 	/**
 	 * 列表用户
 	 */
-	public List<User> findUser(Integer offset, Integer pageSize);
+	public PageInfo<User> findUser();
 
 	/**
 	 * 获取用户信息
@@ -65,7 +66,7 @@ public interface UserServcie {
 	 * @param id
 	 * @return
 	 */
-	public User load(Integer id);
+	public User load(int id);
 
 	/**
 	 * 获取用户的所有角色信息
@@ -73,7 +74,7 @@ public interface UserServcie {
 	 * @param id
 	 * @return
 	 */
-	public List<Role> listUserRoles(Integer id);
+	public List<Role> listUserRoles(int id);
 
 	/**
 	 * 获取用户的所有组信息
@@ -81,15 +82,15 @@ public interface UserServcie {
 	 * @param id
 	 * @return
 	 */
-	public List<Groupz> listUserGroups(Integer id);
+	public List<Groupz> listUserGroups(int id);
 
-	public List<Integer> listUserRoleIds(Integer id);
+	public List<Integer> listUserRoleIds(int id);
 
-	public List<Integer> listUserGroupIds(Integer id);
+	public List<Integer> listUserGroupIds(int id);
 
-	public List<User> listGroupUsers(Integer gid);
+	public List<User> listGroupUsers(int gid);
 
-	public List<User> listRoleUsers(Integer rid);
+	public List<User> listRoleUsers(int rid);
 
 	public User login(String username, String password);
 }

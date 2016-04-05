@@ -88,4 +88,6 @@ public interface ChannelMapper {
 	 */
 	public List<Channel> listChannelByType(@Param("channelType") String channelType);
 
+	public Channel load(@Param("channelId") int channelId);
+
 }

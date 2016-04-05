@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.east.cms.pojo.SystemContext;
+
 public class SystemContextFilter implements Filter {
 	private Integer pageSize;
 

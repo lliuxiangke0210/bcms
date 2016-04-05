@@ -12,14 +12,14 @@ import com.east.cms.dao.test.CmsLinkDaoTest;
 import com.east.cms.dao.test.RoleDaoTest;
 import com.east.cms.dao.test.TopicDaoTest;
 import com.east.cms.dao.test.UserDaoTest;
-import com.east.com.service.UserServcie;
+import com.east.cms.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	private UserServcie userServcie;
+	private UserService userServcie;
 
 	@Autowired
 	private UserDaoTest userDaoTest;

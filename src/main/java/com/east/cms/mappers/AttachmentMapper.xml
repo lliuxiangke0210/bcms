@@ -73,4 +73,32 @@
      where t.id=#{topicId} and a.isAttach=1
  </select>
  
+ <insert id="add" parameterType="com.east.cms.model.Attachment" >
+    insert into attachment (newName,oldName,type,suffix,size,isIndexPic,isImg,topicId,isAttach) 
+    values(#{newName},#{oldName},#{type},#{suffix},#{size},#{isIndexPic},#{isImg},#{topicId},#{isAttach})
+ </insert>
+ 
+ <delete id="delete"  parameterType="java.lang.Integer" >
+   delete from attachment where id=#{attachmentId}
+ </delete>
+ 
+ <select id="load"  parameterType="java.lang.Integer"  resultType="com.east.cms.model.Attachment">
+   select * from  attachment where id=#{attachmentId}
+ </select>
+ 
+ <update id="update"  parameterType="com.east.cms.model.Attachment" >
+   update attachment 
+   set newName=#{newName},
+       oldName=#{oldName},
+       type=#{oldName},
+       suffix=#{oldName},
+       size=#{oldName},
+       isIndexPic=#{oldName},
+       isImg=#{oldName},
+       topicId=#{oldName},
+       isAttach=#{oldName} 
+    where id=#{id}   
+ </update>
+ 
+ 
 </mapper>
