@@ -80,7 +80,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 		}
 	}
 
-	public static void deleteAttachFiles(Attachment a) {
+	public static void deleteAttachFiles(AttachmentTopic a) {
 		String realPath = SystemContext.getRealPath();
 		realPath += UPLOAD_PATH;
 		new File(realPath + a.getNewName()).delete();
@@ -88,13 +88,13 @@ public class AttachmentServiceImpl implements AttachmentService {
 
 	@Override
 	public void delete(int id) {
-		Attachment a = attachmentDao.load(id);
+		AttachmentTopic a = attachmentDao.load(id);
 		attachmentDao.delete(id);
 		deleteAttachFiles(a);
 	}
 
 	@Override
-	public Attachment load(int id) {
+	public AttachmentTopic load(int id) {
 		return attachmentDao.load(id);
 	}
 
@@ -142,7 +142,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 
 	@Override
 	public void updateIndexPic(int aid) {
-		Attachment att = attachmentDao.load(aid);
+		AttachmentTopic att = attachmentDao.load(aid);
 		System.out.println(aid + "------------>");
 		if (att.getIsIndexPic() == 0) {
 			att.setIsIndexPic(1);
@@ -155,7 +155,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 
 	@Override
 	public void updateAttachInfo(int aid) {
-		Attachment att = attachmentDao.load(aid);
+		AttachmentTopic att = attachmentDao.load(aid);
 		if (att.getIsAttach() == 0) {
 			att.setIsAttach(1);
 		} else {

@@ -55,4 +55,10 @@ public interface CmsLinkMapper {
 
 	public CmsLink addSelect(@Param("cmsLink") CmsLink cmsLink);// oo
 
+	public void add(@Param("cmsLink") CmsLink cmsLink);
+
+	public CmsLink load(@Param("id") int id);
+
+	public void update(@Param("cmsLink") CmsLink cmsLink);
+
 }

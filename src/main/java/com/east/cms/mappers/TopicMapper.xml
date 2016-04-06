@@ -1,83 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.east.cms.dao.TopicMapper">
-  
-  <sql id="Topic_Column_List">
-    id, title, keyword, status, recommend, content, summary, publishDate, createDate, 
-    author, cname, channelPicId, channelId, userId
-  </sql>
-    <!-- oo  -->
-    <select id="find" resultType="com.east.cms.model.Topic" >
-	 select
-	<include refid="Topic_Column_List"/>	
-	 from topic  where 1=1
-	<if test=" status != null">
-	   and status=#{status}
-	</if>
-	<if test="title != null ">
-	   and title like concat('%',#{title},'%')  
-	</if>	
-	<if test="channelId != null and channelId > 0 " >
-	   and channelId=#{channelId}
-	</if>
-  </select>
-  <!-- oo  -->
-  <select id="findAll" resultType="com.east.cms.model.Topic" >
-	 select
-	<include refid="Topic_Column_List"/>	
-	 from topic  where 1=1
-	<if test=" status != null">
-	   and status=#{status}
-	</if>
-	<if test="title != null ">
-	   and title like concat('%',#{title},'%')  
-	</if>	
-	<if test="userId != null and userId > 0 "  >
-	   and userId=#{userId}
-	</if>
-	<if test="channelId != null and channelId > 0 " >
-	   and channelId=#{channelId}
-	</if>
-  </select>
-  <!-- oo  -->
-  <select id="searchTopicByKeyword" parameterType="java.lang.String" resultType="com.east.cms.model.Topic" >
-   select 
-  <include refid="Topic_Column_List"/>	
-   from  topic where status=1 and keyword like concat('%',#{keyword},'%')  
-  </select>
-  <!-- oo  -->
-  <select id="searchTopic" parameterType="java.lang.String" resultType="com.east.cms.model.Topic" >
-  select 
-  <include refid="Topic_Column_List"/>		
-  from topic where status=1 and (title like  concat('%',#{con},'%')  or content like   concat('%',#{con},'%') or summary like  concat('%',#{con},'%'))		
-  </select>
-  <!-- oo  -->
-  <select id="findRecommendTopic" parameterType="java.lang.Integer" resultType="com.east.cms.model.Topic">
-  select 
-  <include refid="Topic_Column_List"/>
-  from topic where status=1 and recommend=1
-  <if test=" channelId != null and channelId != 0">
-     and channelId=#{channelId}
-  </if>
-  </select>
- 
-  <!-- oo  -->
-  <select id="listTopicByChannelAndNumber" resultType="com.east.cms.model.Topic" >
-  select 
-  <include refid="Topic_Column_List"/>
-  from topic where status=1 and channelId=#{channelId} order by publishDate desc limit 0 ,#{num}
-  </select>
-  <!-- oo  -->
-  <select id="listTopicsByChannel"  resultType="com.east.cms.model.Topic" >
-   select 
-   <include refid="Topic_Column_List"/>
-   from topic where channelId=#{channelId} 
-  </select>
-  <!-- oo  -->
-  <select id="loadLastedTopicByColumn" parameterType="java.lang.Integer" resultType="com.east.cms.model.Topic" >
-  select  
-  <include refid="Topic_Column_List"/>
-  from topic where status=1 and channelId=#{channelId} order by publishDate desc limit 0,1
-  </select>
- 
+
+	<sql id="Topic_Column_List">
+		id, title, keyword, status, recommend, content, summary, publishDate,
+		createDate,
+		author, cname, channelPicId, channelId, userId
+	</sql>
+	<!-- oo -->
+	<select id="find" resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where 1=1
+		<if test=" status != null">
+			and status=#{status}
+		</if>
+		<if test="title != null ">
+			and title like concat('%',#{title},'%')
+		</if>
+		<if test="channelId != null and channelId > 0 ">
+			and channelId=#{channelId}
+		</if>
+	</select>
+	<!-- oo -->
+	<select id="findAll" resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where 1=1
+		<if test=" status != null">
+			and status=#{status}
+		</if>
+		<if test="title != null ">
+			and title like concat('%',#{title},'%')
+		</if>
+		<if test="userId != null and userId > 0 ">
+			and userId=#{userId}
+		</if>
+		<if test="channelId != null and channelId > 0 ">
+			and channelId=#{channelId}
+		</if>
+	</select>
+	<!-- oo -->
+	<select id="searchTopicByKeyword" parameterType="java.lang.String"
+		resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where status=1 and keyword like concat('%',#{keyword},'%')
+	</select>
+	<!-- oo -->
+	<select id="searchTopic" parameterType="java.lang.String"
+		resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where status=1 and (title like concat('%',#{con},'%') or
+		content like concat('%',#{con},'%') or summary like
+		concat('%',#{con},'%'))
+	</select>
+	<!-- oo -->
+	<select id="findRecommendTopic" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where status=1 and recommend=1
+		<if test=" channelId != null and channelId != 0">
+			and channelId=#{channelId}
+		</if>
+	</select>
+
+	<!-- oo -->
+	<select id="listTopicByChannelAndNumber" resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where status=1 and channelId=#{channelId} order by
+		publishDate desc limit 0 ,#{num}
+	</select>
+	<!-- oo -->
+	<select id="listTopicsByChannel" resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where channelId=#{channelId}
+	</select>
+	<!-- oo -->
+	<select id="loadLastedTopicByColumn" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.Topic">
+		select
+		<include refid="Topic_Column_List" />
+		from topic where status=1 and channelId=#{channelId} order by
+		publishDate desc limit 0,1
+	</select>
+
+	<insert id="add" parameterType="com.east.cms.model.Topic">
+		insert into (title, keyword, status, recommend, content, summary,
+		publishDate, createDate,
+		author, cname, channelPicId, channelId, userId)
+		values
+		(#{title},#{keyword},#{status},#{recommend},#{content},#{summary},#{publishDate},#{createDate},
+		#{author},#{cname},#{channelPicId},#{channelId}, #{userId})
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from topic where id=#{topicId}
+	</delete>
+
+	<update id="update" parameterType="com.east.cms.model.Topic">
+		update topic
+		set title=#{title},
+		keyword=#{keyword},
+		status=#{status},
+		recommend=#{recommend},
+		content=#{content},
+		summary=#{summary},
+		publishDate=#{publishDate},
+		createDate=#{createDate},
+		author=#{author},
+		cname=#{cname},
+		channelPicId=#{channelPicId},
+		channelId=#{channelId},
+		userId=#{userId}
+		where id=#{id}
+	</update>
+	
+	<select id="load" parameterType="java.lang.Integer">
+	 select * from topic where id=#{topicId}
+	</select>
+
 </mapper>

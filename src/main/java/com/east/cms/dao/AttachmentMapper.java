@@ -73,8 +73,8 @@ public interface AttachmentMapper {
 
 	public void delete(@Param("attachmentId") int attachmentId);
 
-	public Attachment load(@Param("attachmentId") int attachmentId);
+	public AttachmentTopic load(@Param("attachmentId") int attachmentId);
 
-	public void update(@Param("attachment") Attachment attachment);
+	public void update(@Param("attachment") AttachmentTopic attachment);
 
 }

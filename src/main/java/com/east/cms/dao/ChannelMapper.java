@@ -90,4 +90,10 @@ public interface ChannelMapper {
 
 	public Channel load(@Param("channelId") int channelId);
 
+	public void add(@Param("channel") Channel channel);
+
+	public void update(@Param("channel") Channel channel);
+
+	public void delete(@Param("channelId") int channelId);
+
 }

@@ -90,4 +90,13 @@ public interface TopicMapper {
 	 * @return
 	 */
 	public Topic loadLastedTopicByColumn(@Param("channelId") int channelId);
+
+	public void delete(@Param("topicId") int topicId);
+
+	public void add(@Param("topic") Topic topic);
+
+	public void update(@Param("topic") Topic topic);
+
+	public Topic load(@Param("topicId") int topicId);
+
 }

@@ -14,7 +14,7 @@ public interface AttachmentService {
 
 	public void delete(int id);
 
-	public Attachment load(int id);
+	public AttachmentTopic load(int id);
 
 	/**
 	 * 获取没有被引用的附件

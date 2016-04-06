@@ -1,111 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.east.cms.dao.ChannelMapper">
-  
-  <sql id="Base_Column_List">
-    id, channelName, isCustomLink, customLinkUrl, channelType, isIndex, isTopNav, isRecommend, 
-    channelStatus, orders, parentId, navOrder
-  </sql>
-    <!-- oo -->
-    <select id="listByParent" parameterType="java.lang.Integer" resultType="com.east.cms.model.Channel">
-         select * from channel  where  1=1
-        <choose>
-                 <when test=" parentId != null and parentId != 0 ">
-                 and  parentId = #{parentId}
-                 </when>
-                 <otherwise>
-                 and  parentId is null or parentId=0
-                 </otherwise>
-        </choose>
-         order by orders
-       </select>
-       <!-- oo -->
-        <select id="getMaxOrderByParent" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-         select max(orders)  from channel  where  1=1
-        <choose>
-                 <when test=" parentId != null and parentId != 0 ">
-                 and  parentId = #{parentId}
-                 </when>
-                 <otherwise>
-                 and  parentId is null or parentId=0
-                 </otherwise>
-        </choose>
-       </select>
-       <!-- oo -->
-       <select id="generateTree" resultType="com.east.cms.model.Channel" >
-           select id, channelName,parentId from channel  order by orders     
-       </select>
-       <!-- oo -->
-        <select id="generateTreeByParent" resultType="com.east.cms.model.Channel" >
-           select id, channelName,parentId from channel    
-            <choose>
-                 <when test=" parentId != null and parentId != 0 ">
-                 and  parentId = #{parentId}
-                 </when>
-                 <otherwise>
-                 and  parentId is null or parentId=0
-                 </otherwise>
-           </choose>
-         order by orders
-       </select>
-      <!-- oo -->
-       <update id="updateSort"  parameterType="java.util.Arrays">  
-          <foreach collection="ids" item="item" index="index" open="" close="" separator=";">  
-                update channel   
-                <set>  
-                  orders=${index}+1  
-                </set>  
-                where id = ${item}  
-         </foreach>  
-    </update>  
-      <!-- oo -->
-     <select id="listPublishChannel"  parameterType="java.lang.String" resultType="com.east.cms.model.Channel" >
-      select * from channel  where channelStatus=0 and channelType!=#{channelType};
-     </select>  
-     
-      <!-- oo -->
-     <select id="listAllIndexChannel"  parameterType="java.lang.String" resultType="com.east.cms.model.Channel" >
-     select *   from channel  where channelStatus=0 and isIndex=1
-     <if test="channelType != null" >
-       and channelType=#{channelType}
-     </if>
-     </select> 
-      <!-- oo -->
-     <select id="listTopNavChannel"   resultType="com.east.cms.model.Channel" >
-      select * from channel  where channelStatus=0 and isTopNav=1 order by navOrder  
-     </select>  
-     
-      <!-- oo -->
-     <delete  id="deleteChannelGroups"  parameterType="java.lang.Integer" >
-        delete from group_channel where channelId=#{channelId}
-     </delete>
-     <!-- oo -->
-     <select id="loadFirstChannelByNav"  parameterType="java.lang.Integer"   resultType="com.east.cms.model.Channel" >
-      select * from channel  where parentId=#{parentId}  order by orders  
-     </select>  
-     <!-- oo -->
-     <select id="listUseChannelByParent"  parameterType="java.lang.Integer"  resultType="com.east.cms.model.Channel" >
-    
-         select c.* from channel c left join channel cp on(c.parentId=cp.id) where 1=1
-		  <choose>
-                 <when test=" c.parentId != null and c.parentId != 0 ">
-                  and  cp.id = #{parentId}
-                 </when>
-                 <otherwise>
-                 and  c.parentId is null or c.parentId=0
-                 </otherwise>
-           </choose>
-		  order by c.orders
-     </select>
-     
-     <!-- oo -->
-      <select id="listChannelByType"  parameterType="java.lang.String"  resultType="com.east.cms.model.Channel" >
-        select  *  from channel  where channelStatus=0 and channelType=#{channelType}
-     </select>
-     
-     <select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.Channel"  >
-      select * from channel where id=#{channelId}
-     </select>
-     
-     
+
+	<sql id="Base_Column_List">
+		id, channelName, isCustomLink, customLinkUrl, channelType, isIndex,
+		isTopNav, isRecommend,
+		channelStatus, orders, parentId, navOrder
+	</sql>
+	<!-- oo -->
+	<select id="listByParent" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.Channel">
+		select * from channel where 1=1
+		<choose>
+			<when test=" parentId != null and parentId != 0 ">
+				and parentId = #{parentId}
+			</when>
+			<otherwise>
+				and parentId is null or parentId=0
+			</otherwise>
+		</choose>
+		order by orders
+	</select>
+	<!-- oo -->
+	<select id="getMaxOrderByParent" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select max(orders) from channel where 1=1
+		<choose>
+			<when test=" parentId != null and parentId != 0 ">
+				and parentId = #{parentId}
+			</when>
+			<otherwise>
+				and parentId is null or parentId=0
+			</otherwise>
+		</choose>
+	</select>
+	<!-- oo -->
+	<select id="generateTree" resultType="com.east.cms.model.Channel">
+		select id, channelName,parentId from channel order by orders
+	</select>
+	<!-- oo -->
+	<select id="generateTreeByParent" resultType="com.east.cms.model.Channel">
+		select id, channelName,parentId from channel
+		<choose>
+			<when test=" parentId != null and parentId != 0 ">
+				and parentId = #{parentId}
+			</when>
+			<otherwise>
+				and parentId is null or parentId=0
+			</otherwise>
+		</choose>
+		order by orders
+	</select>
+	<!-- oo -->
+	<update id="updateSort" parameterType="java.util.Arrays">
+		<foreach collection="ids" item="item" index="index" open=""
+			close="" separator=";">
+			update channel
+			<set>
+				orders=${index}+1
+			</set>
+			where id = ${item}
+		</foreach>
+	</update>
+	<!-- oo -->
+	<select id="listPublishChannel" parameterType="java.lang.String"
+		resultType="com.east.cms.model.Channel">
+		select * from channel where channelStatus=0 and channelType!=#{channelType};
+	</select>
+
+	<!-- oo -->
+	<select id="listAllIndexChannel" parameterType="java.lang.String"
+		resultType="com.east.cms.model.Channel">
+		select * from channel where channelStatus=0 and isIndex=1
+		<if test="channelType != null">
+			and channelType=#{channelType}
+		</if>
+	</select>
+	<!-- oo -->
+	<select id="listTopNavChannel" resultType="com.east.cms.model.Channel">
+		select * from channel where channelStatus=0 and isTopNav=1 order by
+		navOrder
+	</select>
+
+	<!-- oo -->
+	<delete id="deleteChannelGroups" parameterType="java.lang.Integer">
+		delete from group_channel where channelId=#{channelId}
+	</delete>
+	<!-- oo -->
+	<select id="loadFirstChannelByNav" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.Channel">
+		select * from channel where parentId=#{parentId} order by orders
+	</select>
+	<!-- oo -->
+	<select id="listUseChannelByParent" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.Channel">
+
+		select c.* from channel c left join channel cp on(c.parentId=cp.id)
+		where 1=1
+		<choose>
+			<when test=" c.parentId != null and c.parentId != 0 ">
+				and cp.id = #{parentId}
+			</when>
+			<otherwise>
+				and c.parentId is null or c.parentId=0
+			</otherwise>
+		</choose>
+		order by c.orders
+	</select>
+
+	<!-- oo -->
+	<select id="listChannelByType" parameterType="java.lang.String"
+		resultType="com.east.cms.model.Channel">
+		select * from channel where channelStatus=0 and channelType=#{channelType}
+	</select>
+
+	<select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.Channel">
+		select * from channel where id=#{channelId}
+	</select>
+
+	<insert id="add" parameterType="com.east.cms.model.Channel">
+		insert into channel (channelName, isCustomLink, customLinkUrl,
+		channelType, isIndex, isTopNav, isRecommend,
+		channelStatus, orders, parentId, navOrder)
+		values(#{channelName},#{isCustomLink},#{customLinkUrl},#{channelType},
+		#{isIndex},#{isTopNav},#{isRecommend},#{channelStatus},#{orders},#{parentId},#{navOrder})
+	</insert>
+	
+	<update id="update" parameterType="com.east.cms.model.Channel" >
+	update channel
+	set channelName=#{channelName}, 
+	    isCustomLink=#{isCustomLink}, 
+	    customLinkUrl=#{customLinkUrl},
+		channelType=#{channelType}, 
+		isIndex=#{isIndex}, 
+		isTopNav=#{isTopNav}, 
+		isRecommend=#{isRecommend},
+		channelStatus=#{channelStatus}, 
+		orders=#{orders}, 
+		parentId=#{parentId}, 
+		navOrder=#{navOrder}
+	 where id=#{id}	
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer" >
+	  delete from channel where id=#{channelId}
+	</delete>
+
+
 </mapper>

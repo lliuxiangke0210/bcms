@@ -29,7 +29,7 @@
    
     <update id="updatePos" >
    
-    </update>
+   </update>
    <!-- oo  -->
    <delete id="delete" parameterType="java.lang.Integer" >
        update cms_link b
@@ -55,7 +55,14 @@
           call usp_add();
    </select>
  
- 
+    <insert id="add"  parameterType="com.east.cms.model.CmsLink" >
+      insert into cms_link (title, url, type, newWin, urlId, urlClass, pos)
+      values(#{title},#{url},#{type},#{newWin},#{urlId},#{urlClass},#{pos})
+    </insert>
+    
+    <select  id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.CmsLink" >
+     select * from cms_link where id=#{id}
+    </select>
  
  
  
