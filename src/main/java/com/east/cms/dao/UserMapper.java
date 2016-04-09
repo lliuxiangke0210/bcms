@@ -92,7 +92,7 @@ public interface UserMapper {
 	 * @param gid
 	 * @return
 	 */
-	public List<User> listGroupUsers(int gid);// oo
+	public List<User> listGroupUsers(int groupId);// oo
 
 	/**
 	 * 添加用户角色对象
@@ -132,7 +132,7 @@ public interface UserMapper {
 	 * @param uid
 	 * @param rid
 	 */
-	public void deleteUserRole(@Param("use rId") int userId, @Param("roleId") int roleId);// oo
+	public void deleteUserRole(@Param("userId") int userId, @Param("roleId") int roleId);// oo
 
 	/**
 	 * 删除用户组对象
@@ -142,7 +142,7 @@ public interface UserMapper {
 	 */
 	public void deleteUserGroup(@Param("userId") int userId, @Param("groupId") int groupId);// oo
 
-	public User add(@Param("user") User user);
+	public int add(@Param("user") User user);
 
 	public void delete(@Param("userId") int userId);
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.east.cms.dao.UserMapper">
-	
+
 	<sql id="Base_Column_List">
 		id, username, password, nickname, email, phone, status,
 		createDate
 	</sql>
-	
 
 	<!-- oo -->
 	<select id="listUserRoleIds" parameterType="java.lang.Integer"
@@ -28,7 +27,7 @@
 		resultType="java.lang.Integer">
 		select groupId from user_group where userId=#{userId}
 	</select>
-    <!-- oo -->
+	<!-- oo -->
 	<select id="loadUserRole" resultType="com.east.cms.model.UserRole">
 		select ur.id,
 		ur.userId ,
@@ -47,7 +46,7 @@
 		ur.userId=#{userId} and ur.roleId=#{roleId}
 	</select>
 
-    <!-- oo -->
+	<!-- oo -->
 	<select id="loadUserGroup" resultType="com.east.cms.model.UserGroup">
 		select ug.id,
 		ug.userId ,
@@ -82,13 +81,13 @@
 		select u.* from user_role ur join user u on(ur.userId=u.id)
 		join role r on(ur.roleId=r.id) where r.roleType=#{roleType}
 	</select>
-    <!-- oo -->
+	<!-- oo -->
 	<select id="listGroupUsers" parameterType="java.lang.Integer"
 		resultType="com.east.cms.model.User">
 		select u.* from user_group ug join user u
 		on(ug.userId=u.id) join groupz g on(ug.groupId=g.id) where g.id=#{gid}
 	</select>
-     <!-- oo -->
+	<!-- oo -->
 	<insert id="addUserRole">
 		insert into user_role
 		(userId,roleId)
@@ -103,47 +102,71 @@
 		(#{user.id,jdbcType=INTEGER},#{group.id,jdbcType=INTEGER} )
 	</insert>
 
-    <!-- oo -->
+	<!-- oo -->
 	<delete id="deleteUserRoles" parameterType="java.lang.Integer">
-		delete from user_role where userId=#{userId}
+		delete from user_role
+		where userId=#{userId}
 	</delete>
 
     <!-- oo -->
 	<delete id="deleteUserGroups" parameterType="java.lang.Integer">
-		delete from user_group where userId=#{userId}
+		delete from
+		user_group where userId=#{userId}
 	</delete>
 
 	<select id="findUser" resultType="com.east.cms.model.User">
 		select * from user
 	</select>
-	 <!-- oo -->
+	<!-- oo -->
 	<delete id="deleteUserRole">
-		delete from user_role where userId=#{userId} and roleId=#{roleId}
+		delete from user_role where userId=#{userId} and
+		roleId=#{roleId}
 	</delete>
-	 <!-- oo -->
+	<!-- oo -->
 	<delete id="deleteUserGroup">
-		delete from user_group where userId=#{userId} and groupId=#{groupId}
+		delete from user_group where userId=#{userId} and
+		groupId=#{groupId}
 	</delete>
-    <insert  id="add"  parameterType="com.east.cms.model.User" >
-      insert into user (username, password, nickname, email, phone, status,createDate)
-      values(#{user.username},#{user.password},#{user.nickname},#{user.email},#{user.phone},#{user.status},#{user.createDate})
-    </insert>
-    <delete id="delete" parameterType="java.lang.Integer" >
-      delete from user where id=#{userId}
-    </delete>
-    <update id="update" parameterType="com.east.cms.model.User"  >
-     update user
-     set  username=#{user.username}, 
-          password=#{user.password}, 
-          nickname=#{user.nickname}, 
-          email=#{user.email}, 
-          phone=#{user.phone}, 
-          status=#{user.status},
-		  createDate=#{user.createDate}
-     where id = #{user.id}
-    </update>
-    <select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.User" >
-     select * from user where id=#{userId}
-    </select>
+
+	<insert id="add" parameterType="com.east.cms.model.User">
+		insert into user (username, password, nickname, email, phone,
+		status,createDate)
+		values(#{user.username},#{user.password},#{user.nickname},#{user.email},#{user.phone},#{user.status},#{user.createDate});
+		commit;
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from user where id=#{userId}
+	</delete>
+	<update id="update" parameterType="com.east.cms.model.User">
+		update user
+		<set>
+			<if test=" user.username != null ">
+				username = #{user.username},
+			</if>
+			<if test=" user.password != null ">
+				password = #{user.password},
+			</if>
+			<if test=" user.nickname != null ">
+				nickname=#{user.nickname},
+			</if>
+			<if test="user.email != null ">
+				email=#{user.email},
+			</if>
+			<if test="user.phone != null ">
+				phone=#{user.phone},
+			</if>
+			<if test="user.status != null ">
+				status=#{user.status},
+			</if>
+			<if test="user.createDate != null ">
+				createDate=#{user.createDate},
+			</if>
+		</set>
+		where id = #{user.id}
+	</update>
+	<select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.User">
+		select * from user where id=#{userId}
+	</select>
 
 </mapper>

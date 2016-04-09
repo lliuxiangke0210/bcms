@@ -30,7 +30,7 @@ public interface ChannelMapper {
 	 * 
 	 * @return
 	 */
-	public List<ChannelTree> generateTree();
+	public List<ChannelTree> generateTree();// oo
 
 	/**
 	 * 根据父类对象获取子类栏目，并且生成树列表
@@ -38,20 +38,20 @@ public interface ChannelMapper {
 	 * @param pid
 	 * @return
 	 */
-	public List<ChannelTree> generateTreeByParent(Integer parentId);
+	public List<ChannelTree> generateTreeByParent(Integer parentId);// oo
 
 	/**
 	 * 通过一个数组来完成排序
 	 * 
 	 * @param ids
 	 */
-	public void updateSort(@Param("ids") Integer[] ids);
+	public void updateSort(@Param("ids") Integer[] ids);// oo
 
 	/**
 	 * 所有的可以发布文章的栏目，栏目的状态必须为启用状态 channelType=ChannelType.NAV_CHANNEL
 	 * 
 	 */
-	public List<Channel> listPublishChannel(@Param("channelType") String channelType);
+	public List<Channel> listPublishChannel(@Param("channelType") String channelType);// oo
 
 	/**
 	 * 根据栏目类型获取所有的首页栏目
@@ -68,7 +68,7 @@ public interface ChannelMapper {
 	 * @param cid
 	 * @return
 	 */
-	public void deleteChannelGroups(@Param("channelId") int channelId);
+	public void deleteChannelGroups(@Param("channelId") int channelId);// oo
 
 	/**
 	 * 获取导航栏目中的第一个栏目
@@ -76,9 +76,9 @@ public interface ChannelMapper {
 	 * @param cid
 	 * @return
 	 */
-	public Channel loadFirstChannelByNav(@Param("parentId") int parentId);
+	public Channel loadFirstChannelByNav(@Param("parentId") int parentId);// oo
 
-	public List<Channel> listUseChannelByParent(@Param("parentId") Integer parentId);
+	public List<Channel> listUseChannelByParent(@Param("parentId") Integer parentId);// oo
 
 	/**
 	 * 通过类型来获取所有未停用的栏目
@@ -86,7 +86,7 @@ public interface ChannelMapper {
 	 * @param ct
 	 * @return
 	 */
-	public List<Channel> listChannelByType(@Param("channelType") String channelType);
+	public List<Channel> listChannelByType(@Param("channelType") String channelType);// oo
 
 	public Channel load(@Param("channelId") int channelId);
 

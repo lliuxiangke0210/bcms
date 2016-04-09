@@ -44,4 +44,8 @@ public interface KeywordMapper {
 
 	public List<String> listKeywordStringByCon(@Param("con") String con);
 
+	public List<String> listKeywordFromTopic();
+
+	public List<String> selectKeyword(@Param("name") String name);
+
 }

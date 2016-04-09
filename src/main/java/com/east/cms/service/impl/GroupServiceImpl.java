@@ -33,30 +33,30 @@ public class GroupServiceImpl implements GroupService {
 	private ChannelMapper channelDao;
 
 	@Override
-	public void add(Groupz group) {
+	public void add(Groupz group) {// oo
 		groupDao.add(group);
 	}
 
 	@Override
-	public void delete(int id) {
-		List<User> users = userDao.listGroupUsers(id);
+	public void delete(int groupId) {// oo
+		List<User> users = userDao.listGroupUsers(groupId);
 		if (users != null && users.size() > 0)
 			throw new CmsException("删除的组中还有用户，不能删除");
-		groupDao.delete(id);
+		groupDao.delete(groupId);
 	}
 
 	@Override
-	public Groupz load(int id) {
+	public Groupz load(int id) {// oo
 		return groupDao.load(id);
 	}
 
 	@Override
-	public void update(Groupz group) {
+	public void update(Groupz group) {// oo
 		groupDao.update(group);
 	}
 
 	@Override
-	public List<Groupz> listGroup() {
+	public List<Groupz> listGroup() {// oo
 		return groupDao.listGroup();
 	}
 
@@ -64,7 +64,7 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public PageInfo<Groupz> findGroup() {
 		PageHelper.startPage(1, 10);
-		List<Groupz> groupzs = groupDao.findGroup();
+		List<Groupz> groupzs = groupDao.listGroup();
 		// 用PageInfo对结果进行包装
 		@SuppressWarnings({ "rawtypes" })
 		PageInfo page = new PageInfo(groupzs);
@@ -72,15 +72,15 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public void deleteGroupUsers(int gid) {
-		groupDao.deleteGroupUsers(gid);
+	public void deleteGroupUsers(int groupId) {// oo
+		groupDao.deleteGroupUsers(groupId);
 
 	}
 
 	@Override
-	public void addGroupChannel(int gid, int cid) {
-		Groupz g = groupDao.load(gid);
-		Channel c = channelDao.load(cid);
+	public void addGroupChannel(int groupId, int channelId) {// oo
+		Groupz g = groupDao.load(groupId);
+		Channel c = channelDao.load(channelId);
 		if (c == null || g == null)
 			throw new CmsException("要添加的组频道关联对象不存在");
 		groupDao.addGroupChannel(g, c);
@@ -88,35 +88,35 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public GroupChannel loadGroupChannel(int gid, int cid) {
-		return groupDao.loadGroupChannelById(gid, cid);
+	public GroupChannel loadGroupChannel(int groupId, int channelId) {// oo
+		return groupDao.loadGroupChannelById(groupId, channelId);
 	}
 
 	@Override
-	public void clearGroupChannel(int gid) {
-		groupDao.clearGroupChannel(gid);
-
-	}
-
-	@Override
-	public void deleteGroupChannel(int gid, int cid) {
-		groupDao.deleteGroupChannel(gid, cid);
+	public void clearGroupChannel(int groupId) {// oo
+		groupDao.clearGroupChannel(groupId);
 
 	}
 
 	@Override
-	public List<Integer> listGroupChannelIds(int gid) {
-		return groupDao.listGroupChannelIds(gid);
+	public void deleteGroupChannel(int groupId, int channelId) {// oo
+		groupDao.deleteGroupChannel(groupId, channelId);
+
 	}
 
 	@Override
-	public List<ChannelTree> generateGroupChannelTree(int gid) {
-		return groupDao.generateGroupChannelTree(gid);
+	public List<Integer> listGroupChannelIds(int groupId) {// oo
+		return groupDao.listGroupChannelIds(groupId);
 	}
 
 	@Override
-	public List<ChannelTree> generateUserChannelTree(int uid) {
-		return groupDao.generateUserChannelTree(uid);
+	public List<ChannelTree> generateGroupChannelTree(int groupId) {// oo
+		return groupDao.generateGroupChannelTree(groupId);
+	}
+
+	@Override
+	public List<ChannelTree> generateUserChannelTree(int userId) {// oo
+		return groupDao.generateUserChannelTree(userId);
 	}
 
 }

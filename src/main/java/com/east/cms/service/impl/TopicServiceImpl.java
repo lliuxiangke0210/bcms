@@ -111,64 +111,59 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public PageInfo<Topic> find(Integer cid, String title, Integer status) {
+	public PageInfo<Topic> find(Integer cid, String title, Integer status) {// oo
 		PageHelper.startPage(1, 10);
 		List<Topic> topics = topicDao.find(cid, title, status);
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(topics);
+		PageInfo<Topic> page = new PageInfo<Topic>(topics);
 		return page;
 
 	}
 
 	@Override
-	public PageInfo<Topic> find(Integer uid, Integer cid, String title, Integer status) {
+	public PageInfo<Topic> find(Integer uid, Integer cid, String title, Integer status) {// oo
 		PageHelper.startPage(1, 10);
 		List<Topic> topics = topicDao.findAll(uid, cid, title, status);
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(topics);
+		PageInfo<Topic> page = new PageInfo<Topic>(topics);
 		return page;
 
 	}
 
 	@Override
-	public PageInfo<Topic> searchTopicByKeyword(String keyword) {
+	public PageInfo<Topic> searchTopicByKeyword(String keyword) {// oo
 		PageHelper.startPage(1, 10);
 		List<Topic> topics = topicDao.searchTopicByKeyword(keyword);
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(topics);
+		PageInfo<Topic> page = new PageInfo<Topic>(topics);
 		return page;
 	}
 
 	@Override
-	public PageInfo<Topic> searchTopic(String con) {
+	public PageInfo<Topic> searchTopic(String con) {// oo
 		PageHelper.startPage(1, 10);
 		List<Topic> topics = topicDao.searchTopic(con);
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(topics);
+		PageInfo<Topic> page = new PageInfo<Topic>(topics);
 		return page;
 	}
 
 	@Override
-	public PageInfo<Topic> findRecommendTopic(Integer ci) {
+	public PageInfo<Topic> findRecommendTopic(Integer ci) {// oo
 		PageHelper.startPage(1, 10);
 		List<Topic> topics = topicDao.findRecommendTopic(ci);
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(topics);
+		PageInfo<Topic> page = new PageInfo<Topic>(topics);
 		return page;
 	}
 
 	@Override
-	public List<Topic> listTopicByChannelAndNumber(int cid, int num) {
+	public List<Topic> listTopicByChannelAndNumber(int cid, int num) {// oo
 		return topicDao.listTopicByChannelAndNumber(cid, num);
 	}
 
 	@Override
-	public List<Topic> listTopicByChannel(int cid) {
+	public List<Topic> listTopicByChannel(int cid) {// oo
 		return topicDao.listTopicsByChannel(cid);
 	}
 
@@ -178,7 +173,7 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public Topic loadLastedTopicByColumn(int cid) {
+	public Topic loadLastedTopicByColumn(int cid) {// oo
 		return topicDao.loadLastedTopicByColumn(cid);
 	}
 

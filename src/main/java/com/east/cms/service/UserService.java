@@ -93,4 +93,9 @@ public interface UserService {
 	public List<User> listRoleUsers(int rid);
 
 	public User login(String username, String password);
+
+	void addUserRole(User user, int rid);
+
+	void addUserGroup(User user, int gid);
+
 }

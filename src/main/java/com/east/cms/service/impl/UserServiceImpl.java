@@ -31,7 +31,8 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private GroupzMapper groupDao;
 
-	private void addUserRole(User user, int rid) {
+	@Override
+	public void addUserRole(User user, int rid) {// oo
 		// 1、检查角色对象是否存在，如果不存在，就抛出异常
 		Role role = roleDao.load(rid);
 		if (role == null)
@@ -40,7 +41,8 @@ public class UserServiceImpl implements UserService {
 		userDao.addUserRole(user, role);
 	}
 
-	private void addUserGroup(User user, int gid) {
+	@Override
+	public void addUserGroup(User user, int gid) {// oo
 		Groupz group = groupDao.load(gid);
 		if (group == null)
 			throw new CmsException("要添加用户的组对象不存在");
@@ -48,8 +50,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void add(User user, Integer[] rids, Integer[] gids) {
-		// TODO Auto-generated method stub
+	public void add(User user, Integer[] rids, Integer[] gids) {// oo
 		User tu = userDao.loadByUsername(user.getUsername());
 		if (tu != null)
 			throw new CmsException("添加的用户对象已经存在，不能添加");
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
 			throw new CmsException("密码加密失败:" + e.getMessage());
 		}
 		userDao.add(user);
+		user = userDao.loadByUsername(user.getUsername());
 		// 添加角色对象
 		for (Integer rid : rids) {
 			this.addUserRole(user, rid);
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(int id) {// oo
 		// TODO 需要进行用户是否有文章的判断
 		// 1、删除用户管理的角色对象
 		userDao.deleteUserGroups(id);
@@ -82,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(User user, Integer[] rids, Integer[] gids) {
+	public void update(User user, Integer[] rids, Integer[] gids) {// oo
 		// 1、获取用户已经存在的组id和角色id
 		List<Integer> erids = userDao.listUserRoleIds(user.getId());
 		List<Integer> egids = userDao.listUserGroupIds(user.getId());
@@ -113,13 +115,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(User user) {
+	public void update(User user) {// oo
 		userDao.update(user);
 
 	}
 
 	@Override
-	public void updatePwd(int uid, String oldPwd, String newPwd) {
+	public void updatePwd(int uid, String oldPwd, String newPwd) {// oo
 		try {
 			User u = userDao.load(uid);
 			if (!SecurityUtil.md5(u.getUsername(), oldPwd).equals(u.getPassword())) {
@@ -133,7 +135,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateStatus(int id) {
+	public void updateStatus(int id) {// oo
 		User u = userDao.load(id);
 		if (u == null)
 			throw new CmsException("修改状态的用户不存在");
@@ -144,50 +146,48 @@ public class UserServiceImpl implements UserService {
 		userDao.update(u);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public PageInfo<User> findUser() {
+	public PageInfo<User> findUser() { // oo
 		PageHelper.startPage(1, 10);
 		List<User> users = userDao.findUser();
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings("rawtypes")
-		PageInfo page = new PageInfo(users);
+		PageInfo<User> page = new PageInfo<User>(users);
 		return page;
 	}
 
 	@Override
-	public User load(int id) {
+	public User load(int id) {// oo
 		return userDao.load(id);
 	}
 
 	@Override
-	public List<Role> listUserRoles(int id) {
-		return userDao.listUserRoles(id);
+	public List<Role> listUserRoles(int userId) {// oo
+		return userDao.listUserRoles(userId);
 	}
 
 	@Override
-	public List<Groupz> listUserGroups(int id) {
-		return userDao.listUserGroups(id);
+	public List<Groupz> listUserGroups(int userId) {// oo
+		return userDao.listUserGroups(userId);
 	}
 
 	@Override
-	public List<Integer> listUserRoleIds(int id) {
-		return userDao.listUserRoleIds(id);
+	public List<Integer> listUserRoleIds(int userId) {// oo
+		return userDao.listUserRoleIds(userId);
 	}
 
 	@Override
-	public List<Integer> listUserGroupIds(int id) {
-		return userDao.listUserGroupIds(id);
+	public List<Integer> listUserGroupIds(int userId) {// oo
+		return userDao.listUserGroupIds(userId);
 	}
 
 	@Override
-	public List<User> listGroupUsers(int gid) {
-		return userDao.listGroupUsers(gid);
+	public List<User> listGroupUsers(int groupId) {// oo
+		return userDao.listGroupUsers(groupId);
 	}
 
 	@Override
-	public List<User> listRoleUsers(int rid) {
-		return userDao.listRoleUsers(rid);
+	public List<User> listRoleUsers(int roleId) {// oo
+		return userDao.listRoleUsers(roleId);
 	}
 
 	@Override

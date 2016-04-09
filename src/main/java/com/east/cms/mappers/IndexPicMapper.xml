@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.IndexPicMapper" >
+  
+  <sql id="Base_Column_List" >
+    id, title, subTitle, linkType, linkUrl, newName, oldName, status, pos, createDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from index_pic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from index_pic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.east.cms.model.IndexPic" >
+    insert into index_pic (id, title, subTitle, 
+      linkType, linkUrl, newName, 
+      oldName, status, pos, 
+      createDate)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
+      #{linkType,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, #{newName,jdbcType=VARCHAR}, 
+      #{oldName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{pos,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.east.cms.model.IndexPic" >
+    insert into index_pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="subtitle != null" >
+        subTitle,
+      </if>
+      <if test="linktype != null" >
+        linkType,
+      </if>
+      <if test="linkurl != null" >
+        linkUrl,
+      </if>
+      <if test="newname != null" >
+        newName,
+      </if>
+      <if test="oldname != null" >
+        oldName,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pos != null" >
+        pos,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="linktype != null" >
+        #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="linkurl != null" >
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="newname != null" >
+        #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldname != null" >
+        #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pos != null" >
+        #{pos,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.east.cms.model.IndexPic" >
+    update index_pic
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subTitle = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="linktype != null" >
+        linkType = #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="linkurl != null" >
+        linkUrl = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="newname != null" >
+        newName = #{newName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldname != null" >
+        oldName = #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pos != null" >
+        pos = #{pos,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.east.cms.model.IndexPic" >
+    update index_pic
+    set title = #{title,jdbcType=VARCHAR},
+      subTitle = #{subTitle,jdbcType=VARCHAR},
+      linkType = #{linkType,jdbcType=VARCHAR},
+      linkUrl = #{linkUrl,jdbcType=VARCHAR},
+      newName = #{newName,jdbcType=VARCHAR},
+      oldName = #{oldName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      pos = #{pos,jdbcType=INTEGER},
+      createDate = #{createDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

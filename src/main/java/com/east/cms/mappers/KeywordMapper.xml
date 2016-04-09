@@ -6,10 +6,6 @@
     id, name, times, nameFullPy, nameShortPy
   </sql>
  
- 
- 
- 
- 
  <select id="listKeywordByCon" parameterType="java.lang.String" resultType="com.east.cms.model.Keyword" >
    select * from keyword
   where name like concat('%',#{con},'%') or nameFullPy like concat('%',#{con},'%') or nameShortPy like concat('%',#{con},'%')
@@ -18,6 +14,10 @@
   <select id="listKeywordStringByCon"  parameterType="java.lang.String" resultType="java.lang.String" >
   select name from keyword
   where name like concat('%',#{con},'%') or nameFullPy like concat('%',#{con},'%') or nameShortPy like concat('%',#{con},'%')
+  </select>
+  
+  <select id="listKeywordFromTopic"  resultType="java.lang.String" >
+    select keyword from topic 
   </select>
  
  

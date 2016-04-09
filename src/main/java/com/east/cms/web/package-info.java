@@ -5,4 +5,4 @@
  * @author lxk
  *
  */
-package cms.east.cms.web;
+package com.east.cms.web;

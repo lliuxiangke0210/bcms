@@ -24,7 +24,7 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public void add(Channel channel, Integer pid) {
-		Integer orders = channelDao.getMaxOrderByParent(pid);
+		Integer orders = channelDao.getMaxOrderByParent(pid);// oo
 		if (pid != null && pid > 0) {
 			Channel pc = channelDao.load(pid);
 			if (pc == null)
@@ -41,7 +41,7 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(int id) {// oo
 		// 1、需要判断是否存在子栏目
 		List<Channel> cs = channelDao.listByParent(id);
 		if (cs != null && cs.size() > 0)
@@ -52,7 +52,7 @@ public class ChannelServiceImpl implements ChannelService {
 			throw new CmsException("该栏目还有相应的文章信息，不能删除");
 		}
 		// 3、需要删除和组的关联关系
-		channelDao.deleteChannelGroups(id);
+		channelDao.deleteChannelGroups(id);// oo
 		channelDao.delete(id);
 
 	}
@@ -71,53 +71,53 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
-	public List<Channel> listByParent(Integer pid) {
+	public List<Channel> listByParent(Integer pid) {// oo
 		return channelDao.listByParent(pid);
 	}
 
 	@Override
-	public List<ChannelTree> generateTree() {
+	public List<ChannelTree> generateTree() {// oo
 		return channelDao.generateTree();
 	}
 
 	@Override
-	public List<ChannelTree> generateTreeByParent(Integer pid) {
+	public List<ChannelTree> generateTreeByParent(Integer pid) {// oo
 		return channelDao.generateTreeByParent(pid);
 	}
 
 	@Override
-	public List<Channel> listPublishChannel() {
+	public List<Channel> listPublishChannel() {// oo
 		return channelDao.listPublishChannel(ChannelType.NAV_CHANNEL);
 	}
 
 	@Override
-	public List<Channel> listTopNavChannel() {
+	public List<Channel> listTopNavChannel() {// oo
 		return channelDao.listTopNavChannel();
 	}
 
 	@Override
-	public void updateSort(Integer[] ids) {
+	public void updateSort(Integer[] ids) {// oo
 		channelDao.updateSort(ids);
 
 	}
 
 	@Override
-	public List<Channel> listAllIndexChannel(String channelType) {
+	public List<Channel> listAllIndexChannel(String channelType) {// oo
 		return channelDao.listAllIndexChannel(channelType);
 	}
 
 	@Override
-	public Channel loadFirstChannelByNav(int cid) {
+	public Channel loadFirstChannelByNav(int cid) {// oo
 		return channelDao.loadFirstChannelByNav(cid);
 	}
 
 	@Override
-	public List<Channel> listUseChannelByParent(Integer cid) {
+	public List<Channel> listUseChannelByParent(Integer cid) {// oo
 		return channelDao.listUseChannelByParent(cid);
 	}
 
 	@Override
-	public List<Channel> listChannelByType(String channelType) {
+	public List<Channel> listChannelByType(String channelType) {// oo
 		return channelDao.listChannelByType(channelType);
 	}
 

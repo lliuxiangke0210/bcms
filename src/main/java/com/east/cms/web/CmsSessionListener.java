@@ -1,4 +1,4 @@
-package cms.east.cms.web;
+package com.east.cms.web;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

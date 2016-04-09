@@ -17,7 +17,7 @@
 			targetProject="bcms" />
 		<javaClientGenerator targetPackage="com.east.cms.dao"
 			targetProject="bcms" type="XMLMAPPER" />
-		<table tableName="%" enableCountByExample="false"
+		<table tableName="index_pic" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 			<!-- <columnOverride column="???" property="???" /> -->

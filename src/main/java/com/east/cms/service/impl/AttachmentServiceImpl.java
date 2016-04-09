@@ -98,46 +98,42 @@ public class AttachmentServiceImpl implements AttachmentService {
 		return attachmentDao.load(id);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public PageInfo<Attachment> findNoUseAttachment() {
 		PageHelper.startPage(1, 10);
 		List<Attachment> attachments = attachmentDao.findNoUseAttachment();
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(attachments);
+		PageInfo<Attachment> page = new PageInfo<Attachment>(attachments);
 		return page;
 	}
 
 	@Override
-	public void clearNoUseAttachment() {
+	public void clearNoUseAttachment() {// oo
 		attachmentDao.clearNoUseAttachment();
 	}
 
 	@Override
-	public List<AttachmentTopic> listByTopic(int tid) {
+	public List<AttachmentTopic> listByTopic(int tid) {// oo
 		return attachmentDao.listByTopic(tid);
 	}
 
 	@Override
-	public List<AttachmentTopic> listIndexPic(int num) {
+	public List<AttachmentTopic> listIndexPic(int num) {// oo
 		return attachmentDao.listIndexPic(num);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public PageInfo<AttachmentTopic> findChannelPic(int cid) {
+	public PageInfo<AttachmentTopic> findChannelPic(int cid) {// oo
 		PageHelper.startPage(1, 10);
-		List<AttachmentTopic> attachments = attachmentDao.findChannelPic(cid);
+		List<AttachmentTopic> attachments = attachmentDao.findChannelPic(cid);// oo
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(attachments);
+		PageInfo<AttachmentTopic> page = new PageInfo<AttachmentTopic>(attachments);
 		return page;
 	}
 
 	@Override
-	public List<AttachmentTopic> listAttachByTopic(int tid) {
-		return attachmentDao.listAttachByTopic(tid);
+	public List<AttachmentTopic> listAttachByTopic(int topicId) {// oo
+		return attachmentDao.listAttachByTopic(topicId);
 	}
 
 	@Override
@@ -165,20 +161,18 @@ public class AttachmentServiceImpl implements AttachmentService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public PageInfo<AttachmentTopic> listAllPic() {
+	public PageInfo<AttachmentTopic> listAllPic() {// oo
 		PageHelper.startPage(1, 10);
 		List<AttachmentTopic> attachments = attachmentDao.listAllIndexPic();
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(attachments);
+		PageInfo<AttachmentTopic> page = new PageInfo<AttachmentTopic>(attachments);
 		return page;
 
 	}
 
 	@Override
-	public long findNoUseAttachmentNum() {
+	public long findNoUseAttachmentNum() {// oo
 		return attachmentDao.findNoUseAttachmentNum();
 	}
 

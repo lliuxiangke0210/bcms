@@ -5,20 +5,23 @@
   <sql id="Base_Column_List">
     id, name, descr
   </sql>
-  
+  <!-- oo  -->
   <select id="listGroup"  resultType="com.east.cms.model.Groupz"> 
     select * from groupz
   </select>
   
+  <!-- oo  -->
   <delete id="deleteGroupUsers" parameterType="java.lang.Integer" >
     delete from user_group where groupId=#{groupId}
   </delete>
   
+  <!-- oo  -->
   <insert id="addGroupChannel">
    insert into  group_channel (groupId, channelId) values (#{group.id}, #{channel.id})
   </insert>
   
-  <insert id="loadGroupChannelById">
+  <!-- oo  -->
+  <select id="loadGroupChannelById"  resultType="com.east.cms.model.GroupChannel" >
    select gc.id ,
           gc.groupId,
           gc.channelId,
@@ -39,20 +42,21 @@
    left join groupz g on(gc.groupId=g.id) 
    left join channel c on (gc.channelId=c.id) 
    where gc.groupId=#{groupId} and gc.channelId=#{channelId}  
-   </insert>
-  
+   </select>
+  <!-- oo  -->
   <delete id="clearGroupChannel" parameterType="java.lang.Integer">
      delete from  group_channel where groupId=#{groupId}
   </delete>
   
+  <!-- oo  -->
   <delete id="deleteGroupChannel" >
     delete from  group_channel where groupId=#{groupId} and channelId=#{channelId}
   </delete>
-  
-  <select id="listGroupChannelIds" parameterType="java.lang.Integer" >
+  <!-- oo  -->
+  <select id="listGroupChannelIds" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
     select channelId from group_channel where groupId=#{groupId}
   </select>
-  
+  <!-- oo  -->
   <select id="generateGroupChannelTree" parameterType="java.lang.Integer" 
    resultType="com.east.cms.model.ChannelTree" >
      select c.id,
@@ -62,7 +66,7 @@
      left join channel c on(gc.channelId=c.id) 
      where gc.groupId=#{groupId}
   </select>
-  
+   <!-- oo  -->
   <select id="generateUserChannelTree" parameterType="java.lang.Integer"  
   resultType="com.east.cms.model.ChannelTree" >
   select distinct   c.id ,
@@ -73,22 +77,36 @@
   left join user_group ug on (gc.groupId=ug.groupId) 
   where ug.userId=#{userId}
   </select>
-  
+  <!-- oo  -->
   <select id="load" parameterType="java.lang.Integer"  resultType="com.east.cms.model.Groupz" >
      select * from groupz where id=#{groupId}
   </select>
-  
+  <!-- oo  -->
   <insert id="add" parameterType="com.east.cms.model.Groupz" >
-   insert into groupz (name, descr) values(#{name},#{descr})
+   insert into groupz (name, descr) values(#{group.name},#{group.descr})
   </insert>
-  
+  <!-- oo  -->
   <delete  id="delete" parameterType="java.lang.Integer">
    delete from groupz where id=#{groupId}
   </delete>
+   <!-- oo  -->
   <update id="update" parameterType="com.east.cms.model.Groupz" >
     update groupz 
-    set name=#{name}, 
-        descr=#{descr}
+    set name=#{group.name}, 
+        descr=#{group.descr}
+     where id=#{id}   
+  </update>
+   <!-- oo  -->
+   <update id="updateSelective" parameterType="com.east.cms.model.Groupz" >
+      update groupz 
+    <set>
+      <if test=" group.name != null">
+         name=#{group.name},
+      </if>
+      <if test=" group.name != null">
+         descr=#{group.descr},
+      </if>
+    </set>
      where id=#{id}   
   </update>
   

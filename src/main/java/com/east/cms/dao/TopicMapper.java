@@ -73,7 +73,7 @@ public interface TopicMapper {
 	 */
 	public List<Topic> listTopicByChannelAndNumber(@Param("channelId") int channelId, @Param("num") int num);// oo
 
-	public List<Topic> listTopicsByChannel(@Param("channelId") int channelId);
+	public List<Topic> listTopicsByChannel(@Param("channelId") int channelId);// oo
 
 	/**
 	 * 判断所添加文章的栏目是否需要进行更新
@@ -89,7 +89,7 @@ public interface TopicMapper {
 	 * @param cid
 	 * @return
 	 */
-	public Topic loadLastedTopicByColumn(@Param("channelId") int channelId);
+	public Topic loadLastedTopicByColumn(@Param("channelId") int channelId);// oo
 
 	public void delete(@Param("topicId") int topicId);
 

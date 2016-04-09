@@ -9,11 +9,13 @@ public interface RoleService {
 
 	public void delete(int id);
 
-	public void update(Role role);
-
 	public Role load(int id);
 
 	public List<Role> listRole();
 
 	public void deleteRoleUsers(int rid);
+
+	public void update(Role role);
+
+	void updateSelective(Role role);
 }

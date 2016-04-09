@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.east.cms.dao.GroupzMapper;
 import com.east.cms.dao.RoleMapper;
 import com.east.cms.dao.UserMapper;
 import com.east.cms.model.Role;
@@ -21,40 +20,43 @@ public class RoleServiceImpl implements RoleService {
 	private UserMapper userDao;
 	@Resource
 	private RoleMapper roleDao;
-	@Resource
-	private GroupzMapper groupDao;
 
 	@Override
-	public void add(Role role) {
+	public void add(Role role) {// oo
 		roleDao.add(role);
 	}
 
 	@Override
-	public void delete(int id) {
-		List<User> us = userDao.listRoleUsers(id);
+	public void delete(int roleId) {// oo
+		List<User> us = userDao.listRoleUsers(roleId);
 		if (us != null && us.size() > 0)
 			throw new CmsException("删除的角色对象中还有用户，不能删除");
-		roleDao.delete(id);
+		roleDao.delete(roleId);
 	}
 
 	@Override
-	public void update(Role role) {
+	public void update(Role role) {// oo
 		roleDao.update(role);
 	}
 
 	@Override
-	public Role load(int id) {
-		return roleDao.load(id);
+	public void updateSelective(Role role) {// oo
+		roleDao.updateSelective(role);
 	}
 
 	@Override
-	public List<Role> listRole() {
+	public Role load(int roleId) {// oo
+		return roleDao.load(roleId);
+	}
+
+	@Override
+	public List<Role> listRole() {// oo
 		return roleDao.listRole();
 	}
 
 	@Override
-	public void deleteRoleUsers(int rid) {
-		roleDao.deleteRoleUsers(rid);
+	public void deleteRoleUsers(int roleId) {// oo
+		roleDao.deleteRoleUsers(roleId);
 
 	}
 

@@ -1,4 +1,4 @@
-package cms.east.cms.web;
+package com.east.cms.web;
 
 import java.util.HashMap;
 import java.util.Map;

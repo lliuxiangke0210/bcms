@@ -20,7 +20,7 @@ public class CmsLinkServiceImpl implements CmsLinkService {
 	private CmsLinkMapper cmsLinkDao;
 
 	@Override
-	public void add(CmsLink cl) {
+	public void add(CmsLink cl) {// oo
 		cmsLinkDao.addSelect(cl);
 
 	}
@@ -43,9 +43,9 @@ public class CmsLinkServiceImpl implements CmsLinkService {
 	}
 
 	@Override
-	public PageInfo<CmsLink> findByType(String type) {
+	public PageInfo<CmsLink> findByType(String type) {// oo
 		PageHelper.startPage(1, 10);
-		List<CmsLink> cmsLinks = cmsLinkDao.findByType(type);
+		List<CmsLink> cmsLinks = cmsLinkDao.findByType(type);// oo
 		// 用PageInfo对结果进行包装
 		@SuppressWarnings({ "rawtypes" })
 		PageInfo page = new PageInfo(cmsLinks);
@@ -53,17 +53,17 @@ public class CmsLinkServiceImpl implements CmsLinkService {
 	}
 
 	@Override
-	public List<CmsLink> listByType(String type) {
+	public List<CmsLink> listByType(String type) {// oo
 		return cmsLinkDao.listByType(type);
 	}
 
 	@Override
-	public List<String> listAllType() {
+	public List<String> listAllType() {// oo
 		return cmsLinkDao.listAllType();
 	}
 
 	@Override
-	public Map<String, Integer> getMinAndMaxPos() {
+	public Map<String, Integer> getMinAndMaxPos() {// oo
 		return cmsLinkDao.getMinAndMaxPos();
 	}
 

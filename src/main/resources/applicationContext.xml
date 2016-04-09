@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
 
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -23,9 +23,10 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mappers.xml文件 -->
 		<property name="mapperLocations" value="classpath:com/east/cms/mappers/*.xml"></property>
-		<!-- mybatis配置文件 -->
+		<!-- mybatis配置文件 --><!-- 1.PageHelper分页插件方式一   -->
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="plugins">
+		<!-- 2.PageHelper分页插件方式二   -->
+		<!-- <property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper">
 					<property name="properties">
@@ -33,7 +34,7 @@
 					</property>
 				</bean>
 			</array>
-		</property>
+		</property> -->
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
@@ -80,11 +81,4 @@
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="com.east.cms.service" />
 	<context:component-scan base-package="com.east.cms.dao.test" />
-
-
-
-
-
-
-
 </beans>
