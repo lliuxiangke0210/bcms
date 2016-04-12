@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
 				userDao.deleteUserGroup(user.getId(), egid);
 			}
 		}
+		this.update(user);
 
 	}
 

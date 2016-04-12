@@ -6,13 +6,19 @@
 		id, username, password, nickname, email, phone, status,
 		createDate
 	</sql>
+	
+	
+	
 
 	<!-- oo -->
 	<select id="listUserRoleIds" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 		select roleId from user_role where userId=#{userId}
 	</select>
-
+    <select id="listUserRoles"  parameterType="java.lang.Integer" resultType="com.east.cms.model.Role"  >
+	   select r.* from user_role ur left join role r on
+		(ur.roleId=r.id) where ur.userId=#{userId}
+	</select>
 
      <!-- oo -->
 	<select id="listUserGroups" parameterType="java.lang.Integer"
@@ -168,5 +174,7 @@
 	<select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.User">
 		select * from user where id=#{userId}
 	</select>
+	
+	
 
 </mapper>

@@ -11,7 +11,7 @@ public class Attachment {
 
 	private String suffix;
 
-	private Integer size;
+	private long size;
 
 	private Integer isIndexPic;
 
@@ -61,11 +61,11 @@ public class Attachment {
 		this.suffix = suffix;
 	}
 
-	public Integer getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(Integer size) {
+	public void setSize(Long size) {
 		this.size = size;
 	}
 

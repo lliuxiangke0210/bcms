@@ -24,6 +24,7 @@ import com.east.cms.service.ChannelService;
 import com.east.cms.service.GroupService;
 import com.east.cms.service.RoleService;
 import com.east.cms.service.UserService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -39,24 +40,27 @@ public class UserController {
 	private ChannelService channelService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView delete(ModelAndView model) {
+	public ModelAndView delete(ModelAndView model) {// oo
 
 		model.setViewName("/index");
 		return model;
 	}
 
 	@RequestMapping("/users")
-	public ModelAndView list(ModelAndView model) {
-		model.addObject("datas", userService.findUser());
+	public ModelAndView list(ModelAndView model) {// oo
+		PageInfo<User> pageInfo = userService.findUser();
+		List<User> users = pageInfo.getList();
+		model.addObject("datas", users);
+		model.setViewName("user/list");
 		return model;
 	}
 
-	private void initAddUser(ModelAndView model) {
+	private void initAddUser(ModelAndView model) {// oo
 		model.addObject("roles", roleService.listRole());
 		model.addObject("groups", groupService.listGroup());
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET) // oo
 	public ModelAndView add(ModelAndView model) {
 		model.addObject("userDto", new UserDto());// user,user
 		initAddUser(model);
@@ -65,7 +69,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView add(UserDto userDto, BindingResult br, ModelAndView model) {
+	public ModelAndView add(UserDto userDto, BindingResult br, ModelAndView model) {// oo
 		if (br.hasErrors()) {
 			initAddUser(model);
 			model.setViewName("user/add");
@@ -77,7 +81,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public ModelAndView update(@PathVariable int id, ModelAndView model) {
+	public ModelAndView update(@PathVariable int id, ModelAndView model) {// oo
 		User u = userService.load(id);
 		model.addObject("userDto", new UserDto(u, userService.listUserRoleIds(id), userService.listUserGroupIds(id)));// user,user
 		initAddUser(model);
@@ -86,7 +90,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public ModelAndView update(@PathVariable int id, UserDto userDto, BindingResult br, ModelAndView model) {
+	public ModelAndView update(@PathVariable int id, UserDto userDto, BindingResult br, ModelAndView model) {// oo
 		if (br.hasErrors()) {
 			System.out.println(br.hasErrors());
 			initAddUser(model);
@@ -104,21 +108,21 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView delete(@PathVariable int id, ModelAndView model) {
+	public ModelAndView delete(@PathVariable int id, ModelAndView model) {// oo
 		userService.delete(id);
 		model.setViewName("redirect:/admin/user/users");
 		return model;
 	}
 
 	@RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.GET)
-	public ModelAndView updateStatus(@PathVariable int id, ModelAndView model) {
+	public ModelAndView updateStatus(@PathVariable int id, ModelAndView model) {// oo
 		userService.updateStatus(id);
 		model.setViewName("redirect:/admin/user/users");
 		return model;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView show(@PathVariable int id, ModelAndView model) {
+	public ModelAndView show(@PathVariable int id, ModelAndView model) {// oo
 		model.addObject("user", userService.load(id));
 		model.addObject("gs", userService.listUserGroups(id));
 		model.addObject("rs", userService.listUserRoles(id));
@@ -128,8 +132,11 @@ public class UserController {
 
 	@RequestMapping("/showSelf")
 	@AuthMethod
-	public ModelAndView showSelf(ModelAndView model, HttpSession session) {
+	public ModelAndView showSelf(ModelAndView model, HttpSession session) {// oo
 		User user = (User) session.getAttribute("loginUser");
+		if (user == null) {
+			user = userService.load(223);
+		}
 		model.addObject("user", user);
 		model.addObject("gs", userService.listUserGroups(user.getId()));
 		model.addObject("rs", userService.listUserRoles(user.getId()));
@@ -139,16 +146,19 @@ public class UserController {
 
 	@RequestMapping(value = "/updatePwd", method = RequestMethod.GET)
 	@AuthMethod
-	public ModelAndView updatePwd(ModelAndView model, HttpSession session) {
-		User u = (User) session.getAttribute("loginUser");
-		model.addObject(u);
+	public ModelAndView updatePwd(ModelAndView model, HttpSession session) {// oo
+		User user = (User) session.getAttribute("loginUser");
+		if (user == null) {
+			user = userService.load(223);
+		}
+		model.addObject(user);
 		model.setViewName("user/updatePwd");
 		return model;
 	}
 
 	@RequestMapping(value = "/updatePwd", method = RequestMethod.POST)
 	@AuthMethod
-	public ModelAndView updatePwd(int id, String oldPwd, String password, ModelAndView model) {
+	public ModelAndView updatePwd(int id, String oldPwd, String password, ModelAndView model) {// oo
 		userService.updatePwd(id, oldPwd, password);
 		model.setViewName("redirect:/admin/user/showSelf");
 		return model;
@@ -156,8 +166,11 @@ public class UserController {
 
 	@RequestMapping(value = "/updateSelf", method = RequestMethod.GET)
 	@AuthMethod
-	public ModelAndView updateSelf(ModelAndView model, HttpSession session) {
+	public ModelAndView updateSelf(ModelAndView model, HttpSession session) {// oo
 		User u = (User) session.getAttribute("loginUser");
+		if (u == null) {
+			u = userService.load(223);
+		}
 		model.addObject(new UserDto(u));
 		model.setViewName("user/updateSelf");
 		return model;
@@ -165,7 +178,7 @@ public class UserController {
 
 	@RequestMapping(value = "/updateSelf", method = RequestMethod.POST)
 	@AuthMethod
-	public ModelAndView updateSelf(UserDto userDto, BindingResult br, ModelAndView model, HttpSession session) {
+	public ModelAndView updateSelf(UserDto userDto, BindingResult br, ModelAndView model, HttpSession session) {// oo
 		if (br.hasErrors()) {
 			model.setViewName("user/updateSelf");
 			return model;

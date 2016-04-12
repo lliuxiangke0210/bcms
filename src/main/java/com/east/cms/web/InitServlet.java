@@ -11,6 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.east.cms.utils.AuthUtil;
+import com.east.cms.utils.BaseInfoUtil;
 
 public class InitServlet extends HttpServlet {
 
