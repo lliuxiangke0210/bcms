@@ -47,8 +47,7 @@ public class CmsLinkServiceImpl implements CmsLinkService {
 		PageHelper.startPage(1, 10);
 		List<CmsLink> cmsLinks = cmsLinkDao.findByType(type);// oo
 		// 用PageInfo对结果进行包装
-		@SuppressWarnings({ "rawtypes" })
-		PageInfo page = new PageInfo(cmsLinks);
+		PageInfo<CmsLink> page = new PageInfo<CmsLink>(cmsLinks);
 		return page;
 	}
 

@@ -94,7 +94,7 @@
     update groupz 
     set name=#{group.name}, 
         descr=#{group.descr}
-     where id=#{id}   
+     where id=#{group.id}   
   </update>
    <!-- oo  -->
    <update id="updateSelective" parameterType="com.east.cms.model.Groupz" >

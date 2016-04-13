@@ -32,9 +32,9 @@
 	
 	<update id="update" parameterType="com.east.cms.model.Role" >
 	 update role 
-	 set name=#{name}, 
-	     roleType=#{roleType}
-	 where id=#{id}    
+	 set name=#{role.name}, 
+	     roleType=#{role.roleType}
+	 where id=#{role.id}    
 	</update>
 	
 	<update id="updateSelective" parameterType="com.east.cms.model.Role" >

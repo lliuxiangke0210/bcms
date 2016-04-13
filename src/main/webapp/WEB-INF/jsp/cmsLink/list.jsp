@@ -89,7 +89,7 @@ $(function(){
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas.datas }" var="cl">
+		<c:forEach items="${datas}" var="cl">
 			<tr>
 				<td><a href="${cl.id }" class="list_link">${cl.title }</a></td>
 				<td><a href="${cl.url }" class="list_link">${cl.url }</a></td>
@@ -113,7 +113,8 @@ $(function(){
 		<tr>
 			<td colspan="6" style="text-align:right;margin-right:10px;">
 			<jsp:include page="/jsp/pager.jsp">
-				<jsp:param value="${datas.total }" name="totalRecord"/>
+				<jsp:param value="${total }" name="totalRecord"/>
+				<jsp:param value="${pageSize }" name="pageSize"/>
 				<jsp:param value="links" name="url"/>
 			</jsp:include>
 			</td>

@@ -16,6 +16,7 @@ import com.east.cms.model.ChannelTree;
 import com.east.cms.model.Groupz;
 import com.east.cms.service.GroupService;
 import com.east.cms.service.UserService;
+import com.github.pagehelper.PageInfo;
 
 @RequestMapping("/admin/group")
 @Controller
@@ -28,21 +29,27 @@ public class GroupController {
 	private GroupService groupService;
 
 	@RequestMapping("/groups")
-	public ModelAndView list(ModelAndView model) {
-		model.addObject("datas", groupService.findGroup());
+	public ModelAndView list(ModelAndView model) { // oo
+		PageInfo<Groupz> pageInfo = groupService.findGroup();
+		List<Groupz> datas = pageInfo.getList();
+		model.addObject("datas", datas);
+		long total = pageInfo.getTotal();
+		model.addObject("total", total);
+		int pageSize = pageInfo.getPageSize();
+		model.addObject("pageSize", pageSize);
 		model.setViewName("group/list");
 		return model;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView add(ModelAndView model) {
-		model.addObject(new Groupz());
+	public ModelAndView add(ModelAndView model) { // oo
+		model.addObject("group", new Groupz());
 		model.setViewName("group/add");
 		return model;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView add(@Validated Groupz group, BindingResult br, ModelAndView model) {
+	public ModelAndView add(@Validated Groupz group, BindingResult br, ModelAndView model) {// oo
 		if (br.hasErrors()) {
 			model.setViewName("group/add");
 			return model;
@@ -53,18 +60,19 @@ public class GroupController {
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public ModelAndView update(@PathVariable int id, ModelAndView model) {
-		model.addObject(groupService.load(id));
+	public ModelAndView update(@PathVariable int id, ModelAndView model) {// oo
+		model.addObject("group", groupService.load(id));
 		model.setViewName("group/update");
 		return model;
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST) // oo
 	public ModelAndView update(@PathVariable int id, @Validated Groupz group, BindingResult br, ModelAndView model) {
 		if (br.hasErrors()) {
 			model.setViewName("group/update");
 			return model;
 		}
+		System.out.println(id);
 		Groupz ug = groupService.load(id);
 		ug.setDescr(group.getDescr());
 		ug.setName(group.getName());
@@ -74,30 +82,30 @@ public class GroupController {
 	}
 
 	@RequestMapping("/delete/{id}")
-	public ModelAndView delete(@PathVariable int id, ModelAndView model) {
+	public ModelAndView delete(@PathVariable int id, ModelAndView model) {// oo
 		groupService.delete(id);
 		model.setViewName("redirect:/admin/group/groups");
 		return model;
 	}
 
 	@RequestMapping("/{id}")
-	public ModelAndView show(@PathVariable int id, ModelAndView model) {
-		model.addObject(groupService.load(id));
+	public ModelAndView show(@PathVariable int id, ModelAndView model) {// oo
+		model.addObject("group", groupService.load(id));
 		model.addObject("us", userService.listGroupUsers(id));
 		model.setViewName("group/show");
 		return model;
 	}
 
 	@RequestMapping("/clearUsers/{id}")
-	public ModelAndView clearGroupUsers(@PathVariable int id, ModelAndView model) {
+	public ModelAndView clearGroupUsers(@PathVariable int id, ModelAndView model) {// oo
 		groupService.deleteGroupUsers(id);
 		model.setViewName("redirect:/admin/group/groups");
 		return model;
 	}
 
 	@RequestMapping("/listChannels/{gid}")
-	public ModelAndView listChannels(@PathVariable int gid, ModelAndView model) {
-		model.addObject(groupService.load(gid));
+	public ModelAndView listChannels(@PathVariable int gid, ModelAndView model) {// oo
+		model.addObject("group", groupService.load(gid));
 		model.setViewName("/group/listChannel");
 		return model;
 	}
@@ -109,7 +117,7 @@ public class GroupController {
 
 	@RequestMapping("/setChannels/{gid}")
 	public ModelAndView setChannels(@PathVariable int gid, ModelAndView model) {
-		model.addObject(groupService.load(gid));
+		model.addObject("group", groupService.load(gid));
 		model.addObject("cids", groupService.listGroupChannelIds(gid));
 		model.setViewName("/group/setChannel");
 		return model;

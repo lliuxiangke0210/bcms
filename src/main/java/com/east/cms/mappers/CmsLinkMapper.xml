@@ -64,7 +64,30 @@
      select * from cms_link where id=#{id}
     </select>
  
- 
+    <update id="update"  parameterType="com.east.cms.model.CmsLink" >
+      update cms_link 
+      <set>
+      <if test=" cmsLink.title != null ">
+        title=#{cmsLink.title},
+        </if>
+        <if test=" cmsLink.url != null ">
+        url=#{cmsLink.url},
+        </if>
+        <if test=" cmsLink.type != null ">
+        type=#{cmsLink.type},
+        </if>
+        <if test=" cmsLink.newWin != null ">
+        newWin=#{cmsLink.newWin},
+        </if>
+        <if test=" cmsLink.urlId != null ">
+        urlId=#{cmsLink.urlId},
+        </if>
+        <if test=" cmsLink.pos != null ">
+          pos=#{cmsLink.pos},
+        </if>
+      </set>
+        where id=#{cmsLink.id}
+    </update>
  
  
 </mapper>

@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td class="rightTd">角色类型:</td>
-			<td class="leftTd"><sf:select path="roleType"><sf:options items="${types }"/></sf:select></td>
+			<td class="leftTd"><sf:select path="roleType"><sf:options items="${types}"/></sf:select></td>
 		</tr>
 		<tr>
 			<td colspan="2" class="centerTd"><input type="submit" value="添加角色"/><input type="reset"/></td>
