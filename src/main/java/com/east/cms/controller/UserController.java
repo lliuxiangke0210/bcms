@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.auth.AuthMethod;
 import com.east.cms.model.ChannelTree;
 import com.east.cms.model.Role;
@@ -28,6 +29,7 @@ import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/admin/user")
+@AuthClass("login")
 public class UserController {
 
 	@Autowired

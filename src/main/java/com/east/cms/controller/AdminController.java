@@ -6,11 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.auth.AuthMethod;
 import com.east.cms.pojo.CmsSessionContext;
 
 @Controller
-// @AuthClass("login")
+@AuthClass("login")
 public class AdminController {
 
 	@RequestMapping("/admin")

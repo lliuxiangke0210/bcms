@@ -10,6 +10,14 @@
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
 
+    
+    <bean id="ftlPath" class="java.lang.String">
+		<constructor-arg value="/ftl"/>
+	</bean>
+	<bean id="outPath" class="java.lang.String">
+		<constructor-arg value="/jsp/template"/>
+	</bean>
+
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url"

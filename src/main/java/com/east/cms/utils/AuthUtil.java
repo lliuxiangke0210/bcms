@@ -22,6 +22,7 @@ public class AuthUtil {
 		try {
 			Map<String, Set<String>> auths = new HashMap<String, Set<String>>();
 			String[] ps = getClassByPackage(pname);
+			System.out.println("----------" + ps);
 			for (String p : ps) {
 				String pc = pname + "." + p.substring(0, p.lastIndexOf(".class"));
 				// 得到了类的class对象
@@ -70,6 +71,7 @@ public class AuthUtil {
 		String pr = pname.replace(".", "/");
 		String pp = AuthUtil.class.getClassLoader().getResource(pr).getPath();
 		File file = new File(pp);
+		System.out.println("file" + file);
 		String[] fs = file.list(new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				if (name.endsWith(".class"))
@@ -77,10 +79,13 @@ public class AuthUtil {
 				return false;
 			}
 		});
+		System.out.println("---fs---" + fs);
 		return fs;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(initAuth("org.konghao.cms.controller"));
+		// System.out.println(initAuth("com.east.cms.controller"));
+		System.out.println(getClassByPackage("com.east.cms.controller"));
+
 	}
 }

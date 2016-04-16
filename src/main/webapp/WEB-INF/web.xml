@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>Archetype Created Web Application</display-name>
-    <!-- Spring配置文件 -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>Archetype Created Web Application</display-name>
+	<!-- Spring配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-  	<!-- 编码过滤器 -->
+	<!-- 编码过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -14,54 +17,66 @@
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
-        <!-- <async-supported>true</async-supported> -->
+		<!-- <async-supported>true</async-supported> -->
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
-   <!-- Spring监听器 -->  
-   <listener>
-       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-   </listener>
-  
-   <!-- 防止spring内存溢出监听器 -->
+
+	<!-- Spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 防止spring内存溢出监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
-  
-  	<!-- 添加对springmvc的支持 -->
+
+	<!-- 添加对springmvc的支持 -->
 	<servlet>
-		<servlet-name>springMVC</servlet-name>
+		<servlet-name>bcms</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	   <!-- <async-supported>true</async-supported>   -->
+		<!-- <async-supported>true</async-supported> -->
 	</servlet>
-	
-	  <!--  <servlet>
+
+	<servlet-mapping>
+		<servlet-name>bcms</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>bcms</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet>
 		<servlet-name>initServlet</servlet-name>
-		<servlet-class>cms.east.cms.web.InitServlet</servlet-class>
+		<servlet-class>com.east.cms.web.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet> -->
-	
-	<servlet-mapping>
-        <servlet-name>springMVC</servlet-name>
-        <url-pattern>/</url-pattern>
-   </servlet-mapping>
-	
- 	<!-- <servlet-mapping>
-        <servlet-name>springMVC</servlet-name>
-        <url-pattern>*.do</url-pattern>
-   </servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>springMVC</servlet-name>
-		<url-pattern>*.html</url-pattern>
-	</servlet-mapping> 
-  -->
+
+	<listener>
+		<listener-class>com.east.cms.web.CmsSessionListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>SystemContextFilter</filter-name>
+		<filter-class>com.east.cms.web.SystemContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SystemContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- <servlet-mapping> <servlet-name>springMVC</servlet-name> <url-pattern>*.do</url-pattern> 
+		</servlet-mapping> <servlet-mapping> <servlet-name>springMVC</servlet-name> 
+		<url-pattern>*.html</url-pattern> </servlet-mapping> -->
 
 </web-app>

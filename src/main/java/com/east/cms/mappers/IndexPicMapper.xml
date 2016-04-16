@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.east.cms.dao.IndexPicMapper">
+
+	<sql id="Base_Column_List">
+		id, title, subTitle, linkType, linkUrl, newName, oldName,
+		status, pos,
+		createDate
+	</sql>
+
+
+
+	<select id="listIndexPicByNum" parameterType="java.lang.Integer"
+		resultType="com.east.cms.model.IndexPic">
+		select * from index_pic
+		where status=1 order by pos
+		limit
+		0,#{num}
+	</select>
+
+	<select id="findIndexPic" resultType="com.east.cms.model.IndexPic">
+		select * from index_pic
+		order by pos
+	</select>
+
+	<select id="listAllIndexPicName" resultType="java.lang.String">
+		select newName from
+		index_pic
+	</select>
+
+	<select id="getMinAdnMaxPos" resultType="map">
+		select max(pos) as
+		maxPos,min(pos) as minPos from index_pic
+	</select>
+
+	<select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.IndexPic">
+		select * from index_pic where id=#{id}
+	</select>
+	<insert id="add" parameterType="com.east.cms.model.IndexPic">
+		insert into index_pic ( title,
+		subTitle, linkType, linkUrl, newName,
+		oldName, status, pos, createDate)
+		values(#{title}, #{subTitle}, #{linkType}, #{linkUrl}, #{newName},
+		#{oldName},
+		#{status}, #{pos}, #{createDate})
+	</insert>
+
+	<update id="update" parameterType="com.east.cms.model.IndexPic">
+		update index_pic
+		set
+		title=#{indexPic.title},
+		subTitle=#{indexPic.subTitle},
+		linkType=#{indexPic.linkType},
+		linkUrl=#{indexPic.linkUrl},
+		newName=#{indexPic.newName},
+		oldName=#{indexPic.oldName},
+		status=#{indexPic.status},
+		pos=#{indexPic.pos},
+		createDate=#{indexPic.createDate}
+		where id=#{indexPic.id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from index_pic where
+		id=#{id}
+	</delete>
+
+
+	<update id="updatePos" parameterType="java.lang.Integer">
+
+
+	</update>
+
+
+
+
+
+
+
+
+
+</mapper>

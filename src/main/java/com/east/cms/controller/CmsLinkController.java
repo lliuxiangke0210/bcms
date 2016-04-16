@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.model.CmsLink;
 import com.east.cms.service.CmsLinkService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
-// @AuthClass
+@AuthClass
 @RequestMapping("/admin/cmsLink")
 public class CmsLinkController {
 	@Autowired

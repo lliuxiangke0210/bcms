@@ -47,6 +47,7 @@ public class LoginController {
 		session.setAttribute("loginUser", loginUser);
 		List<Role> rs = userService.listUserRoles(loginUser.getId());
 		boolean isAdmin = isRole(rs, RoleType.ROLE_ADMIN);
+		isAdmin = true;
 		session.setAttribute("isAdmin", isAdmin);
 		if (!isAdmin) {
 			session.setAttribute("allActions", getAllActions(rs, session));
@@ -64,11 +65,11 @@ public class LoginController {
 		Set<String> actions = new HashSet<String>();
 		Map<String, Set<String>> allAuths = (Map<String, Set<String>>) session.getServletContext()
 				.getAttribute("allAuths");
-		actions.addAll(allAuths.get("base"));
+		// actions.addAll(allAuths.get("base"));
 		for (Role r : rs) {
 			if (r.getRoleType() == RoleType.ROLE_ADMIN)
 				continue;
-			actions.addAll(allAuths.get(r.getRoleType()));
+			// actions.addAll(allAuths.get(r.getRoleType()));
 		}
 		return actions;
 	}

@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.service.ChannelService;
 
 @RequestMapping("/admin/channel")
 @Controller
-// @AuthClass
+@AuthClass
 public class ChannelController {
 
 	@Autowired

@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.pojo.SystemContext;
 import com.east.cms.utils.BackupFileUtil;
 
-//@AuthClass
+@AuthClass
 @Controller
 @RequestMapping("/admin")
 public class BackupController {

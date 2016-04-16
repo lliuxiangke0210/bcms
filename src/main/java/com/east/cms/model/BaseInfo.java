@@ -1,6 +1,7 @@
 package com.east.cms.model;
 
 public class BaseInfo {
+
 	private String name;
 	private String address;
 	private String zipCode;

@@ -1,4 +1,4 @@
-package com.east.cms.utils;
+package com.east.cms.web;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -60,13 +60,9 @@ public class BaseInfoUtil {
 			prop.setProperty("indexPicNum", String.valueOf(bi.getIndexPicNumber()));
 			prop.setProperty("domainName", bi.getDomainName());
 			prop.setProperty("indexPicSize", bi.getIndexPicWidth() + "*" + bi.getIndexPicHeight());
-			// String path =
-			// BaseInfoUtil.class.getClassLoader().getResource("./baseinfo.properties").getPath();
-			String basePath = System.getProperty("user.dir");
-			String propDir = "\\src\\main\\resources\\baseinfo.properties";
-			basePath = basePath.concat(propDir);
-			System.out.println(basePath);
-			fos = new FileOutputStream(basePath);
+			String path = BaseInfoUtil.class.getClassLoader().getResource("baseinfo.properties").getPath();
+			System.out.println(path);
+			fos = new FileOutputStream(path);
 			prop.store(fos, null);
 			return bi;
 		} catch (FileNotFoundException e) {
@@ -83,19 +79,4 @@ public class BaseInfoUtil {
 		}
 		return null;
 	}
-
-	public static void main(String[] args) {
-
-		// BaseInfo baseInfo = BaseInfoUtil.getInstacne().read();
-		// System.out.println(baseInfo);
-
-		BaseInfo baseInfo = BaseInfoUtil.getInstacne().read();
-		baseInfo.setName("中国");
-		baseInfo.setAddress("上海");
-		baseInfo.setDomainName("wwww.lxk.com");
-		baseInfo.setEmail("liuxiangke0210@sina.com");
-		BaseInfoUtil.getInstacne().write(baseInfo);
-
-	}
-
 }

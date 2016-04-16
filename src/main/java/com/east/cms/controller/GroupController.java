@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.east.cms.auth.AuthClass;
 import com.east.cms.model.ChannelTree;
 import com.east.cms.model.Groupz;
 import com.east.cms.service.GroupService;
@@ -20,7 +21,7 @@ import com.github.pagehelper.PageInfo;
 
 @RequestMapping("/admin/group")
 @Controller
-// @AuthClass
+@AuthClass
 public class GroupController {
 
 	@Autowired
