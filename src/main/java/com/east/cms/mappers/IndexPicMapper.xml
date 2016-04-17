@@ -22,7 +22,7 @@
 		select * from index_pic
 		order by pos
 	</select>
-
+	<!-- oo -->
 	<select id="listAllIndexPicName" resultType="java.lang.String">
 		select newName from
 		index_pic
@@ -67,8 +67,15 @@
 
 
 	<update id="updatePos" parameterType="java.lang.Integer">
-
-
+		update index_pic set pos=pos-1
+		<choose>
+			<when test=" oldPos lt newPos  ">
+				where pos gt 0 and pos lt=#{oldPos};
+			</when>
+			<otherwise>
+				where pos lt 1 and pos gt=#{newPos};
+			</otherwise>
+		</choose>
 	</update>
 
 

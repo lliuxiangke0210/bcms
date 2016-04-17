@@ -25,7 +25,7 @@ $(function(){
 	</h3>
 	<sf:form method="post" modelAttribute="channel" id="addForm">
 	<table width="550px" cellspacing="0" cellPadding="0">
-		<thead><tr><td colspan="2">更新[${channel.name}]子栏目功能</td></tr></thead>
+		<thead><tr><td colspan="2">更新[${channel.channelName}]子栏目功能</td></tr></thead>
 		<sf:hidden path="id"/>
 		<tr>
 			<td class="rightTd" width="96px">栏目名称:</td><td class="leftTd"><sf:input path="name" size="30"/><sf:errors cssClass="errorContainer" path="name"/></td>

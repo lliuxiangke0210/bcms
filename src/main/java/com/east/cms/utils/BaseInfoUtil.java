@@ -60,13 +60,10 @@ public class BaseInfoUtil {
 			prop.setProperty("indexPicNum", String.valueOf(bi.getIndexPicNumber()));
 			prop.setProperty("domainName", bi.getDomainName());
 			prop.setProperty("indexPicSize", bi.getIndexPicWidth() + "*" + bi.getIndexPicHeight());
-			// String path =
-			// BaseInfoUtil.class.getClassLoader().getResource("./baseinfo.properties").getPath();
-			String basePath = System.getProperty("user.dir");
-			String propDir = "\\src\\main\\resources\\baseinfo.properties";
-			basePath = basePath.concat(propDir);
-			System.out.println(basePath);
-			fos = new FileOutputStream(basePath);
+			String path = BaseInfoUtil.class.getClassLoader().getResource("baseinfo.properties").getPath();
+			System.out.println("--------------------" + path);
+			String spath = "D:/baseinfo.properties";
+			fos = new FileOutputStream(spath);
 			prop.store(fos, null);
 			return bi;
 		} catch (FileNotFoundException e) {

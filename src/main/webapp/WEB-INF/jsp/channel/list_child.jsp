@@ -45,9 +45,9 @@ $(function(){
 		<c:forEach items="${channels }" var="c">
 			<tr id="id_${c.id }">
 				<td>
-				${c.name }
+				${c.channelName }
 				&nbsp;</td>
-				<td class="ctype">${c.type.name }</td>
+				<td class="ctype">${c.channelType }</td>
 				<td>
 				<c:if test="${c.recommend eq 0 }"><span class="emp">不推荐</span></c:if>
 				<c:if test="${c.recommend eq 1 }">推荐</c:if>

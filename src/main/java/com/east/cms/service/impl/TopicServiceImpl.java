@@ -169,7 +169,10 @@ public class TopicServiceImpl implements TopicService {
 
 	@Override
 	public boolean isUpdateIndex(int cid) {
-		return topicDao.isUpdateIndex(cid);
+		int count = topicDao.isUpdateIndex(cid);
+		if (count <= 0)
+			return false;
+		return true;
 	}
 
 	@Override

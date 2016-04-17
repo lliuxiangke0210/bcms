@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.east.cms.auth.AuthClass;
+import com.east.cms.model.Attachment;
 import com.east.cms.model.BaseInfo;
 import com.east.cms.pojo.SystemContext;
 import com.east.cms.service.AttachmentService;
 import com.east.cms.service.IndexPicService;
 import com.east.cms.service.IndexService;
 import com.east.cms.utils.BaseInfoUtil;
+import com.github.pagehelper.PageInfo;
 
 @RequestMapping("/admin/system")
 @Controller
@@ -38,18 +40,18 @@ public class SystemController {
 	private IndexService indexService;
 
 	@RequestMapping("/baseinfo")
-	public String showBaseInfo() {
+	public String showBaseInfo() {// oo
 		return "system/showBaseInfo";
 	}
 
 	@RequestMapping(value = "/baseinfo/update", method = RequestMethod.GET)
-	public String updateBaseInfo(HttpSession session, Model model) {
+	public String updateBaseInfo(HttpSession session, Model model) {// oo
 		model.addAttribute("baseInfo", session.getServletContext().getAttribute("baseInfo"));
 		return "system/updateBaseInfo";
 	}
 
 	@RequestMapping(value = "/baseinfo/update", method = RequestMethod.POST)
-	public String updateBaseInfo(@Validated BaseInfo baseInfo, BindingResult br, HttpSession session) {
+	public String updateBaseInfo(@Validated BaseInfo baseInfo, BindingResult br, HttpSession session) {// oo
 		if (br.hasErrors()) {
 			return "system/updateBaseInfo";
 		}
@@ -61,7 +63,7 @@ public class SystemController {
 	}
 
 	@RequestMapping("/cleans")
-	public String listCleans(Model model) {
+	public String listCleans(Model model) {// oo
 		model.addAttribute("attNums", attachmentService.findNoUseAttachmentNum());
 		model.addAttribute("indexPics", listNoUseIndexPicNum(indexPicService.listAllIndexPicName()));
 		return "system/cleans";
@@ -82,9 +84,13 @@ public class SystemController {
 	}
 
 	@RequestMapping("/cleanList/{name}")
-	public String cleanList(@PathVariable String name, Model model) {
+	public String cleanList(@PathVariable String name, Model model) {// oo
 		if (name.equals("atts")) {
-			model.addAttribute("datas", attachmentService.findNoUseAttachment());
+			PageInfo<Attachment> pageInfo = attachmentService.findNoUseAttachment();
+			List<Attachment> attachments = pageInfo.getList();
+			model.addAttribute("datas", attachments);
+			model.addAttribute("total", pageInfo.getTotal());
+			model.addAttribute("pageSize", pageInfo.getPageSize());
 			return "system/cleanAtts";
 		} else if (name.equals("pics")) {
 			model.addAttribute("datas", listNoUseIndexPic(indexPicService.listAllIndexPicName()));
@@ -96,7 +102,7 @@ public class SystemController {
 	@RequestMapping("/clean/{name}")
 	public String clean(@PathVariable String name, Model model) throws IOException {
 		if (name.equals("atts")) {
-			attachmentService.clearNoUseAttachment();
+			attachmentService.deleteNoUseAttachment();
 		} else if (name.equals("pics")) {
 			indexPicService.cleanNoUseIndexPic(listNoUseIndexPic(indexPicService.listAllIndexPicName()));
 		}

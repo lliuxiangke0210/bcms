@@ -35,11 +35,11 @@
 		</choose>
 	</select>
 	<!-- oo -->
-	<select id="generateTree" resultType="com.east.cms.model.Channel">
+	<select id="generateTree" resultType="com.east.cms.model.ChannelTree">
 		select id, channelName,parentId from channel order by orders
 	</select>
 	<!-- oo -->
-	<select id="generateTreeByParent" resultType="com.east.cms.model.Channel">
+	<select id="generateTreeByParent" resultType="com.east.cms.model.ChannelTree">
 		select id, channelName,parentId from channel
 		<choose>
 			<when test=" parentId != null and parentId != 0 ">

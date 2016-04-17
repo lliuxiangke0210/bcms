@@ -35,7 +35,7 @@
    select count(*) from attachment  where topicId is null
  </select>
  <!-- oo -->
-  <delete id="clearNoUseAttachment">
+  <delete id="deleteNoUseAttachment">
     delete from attachment where topicId is null
  </delete>
  <!-- oo -->

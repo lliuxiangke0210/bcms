@@ -1,6 +1,10 @@
 package com.east.cms.model;
 
 public class Channel {
+
+	public static final String ROOT_NAME = "网站系统栏目";
+	public static final int ROOT_ID = 0;
+
 	private Integer id;
 
 	private String channelName;

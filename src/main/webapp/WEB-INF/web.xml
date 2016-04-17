@@ -56,11 +56,11 @@
 		<url-pattern>/dwr/*</url-pattern>
 	</servlet-mapping>
 
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>initServlet</servlet-name>
 		<servlet-class>com.east.cms.web.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
-	</servlet> -->
+	</servlet>
 
 	<listener>
 		<listener-class>com.east.cms.web.CmsSessionListener</listener-class>

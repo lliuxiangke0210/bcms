@@ -21,7 +21,7 @@ public interface AttachmentMapper {
 	/**
 	 * 清空没有被引用的附件
 	 */
-	public void clearNoUseAttachment();// oo
+	public void deleteNoUseAttachment();// oo
 
 	/**
 	 * 删除某个文章的所有附件

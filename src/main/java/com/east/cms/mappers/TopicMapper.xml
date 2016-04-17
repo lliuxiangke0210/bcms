@@ -104,24 +104,28 @@
 
 	<update id="update" parameterType="com.east.cms.model.Topic">
 		update topic
-		set title=#{title},
-		keyword=#{keyword},
-		status=#{status},
-		recommend=#{recommend},
-		content=#{content},
-		summary=#{summary},
-		publishDate=#{publishDate},
-		createDate=#{createDate},
-		author=#{author},
-		cname=#{cname},
-		channelPicId=#{channelPicId},
-		channelId=#{channelId},
-		userId=#{userId}
-		where id=#{id}
+		set title=#{topic.title},
+		keyword=#{topic.keyword},
+		status=#{topic.status},
+		recommend=#{topic.recommend},
+		content=#{topic.content},
+		summary=#{topic.summary},
+		publishDate=#{topic.publishDate},
+		createDate=#{topic.createDate},
+		author=#{topic.author},
+		cname=#{topic.cname},
+		channelPicId=#{topic.channelPicId},
+		channelId=#{topic.channelId},
+		userId=#{topic.userId}
+		where id=#{topic.id}
 	</update>
 	
-	<select id="load" parameterType="java.lang.Integer">
+	<select id="load" parameterType="java.lang.Integer" resultType="com.east.cms.model.Topic" >
 	 select * from topic where id=#{topicId}
 	</select>
+
+    <select id="isUpdateIndex"  parameterType="java.lang.Integer" resultType="java.lang.Integer">   
+       select count(*)  from channel where isIndex=1 and channelStatus=0 and id=#{channelId} 
+    </select>
 
 </mapper>

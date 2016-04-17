@@ -38,10 +38,10 @@ $(function(){
 			<option value="0">选择栏目</option>
 			<c:forEach items="${cs }" var="c">
 				<c:if test="${c.id  eq cid}">
-				<option value="${c.id }" selected="selected">${c.name }</option>
+				<option value="${c.id }" selected="selected">${c.channelName }</option>
 				</c:if>
 				<c:if test="${c.id  ne cid}">
-				<option value="${c.id }">${c.name }</option>
+				<option value="${c.id }">${c.channelName }</option>
 				</c:if>
 			</c:forEach>
 		</select>
@@ -57,7 +57,7 @@ $(function(){
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas.datas }" var="t">
+		<c:forEach items="${datas }" var="t">
 			<tr>
 				<td><a href="javascript:openWin('<%=request.getContextPath() %>/admin/topic/${t.id }','showTopic')" class="list_link">${t.title }</a></td>
 				<td>${t.author}</td>
@@ -84,7 +84,8 @@ $(function(){
 		<tr>
 			<td colspan="6" style="text-align:right;margin-right:10px;">
 			<jsp:include page="/jsp/pager.jsp">
-				<jsp:param value="${datas.total }" name="totalRecord"/>
+				<jsp:param value="${total}" name="totalRecord"/>
+				<jsp:param value="${pageSize }" name="pageSize"/>
 				<jsp:param value="audits" name="url"/>
 			</jsp:include>
 			</td>

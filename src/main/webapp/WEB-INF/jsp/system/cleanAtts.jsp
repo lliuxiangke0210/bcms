@@ -23,7 +23,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas.datas }" var="att">
+		<c:forEach items="${datas}" var="att">
 			<tr>
 				<td>${att.oldName }</td>
 				<td>${att.newName }</td>
@@ -36,7 +36,8 @@
 		<tr>
 			<td colspan="6" style="text-align:right;margin-right:10px;">
 			<jsp:include page="/jsp/pager.jsp">
-				<jsp:param value="${datas.total }" name="totalRecord"/>
+				<jsp:param value="${total}" name="totalRecord"/>
+				<jsp:param value="${pageSize }" name="pageSize"/>
 				<jsp:param value="atts" name="url"/>
 			</jsp:include>
 			</td>

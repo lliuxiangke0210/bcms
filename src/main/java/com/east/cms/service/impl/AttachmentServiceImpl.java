@@ -9,6 +9,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.east.cms.dao.AttachmentMapper;
@@ -29,6 +30,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 	public final static int IMG_WIDTH = 900;
 	public final static int THUMBNAIL_WIDTH = 150;
 	public final static int THUMBNAIL_HEIGHT = 110;
+
+	@Autowired
 	private AttachmentMapper attachmentDao;
 	public final static String UPLOAD_PATH = "/upload/";
 
@@ -108,8 +111,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 	}
 
 	@Override
-	public void clearNoUseAttachment() {// oo
-		attachmentDao.clearNoUseAttachment();
+	public void deleteNoUseAttachment() {// oo
+		attachmentDao.deleteNoUseAttachment();
 	}
 
 	@Override
@@ -172,7 +175,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 	}
 
 	@Override
-	public long findNoUseAttachmentNum() {// oo
+	public int findNoUseAttachmentNum() {// oo
 		return attachmentDao.findNoUseAttachmentNum();
 	}
 

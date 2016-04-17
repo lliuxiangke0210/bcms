@@ -26,7 +26,7 @@ public interface AttachmentService {
 	/**
 	 * 清空没有被引用的附件
 	 */
-	public void clearNoUseAttachment();
+	public void deleteNoUseAttachment();
 
 	/**
 	 * 获取某个文章的附件
@@ -66,6 +66,6 @@ public interface AttachmentService {
 
 	public PageInfo<AttachmentTopic> listAllPic();
 
-	public long findNoUseAttachmentNum();
+	public int findNoUseAttachmentNum();
 
 }

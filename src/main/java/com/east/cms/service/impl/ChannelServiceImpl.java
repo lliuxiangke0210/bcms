@@ -22,6 +22,14 @@ public class ChannelServiceImpl implements ChannelService {
 	@Resource
 	private TopicService topicService;
 
+	public static void initTreeNode(List<ChannelTree> cts) {
+		cts.add(0, new ChannelTree(Channel.ROOT_ID, Channel.ROOT_NAME, -1));
+		for (ChannelTree ct : cts) {
+			if (ct.getParentId() == null)
+				ct.setParentId(0);
+		}
+	}
+
 	@Override
 	public void add(Channel channel, Integer pid) {
 		Integer orders = channelDao.getMaxOrderByParent(pid);// oo
@@ -77,11 +85,14 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public List<ChannelTree> generateTree() {// oo
-		return channelDao.generateTree();
+		List<ChannelTree> channelTrees = channelDao.generateTree();
+		initTreeNode(channelTrees);
+		return channelTrees;
 	}
 
 	@Override
 	public List<ChannelTree> generateTreeByParent(Integer pid) {// oo
+
 		return channelDao.generateTreeByParent(pid);
 	}
 

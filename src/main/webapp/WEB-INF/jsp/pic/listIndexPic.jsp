@@ -75,7 +75,7 @@ $(function(){
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas.datas }" var="pic">
+		<c:forEach items="${datas}" var="pic">
 			<tr>
 				<td><img src='<%=request.getContextPath()%>/resources/indexPic/thumbnail/${pic.newName}'/></td>
 				<td><a href="javascript:openWin('<%=request.getContextPath() %>/admin/pic/indexPic/${pic.id }','showPic')" class="list_link">${pic.title }</a></td>
@@ -102,7 +102,8 @@ $(function(){
 		<tr>
 			<td colspan="6" style="text-align:right;margin-right:10px;">
 			<jsp:include page="/jsp/pager.jsp">
-				<jsp:param value="${datas.total }" name="totalRecord"/>
+				<jsp:param value="${total}" name="totalRecord"/>
+				<jsp:param value="${pageSize}" name="pageSize"/>
 				<jsp:param value="indexPics" name="url"/>
 			</jsp:include>
 			</td>

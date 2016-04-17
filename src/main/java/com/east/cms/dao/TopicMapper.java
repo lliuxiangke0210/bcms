@@ -81,7 +81,7 @@ public interface TopicMapper {
 	 * @param cid
 	 * @return
 	 */
-	public boolean isUpdateIndex(@Param("channelId") int channelId);
+	public int isUpdateIndex(@Param("channelId") int channelId);
 
 	/**
 	 * 获取某个栏目中的最新的可用文章

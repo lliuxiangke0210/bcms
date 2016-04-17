@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -31,6 +32,7 @@ import com.east.cms.service.AttachmentService;
 import com.east.cms.service.IndexPicService;
 import com.east.cms.service.IndexService;
 import com.east.cms.utils.JsonUtil;
+import com.github.pagehelper.PageInfo;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;
@@ -58,9 +60,14 @@ public class IndexPicController {
 	@RequestMapping("/indexPics")
 	public String listIndexPic(Model model) {
 		Map<String, Integer> mm = indexPicService.getMinAdnMaxPos();
-		model.addAttribute("min", mm.get("min"));
-		model.addAttribute("max", mm.get("max"));
-		model.addAttribute("datas", indexPicService.findIndexPic());
+		model.addAttribute("min", mm.get("minPos"));
+		model.addAttribute("max", mm.get("maxPos"));
+		PageInfo<IndexPic> pageInfo = indexPicService.findIndexPic();
+		List<IndexPic> indexPics = pageInfo.getList();
+		model.addAttribute("datas", indexPics);
+		model.addAttribute("total", pageInfo.getTotal());
+		model.addAttribute("pageSize", pageInfo.getPageSize());
+
 		return "pic/listIndexPic";
 	}
 

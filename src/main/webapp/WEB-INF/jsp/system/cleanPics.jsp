@@ -21,7 +21,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas }" var="pic">
+		<c:forEach items="${datas}" var="pic">
 			<tr>
 				<td><img src="<%=request.getContextPath()%>/resources/indexPic/thumbnail/${pic}"/></td>
 				<td>${pic }</td>
